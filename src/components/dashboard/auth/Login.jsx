@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Logo2 from "../../../assets/Logo2";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ const Login = () => {
             <section className=" bg-gray-300 w-full h-screen flex items-center ">
                 <div className="max-md:w-full w-3/4 m-auto flex flex-col lg:flex-row">
                     <div className="bg-white p-8 w-full ">
-                        <h1 className="logo"> PayBills</h1>
+                        <Logo2 height='68' width='203'/>
 
                         <div className="my-6">
                             <h1 className="text-bills-darkblue font-semibold text-5xl">Login</h1>
