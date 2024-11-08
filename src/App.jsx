@@ -6,7 +6,8 @@ import SideNav from './components/dashboard/sideNav'
 function App() {
   return (
     <>
-    <SideNav/>
+  
+   
     </>
   )
 }

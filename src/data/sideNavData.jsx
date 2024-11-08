@@ -4,38 +4,47 @@ import { Airplane, ArchiveTick, Element3, I24Support, Notepad, Profile2User, Rec
 export const sideNavData  = [
     {
         name:'Overview',
-        icon:<Element3 size={20}  />
+        icon:<Element3 size={20}  />,
+        link:'/'
     },
     {
         name:'Bills',
-        icon:<ArchiveTick size={20}/>
+        icon:<ArchiveTick size={20}/>,
+        link:'/ka'
     },
     {
         name:'Transaction',
-        icon:<Receipt size={20}/>
+        icon:<Receipt size={20}/>,
+        link:'/da'
     },
     {
         name:'User Management',
-        icon:<Profile2User size={20}/>
+        icon:<Profile2User size={20}/>,
+        link:'/huskah'
     },
     {
         name:'Flight Management',
-        icon:<Airplane size={20}/>
+        icon:<Airplane size={20}/>,
+        link:'/tqui'
     },
     {
         name:'Movie Management',
-        icon:<VideoVertical size={20}/>
+        icon:<VideoVertical size={20}/>,
+        link:'/kl'
     },
     {
         name:'Support',
-        icon:<I24Support size={20}/>
+        icon:<I24Support size={20}/>,
+        link:'/lslpo'
     },
     {
         name:'FAQ',
-        icon:<Notepad size={20}/>
+        icon:<Notepad size={20}/>,
+        link:'/faqs'
     },
     {
         name:'Control & Settings',
-        icon:<Setting2 size={20}/>
+        icon:<Setting2 size={20}/>,
+        link:'/settings'
     },
 ]
