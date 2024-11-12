@@ -1,9 +1,15 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import SideNav from "./sideNav";
 import { horizontalNav } from "../../data/SettingsNavData";
 import { Outlet } from "react-router-dom";
+import Home from "./settings/home";
 
 const Settings = () => {
+    const location = useLocation()
+    console.log(location);
+
+    const hideContent = location.pathname.includes('/team')
+    
     return (<>
           <section className="">
             <SideNav />
@@ -31,7 +37,11 @@ const Settings = () => {
 
                     </div>
                   <Outlet/>  
-                   
+                  {!hideContent && (
+                    <Home/>
+                   )
+                  }
+                        
                 </div>
             </div>
             

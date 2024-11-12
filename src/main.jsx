@@ -12,6 +12,7 @@ import Overview from './components/dashboard/Overview.jsx';
 import Faqs from './components/dashboard/faq.jsx';
 import Settings from './components/dashboard/settings.jsx';
 import Team from './components/dashboard/settings/team.jsx';
+import Home from './components/dashboard/settings/home.jsx';
 
 
 const router = createBrowserRouter([
@@ -32,10 +33,12 @@ const router = createBrowserRouter([
     path:"/settings",
     element: <Settings/>,
     children: [
+      
       {
         path: "team",      // Relative to /settings
         element: <Team />,
-      },]
+      },
+    ]
     
   },
   
