@@ -13,6 +13,7 @@ import Faqs from './components/dashboard/faq.jsx';
 import Settings from './components/dashboard/settings.jsx';
 import Team from './components/dashboard/settings/team.jsx';
 import Home from './components/dashboard/settings/home.jsx';
+import { Preferences } from './components/dashboard/settings/preferences.jsx';
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "team",      // Relative to /settings
         element: <Team />,
+      },
+      {
+        path: "preferences",      // Relative to /settings
+        element: <Preferences />,
       },
     ]
     

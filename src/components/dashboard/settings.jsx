@@ -8,7 +8,7 @@ const Settings = () => {
     const location = useLocation()
     console.log(location);
 
-    const hideContent = location.pathname.includes('/team')
+    const hideContent = location.pathname.includes('/team') ||location.pathname.includes('/preferences')
     
     return (<>
           <section className="">
