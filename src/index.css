@@ -14,7 +14,7 @@
     }
 
     .btn-fill{
-        @apply bg-bills-darkblue text-white px-6 py-[0.6rem] hover:py-[0.5rem] hover:text-bills-darkblue hover:bg-transparent 
-        hover:ring-[1.3px] ring-bills-darkblue rounded-md
+        @apply bg-bills-darkblue text-white px-6 py-[0.6rem] hover:py-[0.6rem] hover:text-white hover:bg-bills-darkblue/80  
+         ring-bills-darkblue rounded-md
     }
 }

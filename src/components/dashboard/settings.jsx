@@ -13,7 +13,7 @@ const Settings = () => {
     return (<>
           <section className="">
             <SideNav />
-            <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] h-screen bg-bills-lightgrey2'>
+            <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightgrey2'>
                 <div className="p-1 md:py-3 md:px-8">
                     <h1 className="text-2xl font-semibold uppercase"> control and settings</h1>
 
@@ -37,10 +37,7 @@ const Settings = () => {
 
                     </div>
                   <Outlet/>  
-                  {!hideContent && (
-                    <Home/>
-                   )
-                  }
+                 
                         
                 </div>
             </div>

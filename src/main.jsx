@@ -14,6 +14,8 @@ import Settings from './components/dashboard/settings.jsx';
 import Team from './components/dashboard/settings/team.jsx';
 import Home from './components/dashboard/settings/home.jsx';
 import { Preferences } from './components/dashboard/settings/preferences.jsx';
+import { ProfileInfo } from './components/dashboard/settings/ProfileInfo.jsx';
+import { Password } from './components/dashboard/settings/Password.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,6 +36,21 @@ const router = createBrowserRouter([
     path:"/settings",
     element: <Settings/>,
     children: [
+      {
+        path: "", // Relative to /settings
+        element: <Home/>,
+        children: [
+          {
+            path: "", // Default route for /settings/account
+            element: <ProfileInfo />,
+          },
+          {
+            path: "password", // Default route for /settings/account
+            element: <Password />,
+          },
+         
+        ],
+      },
       
       {
         path: "team",      // Relative to /settings
