@@ -34,7 +34,7 @@ export const ProfileInfo = () => {
 
                 <div className='w-full grid md:grid-cols-3 gap-4 mt-4'>
                         <div className="col-span-1">
-                            <button className='w-full btn-outline' >cancel</button>
+                            <button className='w-full btn-outline' >Cancel</button>
                         </div>
                         <div className="col-span-2">
                             <button className='w-full btn-fill' >Save changes</button>

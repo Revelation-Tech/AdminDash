@@ -148,6 +148,7 @@ const SideNav = () => {
             <div className="bg-white p-4 flex items-center flex-row-reverse ">
             <ProfileCircle size={20}  />
             <Notification  size={20} color="#A09D9D" variant="Bold" className="mx-3" />
+            
             </div>
         </div>
            

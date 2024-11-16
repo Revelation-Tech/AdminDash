@@ -16,6 +16,8 @@ import Home from './components/dashboard/settings/home.jsx';
 import { Preferences } from './components/dashboard/settings/preferences.jsx';
 import { ProfileInfo } from './components/dashboard/settings/ProfileInfo.jsx';
 import { Password } from './components/dashboard/settings/Password.jsx';
+import { Security } from './components/dashboard/settings/Security.jsx';
+import { Movies } from './components/dashboard/Movies.jsx';
 
 
 const router = createBrowserRouter([
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
             path: "password", // Default route for /settings/account
             element: <Password />,
           },
+          {
+            path: "security", // Default route for /settings/account
+            element: <Security />,
+          },
          
         ],
       },
@@ -63,12 +69,17 @@ const router = createBrowserRouter([
     ]
     
   },
+
+  {
+    path: "/movies",
+    element: <Movies/> ,
+  },
   
 ]);
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <RouterProvider router={router} />
-  </StrictMode>,
+  
 )

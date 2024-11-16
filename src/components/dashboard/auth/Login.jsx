@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Logo2 from "../../../assets/Logo2";
+import LoginImage from "../../../assets/login/poster";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -44,8 +45,8 @@ const Login = () => {
                         </div>
 
                     </div>
-                    <div className="bg-bills-lightblue  w-full">
-
+                    <div className="hidden lg:inline-flex bg-bills-lightblue  w-full">
+              
 
                     </div>
                 </div>

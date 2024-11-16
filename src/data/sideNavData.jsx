@@ -30,7 +30,7 @@ export const sideNavData  = [
     {
         name:'Movie Management',
         icon:<VideoVertical size={20}/>,
-        link:'/kl'
+        link:'/movies'
     },
     {
         name:'Support',

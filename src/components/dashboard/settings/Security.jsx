@@ -1,7 +1,7 @@
 import { Lock1 } from 'iconsax-react'
 import React from 'react'
 
-export const Password = () => {
+export const Security = () => {
   return (
     <section className='bg-white w-full  p-3 md:p-8'>
       <div className=''>
