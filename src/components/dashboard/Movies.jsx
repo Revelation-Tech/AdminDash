@@ -1,6 +1,8 @@
 import React from 'react'
 import SideNav from './sideNav'
 import { MoviesLine } from '../../data/chartData/moviesLine'
+import { MoviesDoughnut } from '../../data/chartData/MoviesDoughnut'
+import { MovieLine2 } from '../../data/chartData/MovieLine2'
 
 export const Movies = () => {
     return (
@@ -8,7 +10,7 @@ export const Movies = () => {
             <div className=''>
                 <SideNav />
 
-                <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] h-screen overflow-auto bg-bills-lightblue'>
+                <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightblue pb-8'>
                     <div className="p-4">
                         <h1 className="font-semibold text-3xl">Movies</h1>
                         <div className=" mt-8 md:grid grid-cols-3 gap-4  grid-flow-col">
@@ -48,6 +50,12 @@ export const Movies = () => {
                             
 
                         </div>
+                            <div className="w-full px-4">
+
+                        <MoviesDoughnut/>
+                            </div>
+
+                        <MovieLine2/>
                     </div>
                 </div>
 

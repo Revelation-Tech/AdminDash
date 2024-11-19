@@ -42,8 +42,10 @@ export const MoviesLine = () => {
   }
 
   const options ={
-    responsive: true, // Ensures responsiveness
-    // maintainAspectRatio: false, // Prevents scaling issues
+   
+      responsive: true,
+    maintainAspectRatio: false,
+   
     plugins:{
       legend:{
         display:false,
@@ -63,8 +65,14 @@ export const MoviesLine = () => {
     }
   }
   return (
-    
+    <>
+   
+  <div className="">
+   <div style={{ width: "100%", height: "50px" }} className="">
       <Line data={data} options={options}   />
-  
+  </div>
+    
+     </div>
+     </>
   )
 }
