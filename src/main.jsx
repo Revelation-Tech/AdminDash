@@ -7,7 +7,7 @@ import {
 
 import './index.css'
 import App from './App.jsx'
- import Login from './components/dashboard/auth/login.jsx';
+ import Login from './components/dashboard/auth/Login.jsx';
 import Overview from './components/dashboard/Overview.jsx';
 import Faqs from './components/dashboard/faq.jsx';
 import Settings from './components/dashboard/settings.jsx';
