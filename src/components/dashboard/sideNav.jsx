@@ -49,13 +49,13 @@ const SideNav = () => {
                 {/* Mobile Nav items */}
                 {sideNavData.map((link) => {
                     return (
-                        <NavLink style={({ isActive}) => {
+                        <NavLink  style={({ isActive}) => {
                             return {
                               backgroundColor: isActive ? "white" : "transparent",
                               color:isActive?'#1F6CAB':'white'
                               
                             };
-                          }} className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex " to={link.link} key={link.name}>
+                          }} className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "  to={link.link} key={link.name}>
                              {link.icon}  &nbsp; {link.name}</NavLink>
                             
                         
@@ -114,7 +114,7 @@ const SideNav = () => {
 
                 {sideNavData.map((link) => {
                     return (
-                        <div className=" hover:bg-white/20 w-full rounded  text-white hover:text-bills-darkblue">
+                        <div className=" hover:bg-white/20 w-full rounded  text-white hover:text-bills-darkblue" key={link.name}>
                         <NavLink to={link.link} style={({ isActive }) => {
                             return {
                               backgroundColor: isActive ? "white" : "transparent",

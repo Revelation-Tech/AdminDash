@@ -40,7 +40,7 @@ export const MovieDoughnutData = () => {
   return (
     <>
     <div className="grid md:grid-cols-2">
- <div style={{ width: "90%", height: "200px" }}>
+ <div style={{ width: "98%", height: "200px" }}>
       <Doughnut data={data} options={options} />
     </div>
     <div className=" text-center">
