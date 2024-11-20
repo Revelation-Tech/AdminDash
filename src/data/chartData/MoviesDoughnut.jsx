@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MovieDoughnutData } from './movieDoughnutData'
+import { MovieDoughnutData } from './MovieDoughnutData'
 
 
 export const MoviesDoughnut = () => {
