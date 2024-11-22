@@ -1,0 +1,44 @@
+import { HambergerMenu, LoginCurve, Notification, ProfileCircle } from "iconsax-react";
+import Logo from "../../assets/logo";
+import { sideNavData } from "../../data/sideNavData";
+import { Link, NavLink } from "react-router-dom";
+import Logo2 from "../../assets/Logo2";
+import {  useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+const SideNav = () => {
+    const [mobileNav, setMobileNav] = useState(true);
+    const [isActive,setIsActive] = useState('Overview')
+    const sidebarAnim = useRef(null)
+
+    useGSAP(()=>{
+        sidebarAnim.current=gsap.to('.mobile-nav',{
+            x:240,
+            boxShadow:'0px 1px 5px 2px black',
+            paused:true,
+            duration:0.5,
+            ease:"power2.inOut"
+        })
+    }
+        )
+
+    const handleMobileNav = ()=>{
+        setMobileNav(!mobileNav)
+      if (mobileNav) {
+        sidebarAnim.current.reverse()
+      }
+      else{
+        sidebarAnim.current.play()
+      }
+        
+    }
+    
+   
+return(
+    <>
+    </>
+)
+}
+
+export default SideNav;
