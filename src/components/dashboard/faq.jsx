@@ -1,9 +1,10 @@
 import { Add, ArrowDown2, More, SearchNormal, SearchNormal1 } from "iconsax-react";
-import SideNav from "./sideNav";
+
 import Categories from "../molecules/faqCategories";
 import { movieData } from "../../data/moviesData";
 import { PostModal } from "../molecules/postModal";
 import { useState } from "react";
+import SideNav from "./SideNav";
 
 const Faqs = () => {
     const [currentPost, setCurrentpost] = useState(null)
@@ -19,11 +20,11 @@ const Faqs = () => {
     }
     return (
         <>
-            <div className={isModal?'overflow-hidden' : ''}>
+            <div className=''>
+            <SideNav/>
+                
 
-
-
-                <SideNav />
+               
                 {/* title and Search bar */}
                 <div className={isModal ?' lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue overflow-y-hidden':'lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue'}>
 

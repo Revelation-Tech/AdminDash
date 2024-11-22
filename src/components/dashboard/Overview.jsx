@@ -1,11 +1,12 @@
 import { Notification } from "iconsax-react";
-import SideNav from "./sideNav.tst";
+import SideNav from "./SideNav";
+
 
 const Overview = () => {
     return ( 
         <>
           <div className=''>
-      
+      <SideNav/>
 
        <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] h-screen overflow-auto bg-bills-lightblue'>
         <div className="p-4">

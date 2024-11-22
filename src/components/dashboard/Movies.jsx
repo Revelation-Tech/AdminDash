@@ -1,8 +1,8 @@
 import React from 'react'
-import SideNav from './sideNav'
 import { MoviesLine } from '../../data/chartData/moviesLine'
 import { MoviesDoughnut } from '../../data/chartData/MoviesDoughnut'
 import { MovieLine2 } from '../../data/chartData/MovieLine2'
+import SideNav from './SideNav'
 
 export const Movies = () => {
     return (

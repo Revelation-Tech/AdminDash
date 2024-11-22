@@ -1,8 +1,9 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
-import SideNav from "./sideNav";
+
 import { horizontalNav } from "../../data/SettingsNavData";
 import { Outlet } from "react-router-dom";
 import Home from "./settings/home";
+import SideNav from "./SideNav";
 
 const Settings = () => {
     const location = useLocation()
@@ -12,7 +13,7 @@ const Settings = () => {
     
     return (<>
           <section className="">
-            <SideNav />
+           <SideNav/>
             <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightgrey2'>
                 <div className="p-1 md:py-3 md:px-8">
                     <h1 className="text-2xl font-semibold uppercase"> control and settings</h1>
