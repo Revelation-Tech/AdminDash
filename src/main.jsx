@@ -18,6 +18,8 @@ import { ProfileInfo } from './components/dashboard/settings/ProfileInfo.jsx';
 import { Password } from './components/dashboard/settings/Password.jsx';
 import { Security } from './components/dashboard/settings/Security.jsx';
 import { Movies } from './components/dashboard/Movies.jsx';
+import { All } from './components/dashboard/Transaction/All.jsx';
+import { Transaction } from './components/dashboard/Transaction/Transaction.jsx';
 
 
 const router = createBrowserRouter([
@@ -74,6 +76,18 @@ const router = createBrowserRouter([
     path: "/movies",
     element: <Movies/> ,
   },
+  {
+    path:'/transaction',
+    element: <Transaction/>,
+    children:[
+
+      {
+        path:'',
+        element: <All/>
+      },
+      
+    ]
+  }
   
 ]);
 
