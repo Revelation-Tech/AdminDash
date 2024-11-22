@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { horizontalNav } from "../../../data/SettingsNavData";
-import SideNav from "../sideNav";
+
 import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
 
 const Team = () => {
