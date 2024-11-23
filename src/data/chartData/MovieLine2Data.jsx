@@ -74,7 +74,7 @@ const options = {
   scales: {
     x: {
       grid: {
-        display: false, // Hides grid lines on the X-axis
+        display: true, // Hides grid lines on the X-axis
       },
     },
     y: {
@@ -86,7 +86,7 @@ const options = {
   };
 
   return (
-   <div className="mt-4 px-8 py-4 " style={{ width: "100%", height: "400px" }}>
+   <div className="mt-4 px-8 py-4 " style={{ width: "100%", height: "300px" }}>
     <Line data={data} options={options}/>
    </div>
   )

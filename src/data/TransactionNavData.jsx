@@ -1,42 +1,52 @@
+import { Mobile } from "iconsax-react";
+
 export const transactionNavData =   [{
     id:1,
     name:'All',
-    link:'.'
+    link:'.',
+    icon:<Mobile/>
    },
    {
     id:2,
     name:'Airtime',
-    link:'airtime'
+    link:'airtime',
+    icon:<Mobile/>
    },
    {
     id:3,
     name:'Data',
-    link:'data'
+    link:'data',
+    icon:<Mobile/>
    },
    {
     id:4,
     name:'Cable Tv',
-    link:'tv'
+    link:'tv',
+    icon:<Mobile/>
    },
    {
     id:5,
     name:'Electricity',
-    link:'electricity'
+    link:'electricity',
+    icon:<Mobile/>
    },
    {
     id:6,
     name:'Betting',
-    link:'betting'
+    link:'betting',
+    icon:<Mobile/>
    },
    {
     id:7,
     name:'Religious',
-    link:'religious'
+    link:'religious',
+    icon:<Mobile/>
    },
    {
     id:8,
     name:'Fuel',
-    link:'fuel'
+    link:'fuel',
+    icon:<Mobile/>
    },
 
 

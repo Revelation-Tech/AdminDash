@@ -20,6 +20,7 @@ import { Security } from './components/dashboard/settings/Security.jsx';
 import { Movies } from './components/dashboard/Movies.jsx';
 import { All } from './components/dashboard/Transaction/All.jsx';
 import { Transaction } from './components/dashboard/Transaction/Transaction.jsx';
+import { Airtime } from './components/dashboard/Transaction/Airtime.jsx';
 
 
 const router = createBrowserRouter([
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path:'',
         element: <All/>
+      },
+      {
+        path:'airtime',
+        element: <Airtime/>
       },
       
     ]
