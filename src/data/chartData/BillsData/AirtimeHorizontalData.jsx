@@ -29,6 +29,8 @@ const AirtimeHorizontalData = () => {
     }
 
     const options={
+        responsive: true,
+    maintainAspectRatio: false,
         indexAxis:'y',
         responsive: true,
         maintainAspectRatio: false,
@@ -41,7 +43,7 @@ const AirtimeHorizontalData = () => {
         }
     }
     return (
-    <div style={{width:'100%',height:'250px'}}>
+    <div style={{width:'80%',height:'250px'}}>
         <Bar data={data} options={options}/>
     </div>
   )
