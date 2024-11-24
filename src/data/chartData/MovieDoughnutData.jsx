@@ -24,7 +24,7 @@ export const MovieDoughnutData = () => {
               '#1CCCE8',
               '#A080F9',
               '#E56EF7',
-              'red'
+              '#1f6cab'
 
             ],
             borderRadius:6,

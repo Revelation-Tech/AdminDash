@@ -30,10 +30,9 @@ const AirtimeHorizontalData = () => {
 
     const options={
         responsive: true,
-    maintainAspectRatio: false,
-        indexAxis:'y',
-        responsive: true,
         maintainAspectRatio: false,
+        indexAxis:'y',
+        
         scales:{
             y:{
                 grid:{

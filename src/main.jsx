@@ -21,6 +21,9 @@ import { Movies } from './components/dashboard/Movies.jsx';
 import { All } from './components/dashboard/Transaction/All.jsx';
 import { Transaction } from './components/dashboard/Transaction/Transaction.jsx';
 import { Airtime } from './components/dashboard/Transaction/Airtime.jsx';
+import Cable from './components/dashboard/Transaction/Cable.jsx';
+import MainTransaction from './components/dashboard/MainTransaction/MainTransaction';
+import Users from './components/dashboard/Users/Users.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,8 +37,16 @@ const router = createBrowserRouter([
     element: <Login/> ,
   },
   {
+    path: "/transaction",
+    element: <MainTransaction/> ,
+  },
+  {
     path: "/faqs",
     element: <Faqs/> ,
+  },
+  {
+    path: "/users",
+    element: <Users/> ,
   },
   {
     path:"/settings",
@@ -78,7 +89,7 @@ const router = createBrowserRouter([
     element: <Movies/> ,
   },
   {
-    path:'/transaction',
+    path:'/bills',
     element: <Transaction/>,
     children:[
 
@@ -89,6 +100,32 @@ const router = createBrowserRouter([
       {
         path:'airtime',
         element: <Airtime/>
+      },
+      {
+        path:'data',
+        element: <Airtime/>
+      },
+      {
+        path:'tv',
+        element: <Cable/>
+      },
+      {
+        path:'electricity',
+        element: <Cable/>
+      },
+      {
+        path:'betting',
+        element: <Cable/>
+      },
+      
+      {
+        path:'religious',
+        element: <All/>
+      },
+      
+      {
+        path:'fuel',
+        element: <All/>
       },
       
     ]
