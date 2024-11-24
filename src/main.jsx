@@ -24,12 +24,14 @@ import { Airtime } from './components/dashboard/Transaction/Airtime.jsx';
 import Cable from './components/dashboard/Transaction/Cable.jsx';
 import MainTransaction from './components/dashboard/MainTransaction/MainTransaction';
 import Users from './components/dashboard/Users/Users.jsx';
+import ErrorPage from './components/dashboard/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:<Overview/>,
+    errorElement:<ErrorPage/>
   },
   
   {
