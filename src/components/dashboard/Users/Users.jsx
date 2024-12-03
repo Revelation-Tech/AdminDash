@@ -2,7 +2,9 @@ import React from 'react'
 import { MoviesLine } from '../../../data/chartData/moviesLine'
 import SideNav from '../SideNav'
 import UserSearch from './UserSearch'
-import UserListDisplay from './userListDisplay'
+import UserListDisplay from './UserListDisplay2'
+
+
 
 const Users = () => {
   return (
