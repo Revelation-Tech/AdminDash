@@ -1,6 +1,7 @@
 import React from 'react'
 import { MoviesLine } from '../../../data/chartData/moviesLine'
 import SideNav from '../SideNav'
+import UserSearch from './UserSearch'
 
 const Users = () => {
   return (
@@ -10,7 +11,7 @@ const Users = () => {
      <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightblue'>
       <div className="p-4">
           <h1 className="font-semibold text-3xl">Transaction</h1>
-          <div className=" mt-8 md:grid grid-cols-4 gap-4  grid-flow-col">
+          <div className=" mt-8 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4  ">
                       <div className="mt-2 md:mt-0 grid grid-cols-4 gap-8 grid-flow-row shadow rounded-md bg-white p-4">
                               <div className="col-span-2">
                                   <h1 className='text-sm font-semibold'>All</h1>
@@ -59,6 +60,8 @@ const Users = () => {
                           
 
                       </div>
+
+        <UserSearch/>
       </div>
      </div>
     
