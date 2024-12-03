@@ -13,7 +13,7 @@
         @apply ring-[1.3px] ring-bills-darkblue px-6 py-[0.5rem] hover:py-[0.6rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white
     }
     .btn-outline2{
-        @apply ring-[1.3px] ring-bills-darkblue px-6 py-[0.3rem] hover:py-[0.3rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white
+        @apply ring-[1.3px] ring-bills-darkblue px-3 py-[0.3rem] hover:py-[0.3rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white
     }
 
     .btn-fill{
@@ -21,7 +21,7 @@
          ring-bills-darkblue rounded-md
     }
     .btn-fill2{
-        @apply bg-bills-darkblue text-white px-6 py-[0.4rem] hover:py-[0.3rem] hover:text-white hover:bg-bills-darkblue/80  
+        @apply bg-bills-darkblue text-white px-3 lg:px-6 py-[0.4rem] hover:py-[0.3rem] hover:text-white hover:bg-bills-darkblue/80  
          ring-bills-darkblue rounded-md
     }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { MoviesLine } from '../../../data/chartData/moviesLine'
 import SideNav from '../SideNav'
 import UserSearch from './UserSearch'
+import UserListDisplay from './userListDisplay'
 
 const Users = () => {
   return (
@@ -62,6 +63,7 @@ const Users = () => {
                       </div>
 
         <UserSearch/>
+        <UserListDisplay/>
       </div>
      </div>
     
