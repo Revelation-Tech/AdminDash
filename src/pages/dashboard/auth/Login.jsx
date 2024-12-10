@@ -1,22 +1,50 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import Logo2 from "../../../assets/Logo2";
 import LoginImage from "../../../assets/login/poster";
+
+import useValidate from "@hooks/useValidate";
+import useLogin from "./hooks/useLogin";
+
+import { ToastContainer, toast } from "react-toastify";
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isRemember, setIsRemember] = useState(false)
 
+    const {renderLoading, data} = useValidate()
+
+    if(renderLoading()){
+        return renderLoading()
+    }
+
+    if(data) return <Navigate to="/" replace/>
+
      
-    const item = {
+    const payload = {
         email,password ,isRemember
     }
+
+    const {mutate, isPending} = useLogin();
+
     const handleSubmit = ()=>{
-        console.log(item);
-        
+        // console.log(payload);
+        // mutate(payload)    
+
+        toast.success("Login successful", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+        })
     }
+
     return (
         <>
             <section className=" bg-gray-300 w-full h-screen flex items-center ">
@@ -39,11 +67,10 @@ const Login = () => {
                             <input type="checkbox" name="rememberPassword" onChange={(e)=>setIsRemember(e.target.checked)} checked={isRemember}/>
                             <label htmlFor="rememberPassword" className="text-sm text-bills-lightgrey"> Remember Password </label>
 
-                            <button className="bg-bills-darkblue/85 hover:bg-bills-darkblue text-white p-2 w-full mt-4 rounded " onClick={handleSubmit}>Login</button>
+                            <button className="bg-bills-darkblue/85 hover:bg-bills-darkblue text-white p-2 w-full mt-4 rounded " onClick={handleSubmit}>{isPending ? "" : "Login"}</button>
                             <div className="mt-3  ">
                             <span className="text-sm text-bills-lightgrey mx-auto">Forgot Password &nbsp;</span><Link to={'/'}><span className="text-sm text-bills-darkblue underline">Reach out to Admin</span></Link></div>
                         </div>
-
                     </div>
                     <div className="hidden lg:inline-flex bg-bills-lightblue  w-full">
               
@@ -54,6 +81,7 @@ const Login = () => {
 
 
             </section>
+<ToastContainer/>
         </>
     );
 }

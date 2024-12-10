@@ -19,109 +19,113 @@ import Cable from "@pages/dashboard/Transaction/Cable.jsx";
 import MainTransaction from "@pages/dashboard/MainTransaction/MainTransaction";
 import Users from "@pages/dashboard/Users/Users.jsx";
 import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
+import ProtectedRoutes from "./ProtectedRoutes.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Overview />,
-    errorElement: <ErrorPage />,
-  },
-
   {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/transaction",
-    element: <MainTransaction />,
-  },
-  {
-    path: "/faqs",
-    element: <Faqs />,
-  },
-  {
-    path: "/users",
-    element: <Users />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
+    element: <ProtectedRoutes />,
     children: [
       {
-        path: "", // Relative to /settings
-        element: <Home />,
+        path: "/",
+        element: <Overview />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/transaction",
+        element: <MainTransaction />,
+      },
+      {
+        path: "/faqs",
+        element: <Faqs />,
+      },
+      {
+        path: "/users",
+        element: <Users />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
         children: [
           {
-            path: "", // Default route for /settings/account
-            element: <ProfileInfo />,
+            path: "", // Relative to /settings
+            element: <Home />,
+            children: [
+              {
+                path: "", // Default route for /settings/account
+                element: <ProfileInfo />,
+              },
+              {
+                path: "password", // Default route for /settings/account
+                element: <Password />,
+              },
+              {
+                path: "security", // Default route for /settings/account
+                element: <Security />,
+              },
+            ],
+          },
+
+          {
+            path: "team", // Relative to /settings
+            element: <Team />,
           },
           {
-            path: "password", // Default route for /settings/account
-            element: <Password />,
-          },
-          {
-            path: "security", // Default route for /settings/account
-            element: <Security />,
+            path: "preferences", // Relative to /settings
+            element: <Preferences />,
           },
         ],
       },
 
       {
-        path: "team", // Relative to /settings
-        element: <Team />,
+        path: "/movies",
+        element: <Movies />,
       },
       {
-        path: "preferences", // Relative to /settings
-        element: <Preferences />,
-      },
-    ],
-  },
+        path: "/bills",
+        element: <Transaction />,
+        children: [
+          {
+            path: "",
+            element: <All />,
+          },
+          {
+            path: "airtime",
+            element: <Airtime />,
+          },
+          {
+            path: "data",
+            element: <Airtime />,
+          },
+          {
+            path: "tv",
+            element: <Cable />,
+          },
+          {
+            path: "electricity",
+            element: <Cable />,
+          },
+          {
+            path: "betting",
+            element: <Cable />,
+          },
 
-  {
-    path: "/movies",
-    element: <Movies />,
-  },
-  {
-    path: "/bills",
-    element: <Transaction />,
-    children: [
-      {
-        path: "",
-        element: <All />,
-      },
-      {
-        path: "airtime",
-        element: <Airtime />,
-      },
-      {
-        path: "data",
-        element: <Airtime />,
-      },
-      {
-        path: "tv",
-        element: <Cable />,
-      },
-      {
-        path: "electricity",
-        element: <Cable />,
-      },
-      {
-        path: "betting",
-        element: <Cable />,
-      },
+          {
+            path: "religious",
+            element: <All />,
+          },
 
-      {
-        path: "religious",
-        element: <All />,
-      },
-
-      {
-        path: "fuel",
-        element: <All />,
+          {
+            path: "fuel",
+            element: <All />,
+          },
+        ],
       },
     ],
   },
 ]);
-
 
 export default router;

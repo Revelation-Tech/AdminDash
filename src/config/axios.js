@@ -1,6 +1,6 @@
-import axios from "axios";
+import instance from "axios";
 
-const axios = axios.create({
+const axios = instance.create({
   baseUrl: "https://paybillsbackend.onrender.com/",
 });
 
@@ -33,3 +33,6 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
+export default axios;
