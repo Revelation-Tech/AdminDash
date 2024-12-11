@@ -23,16 +23,16 @@ import ProtectedRoutes from "./ProtectedRoutes.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
+    errorElement: <ErrorPage />,
   },
   {
     element: <ProtectedRoutes />,
     children: [
       {
-        path: "/",
+        path: "/dashboard",
         element: <Overview />,
-        errorElement: <ErrorPage />,
       },
       {
         path: "/transaction",

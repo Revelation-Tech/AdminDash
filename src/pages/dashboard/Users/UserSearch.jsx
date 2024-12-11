@@ -1,27 +1,33 @@
-import { Filter, ImportCurve, SearchNormal1, User } from 'iconsax-react'
-import React from 'react'
+import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
+import React from "react";
 
 const UserSearch = () => {
-    return (
-        <>
-            <div className="bg-white p-4  mt-4  rounded-md">
-                <div className=" md:grid grid-cols-3 gap-6">
-                    <div className="col-span-2 ">
-                        <SearchNormal1 size={16} className="absolute  text-black/60 left-3 top-2 " />
-                        <input type="text" name="" id="" className=" w-full p-[0.3rem] pl-10 rounded-md ring-1 ring-bills-lightgrey outline-none focus:ring-1 focus:ring-bills-darkblue placeholder-black/60" placeholder="Search" />
-                    </div>
-                    <div className="col-span-1 mt-3 md:mt-0 ">
-                        <div className="max-md:flex justify-between items-center ">
-                            <button className="btn-outline2 mr-2"> <Filter size={16} className="inline" variant="Outline" /> Filter </button>
-                            <button className="btn-fill2 "><ImportCurve size={16} className="inline" variant="Outline" /> Export Csv </button>
-                        </div>
+  return (
 
 
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+    <div className="bg-white p-4 rounded-md">
+      <div className="md:flex items-center justify-between flex-wrap ">
+        <div className="inline-flex items-center ring-1 ring-bills-lightgrey outline-none focus:ring-1 focus:ring-bills-darkblue rounded-md px-3 gap-1.5 p-2.5 w-1/3">
+          <SearchNormal1 size={16} className="text-black/60" />
+          <input
+            type="text"
+            className=" w-full placeholder-black/60 border-0 focus:outline-none"
+            placeholder="Search"
+          />
+        </div>
 
-export default UserSearch
+        <div className="md:inline-flex justify-between items-center gap-4">
+          <button className="btn-outline2 !py-2.5">
+            <Filter size={16} className="inline" variant="Outline" /> Filter
+          </button>
+          <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
+            <ImportCurve size={16} className="inline" variant="Outline" />
+            Export Csv
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserSearch;

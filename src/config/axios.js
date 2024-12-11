@@ -1,7 +1,7 @@
 import instance from "axios";
 
 const axios = instance.create({
-  baseUrl: "https://paybillsbackend.onrender.com/",
+  baseURL: "https://paybillsbackend.onrender.com/",
 });
 
 const token = localStorage.getItem("token");
