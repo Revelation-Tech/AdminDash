@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App.jsx";
-import Login from "@pages/dashboard/auth/Login.jsx";
+import Login from "@pages/auth/Login.jsx";
 import Overview from "@pages/dashboard/Overview.jsx";
 import Faqs from "@pages/dashboard/faq.jsx";
 import Settings from "@pages/dashboard/settings.jsx";
@@ -24,6 +24,7 @@ import ProtectedRoutes from "./ProtectedRoutes.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
+    exact: true,
     element: <Login />,
     errorElement: <ErrorPage />,
   },
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Overview />,
+        // errorElement: <ErrorPage />,
       },
       {
         path: "/transaction",

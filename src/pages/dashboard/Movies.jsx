@@ -8,7 +8,7 @@ export const Movies = () => {
     return (
         <>
             <div className=''>
-                <SideNav />
+                {/* <SideNav /> */}
 
                 <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightblue pb-8'>
                     <div className="p-4">

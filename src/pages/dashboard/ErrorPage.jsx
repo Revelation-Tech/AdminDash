@@ -5,7 +5,7 @@ const ErrorPage = () => {
   return (
     <>
           <div className=''>
-      <SideNav/>
+      {/* <SideNav/> */}
 
        <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen  bg-bills-lightblue'>
         <div className="p-4 flex items-center justify-center">

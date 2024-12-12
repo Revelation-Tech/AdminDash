@@ -1,4 +1,5 @@
 import React from 'react'
+import CustomTableCard from '@components/CustomTableCard'
 
 const DeactiveTab = () => {
   return (

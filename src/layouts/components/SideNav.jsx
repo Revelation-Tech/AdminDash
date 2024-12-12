@@ -9,10 +9,16 @@ import {  useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+import useAdminStore from "@store/useAdminStore"
+
 const SideNav = () => {
     const [mobileNav, setMobileNav] = useState(true);
     const [isActive,setIsActive] = useState('Overview')
     const sidebarAnim = useRef(null)
+
+    const state = useAdminStore(state => state);
+
+    console.log(state)
 
     useGSAP(()=>{
         sidebarAnim.current=gsap.to('.mobile-nav',{

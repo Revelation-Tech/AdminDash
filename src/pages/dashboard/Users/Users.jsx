@@ -1,6 +1,6 @@
 import { Tabs } from "antd";
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { act, useEffect, useState } from "react";
 
 import { tabItems } from "./data";
 import { MoviesLine } from "../../../data/chartData/moviesLine";
@@ -10,16 +10,14 @@ import UserListDisplay from "./UserListDisplay2";
 import useUserQuery from "./hooks/useUserQuery";
 import useTableStore from "../../../store/useTableStore";
 import { NavLink } from "react-router-dom";
+import { filterUserByStatus, getPrefixedValue } from "../../../utils/functions";
+import SmallLineGraphCard from "../../../components/card/SmallLineGraph";
 
 const Users = () => {
   const { fetchUsers } = useUserQuery();
+  const [activeTab, setActiveTab] = useState("");
 
   const { data, isFetching } = fetchUsers;
-
-  const getLeadingZeros = (index) => {
-    // Reduce leading zeros as the index increases
-    return index < 10 ? "000" : index < 100 ? "00" : index < 1000 ? "0" : "";
-  };
 
   const columns = [
     {
@@ -27,7 +25,8 @@ const Users = () => {
       dataIndex: "bioDataId",
       className: "!bg-transparent !before:w-0 !before:h-0",
       key: "user_id",
-      render: (bioDataId, record, index) => bioDataId ?? index + 1,
+      render: (bioDataId, record, index) =>
+        bioDataId ?? getPrefixedValue(index + 1),
     },
     {
       title: "User Details",
@@ -91,14 +90,24 @@ const Users = () => {
     },
   ];
 
+  const filterUsers = filterUserByStatus(data);
+
   useEffect(() => {
     useTableStore.setState({ data, columns, loading: isFetching });
-  }, [data]);
+  }, [data, activeTab]);
 
   return (
     <>
       <div className="my-8 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4  ">
-        <div className="mt-2 md:mt-0 grid grid-cols-4 gap-8 grid-flow-row shadow rounded-md bg-white p-4">
+        {Object.keys(filterUsers).map((label, index) => (
+          <SmallLineGraphCard
+            key={index}
+            label={label}
+            report={filterUsers[label]}
+          />
+        ))}
+
+        {/* <div className="mt-2 md:mt-0 grid grid-cols-4 gap-8 grid-flow-row shadow rounded-md bg-white p-4">
           <div className="col-span-2">
             <h1 className="text-sm font-semibold">All</h1>
             <h1 className="font-bold text-xl mt-4"> &#x20A6; 5.2K</h1>
@@ -145,21 +154,24 @@ const Users = () => {
               <MoviesLine />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="space-y-2.5">
         <UserSearch />
 
         <Tabs
-          defaultActiveKey="all users"
+          defaultActiveKey="all"
           className="capitalize"
-          items={tabItems.map(({ label, className, component: Component }) => ({
-            key: label,
-            children: <Component />,
-            label: label,
-            className: className,
-          }))}
+          onChange={setActiveTab}
+          items={tabItems.map(
+            ({ key, label, className, component: Component }) => ({
+              key: key,
+              children: <Component data={filterUsers[key]} active={activeTab}/>,
+              label: label,
+              className: className,
+            })
+          )}
         />
       </div>
     </>

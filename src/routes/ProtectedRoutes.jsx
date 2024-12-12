@@ -6,9 +6,12 @@ import AppLayout from "../layouts/app";
 const ProtectedRoutes = () => {
   const location = useLocation();
 
-  // const { data, token } = useValidate();
+  console.log("location: " + location )
 
-  // if (!token && !data) return <Navigate to="/login" replace />;
+  const { data, token, error } = useValidate();
+
+
+  if (!token && !data || error?.status == 401) return <Navigate to="/" />;
 
   return (
     <AppLayout>

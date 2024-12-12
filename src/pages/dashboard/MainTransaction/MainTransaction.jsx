@@ -7,11 +7,11 @@ const MainTransaction = () => {
   return (
     <>
           <div className=''>
-      <SideNav/>
+      {/* <SideNav/> */}
 
-       <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightblue'>
-        <div className="p-4">
-            <h1 className="font-semibold text-3xl">Transaction</h1>
+       {/* <div className=' lg:w-[calc(100%-220px)] lg:ml-[220px] min-h-screen bg-bills-lightblue'> */}
+        {/* <div className="p-4">
+            <h1 className="font-semibold text-3xl">Transaction</h1> */}
             <div className=" mt-8 md:grid grid-cols-3 gap-4  grid-flow-col">
                         <div className="mt-2 md:mt-0 grid grid-cols-4 gap-8 grid-flow-row shadow rounded-md bg-white p-4">
                                 <div className="col-span-2">
@@ -49,8 +49,8 @@ const MainTransaction = () => {
                             
 
                         </div>
-        </div>
-       </div>
+        {/* </div> */}
+       {/* </div> */}
       
     </div>
         </>
