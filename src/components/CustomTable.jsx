@@ -1,6 +1,7 @@
 import { Table } from "antd";
 import React, { useState } from "react";
 import useTableStore from "../store/useTableStore";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const components = {
   header: {
@@ -41,6 +42,10 @@ const CustomTable = () => {
 
   const { columns, data, loading, pagination } = useTableStore();
 
+  const navigate = useNavigate();
+
+  const location = useLocation()
+
   if (!columns) {
     return (
       <div className="flex justify-center items-center py-4">Loading...</div>
@@ -59,6 +64,7 @@ const CustomTable = () => {
         type: selectionType,
         ...rowSelection,
       }}
+      onRow={row => ({onClick: () => navigate(`${location.pathname}/${row?.id}`), className: "cursor-pointer"})}
       rowClassName={(_, index) =>
         index % 2 == 0
           ? "bg-bills-lightgrey2 border-t-2 border-lightgrey2"

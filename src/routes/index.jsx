@@ -20,6 +20,7 @@ import MainTransaction from "@pages/dashboard/MainTransaction/MainTransaction";
 import Users from "@pages/dashboard/Users/Users.jsx";
 import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
+import PreviewTransaction from "@pages/dashboard/MainTransaction/preview/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
       {
         path: "/transaction",
         element: <MainTransaction />,
+      },{
+        path: "/transaction/:id",
+        element: <PreviewTransaction />,
       },
       {
         path: "/faqs",
