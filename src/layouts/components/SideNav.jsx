@@ -74,7 +74,7 @@ const SideNav = () => {
 
                             <div className="flex flex-col text-sm">
                                 <p>John Doe</p>
-                                <p>johndoe@gmail.com</p>
+                                <p>{state?.email}</p>
                             </div>
                         </div>
                         <div className=""><LoginCurve size={20} color="white" /></div>
@@ -131,7 +131,7 @@ const SideNav = () => {
 
                             <div className="flex flex-col text-sm">
                                 <p>John Doe</p>
-                                <p>johndoe@gmail.com</p>
+                                <p className='text-[10px]'>{state?.email}</p>
                             </div>
                         </div>
                         <div className=""><LoginCurve size={20} color="white" /></div>

@@ -14,6 +14,8 @@ const PreviewTransaction = () => {
   const { showTransaction } = useTransactionQuery();
   const { data } = showTransaction(param?.id);
 
+  console.log(data)
+
   return (
     <div className="space-y-4">
       {/* header */}

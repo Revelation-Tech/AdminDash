@@ -22,16 +22,16 @@ export const sideNavData  = [
         icon:<Profile2User size={20}/>,
         link:'/users'
     },
-    {
-        name:'Flight Management',
-        icon:<Airplane size={20}/>,
-        link:'/tqui'
-    },
-    {
-        name:'Movie Management',
-        icon:<VideoVertical size={20}/>,
-        link:'/movies'
-    },
+    // {
+    //     name:'Flight Management',
+    //     icon:<Airplane size={20}/>,
+    //     link:'/tqui'
+    // },
+    // {
+    //     name:'Movie Management',
+    //     icon:<VideoVertical size={20}/>,
+    //     link:'/movies'
+    // },
     {
         name:'Support',
         icon:<I24Support size={20}/>,

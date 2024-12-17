@@ -2,19 +2,26 @@ import axios from "@config/axios";
 
 export const users = async () => {
   try {
-    const response = await axios.get("user");
+    const response = await axios.get("/admin/sort-users");
 
-    return response.data;
+    // console.log(response.data)
+
+    return response.data?.data;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
 export const user = async (id) => {
-  try {
-    const response = await axios.get(`user/${id}`);
+  // console.log(`User ${id}`);
 
-    return response.data;
+  try {
+    const response = await axios.get(`/admin/user-details/${id}`);
+
+
+    console.log(response.data?.data);
+
+    return response.data?.data;
   } catch (error) {
     throw new Error(error.message);
   }

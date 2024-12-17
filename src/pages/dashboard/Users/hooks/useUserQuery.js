@@ -14,7 +14,7 @@ const useUserQuery = () => {
   const getUser = (userId) =>
     useQuery({
       queryKey: ["users", userId],
-      queryFn: user,
+      queryFn: async () => await user(userId),
     });
 
   const createUser = () =>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import Logo2 from "../../assets/Logo2";
@@ -16,15 +16,15 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
 
-  const { renderLoading, data, error, isError } = useValidate();
+  const { renderLoading, data, error, isError, token } = useValidate();
 
-  // console.log(error)
+  const navigate = useNavigate();
 
   if (renderLoading()) {
     return renderLoading();
   }
 
-  if (data && !isError) return <Navigate to="/dashboard" replace />;
+  if (token && data && !isError) return <Navigate to="/dashboard" replace />;
 
   const payload = {
     email,
@@ -32,12 +32,16 @@ const Login = () => {
     isRemember,
   };
 
-  const { mutate, isPending } = useLogin();
+  const { mutate, isPending } = useLogin({
+    callback: () =>
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000),
+  });
 
   const handleSubmit = () => {
     // console.log(payload);
     mutate({ payload });
-
   };
 
   return (
@@ -88,7 +92,7 @@ const Login = () => {
               />
               <label
                 htmlFor="rememberPassword"
-                className="text-sm text-bills-lightgrey"
+                className="text-sm text-gray-400"
               >
                 {" "}
                 Remember Password{" "}
@@ -97,20 +101,21 @@ const Login = () => {
               <button
                 className="bg-bills-darkblue/85 hover:bg-bills-darkblue text-white p-2 w-full mt-4 rounded "
                 onClick={handleSubmit}
+                disabled={isPending}
               >
+                {/* Login */}
                 {isPending ? (
                   <Spin
                     size="small"
                     spinning={isPending}
                     indicator={<LoadingOutlined className="text-white" />}
-                    
                   />
                 ) : (
                   "Login"
                 )}
               </button>
               <div className="mt-3  ">
-                <span className="text-sm text-bills-lightgrey mx-auto">
+                <span className="text-sm text-black mx-auto">
                   Forgot Password &nbsp;
                 </span>
                 <Link to={"/"}>

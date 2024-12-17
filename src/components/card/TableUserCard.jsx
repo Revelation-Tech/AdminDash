@@ -1,6 +1,9 @@
 import React from "react";
 
 const TableUserCard = ({ record }) => {
+
+  // console.log(record);
+
   return (
     <div className="inline-flex gap-2">
       <div className="w-10 h-10 rounded-full bg-bills-darkblue inline-flex flex-col justify-center items-center text-white uppercase font-bold">

@@ -13,14 +13,9 @@ const useValidate = () => {
     queryKey: ["dashboard"],
     queryFn: async () => {
       const res = await axios.get("admin/dashboard");
-
-      if (res.status !== 200) {
-        throw new Error({ status: res.status, message: res.data.message });
-      }
-      // console.log(data);
-
       return res?.data;
     },
+    enabled: !!token
   });
 
   const renderLoading = () => {

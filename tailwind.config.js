@@ -20,7 +20,8 @@ export default {
           white: "#EAECF0",
           lightgrey2: "#F9F9F9",
           text: "hsl(228, 17%, 67%)",
-          borderLight: "hsl(0, 0%, 91%)"
+          borderLight: "hsl(0, 0%, 91%)",
+          textColor: "hsl(220, 13%, 46%)"
         },
       },
     },

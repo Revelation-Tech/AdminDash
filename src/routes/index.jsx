@@ -21,6 +21,7 @@ import Users from "@pages/dashboard/Users/Users.jsx";
 import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
 import PreviewTransaction from "@pages/dashboard/MainTransaction/preview/index.jsx";
+import UserProfile from "@pages/dashboard/Users/preview/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ const router = createBrowserRouter([
       {
         path: "/transaction",
         element: <MainTransaction />,
-      },{
+      },
+      {
         path: "/transaction/:id",
         element: <PreviewTransaction />,
       },
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "/users/:userID",
+        element: <UserProfile />,
       },
       {
         path: "/settings",

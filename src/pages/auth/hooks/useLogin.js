@@ -1,33 +1,40 @@
 import { message } from "antd";
-import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { login } from "../services/login";
 
 import { setToken } from "@utils/auth";
 import useAdminStore from "@store/useAdminStore";
+import { useNavigate } from "react-router-dom";
 
-const useLogin = () => {
+const useLogin = ({ callback }) => {
+  const { setData} = useAdminStore(); // Ensure setToken exists
   const navigate = useNavigate();
 
-  const {setData} = useAdminStore()
-
   return useMutation({
-    mutationFn: login,
+    mutationFn: login, // Ensure login function is imported and defined
     onSuccess: (response) => {
       message.success("Login successful");
 
       const data = response.data;
 
-      setToken(data.token);
+      // Store token
+      if (data.token) {
+        setToken(data.token); // Or use localStorage if needed
+      }
 
-      setData(data)
+      // Update admin store data
+      setData(data);
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+      // Navigate after 1 second delay
+      // setTimeout(() => {
+      //   navigate('/dashboard');
+      // }, 1000);
 
-      // return data;
+      // Call callback if provided
+      if (callback) {
+        callback(data);
+      }
     },
     onError: (error) => {
       message.error(error?.response?.data?.message ?? error?.message);

@@ -7,9 +7,9 @@ export const getPrefixedValue = (value) => {
 };
 
 export const filterUserByStatus = (users) => {
-  const activeUsers = users?.filter((user) => user?.status == "active");
-  const deactivedUsers = users?.filter((user) => user?.status == "deactive");
-  const froozenUsers = users?.filter((user) => user?.status == "froozen");
+  const activeUsers = users?.filter((user) => user?.status?.toLowerCase() == "active");
+  const deactivedUsers = users?.filter((user) => user?.status?.toLowerCase() == "deactive");
+  const froozenUsers = users?.filter((user) => user?.status?.toLowerCase() == "froozen");
 
   return {
     all: {
