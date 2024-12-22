@@ -1,14 +1,19 @@
-import { Lock1 } from 'iconsax-react'
-import React from 'react'
+import { Lock1 } from "iconsax-react";
+import React from "react";
+import ChangePassword from "../components/form/ChangePassword";
 
 export const Security = () => {
   return (
-    <section className='bg-white w-full  p-3 md:p-8'>
-      <div className=''>
-        <h1 className='font-normal text-2xl '>Update Password</h1>
-        <p className='text-bills-lightgrey text-sm'>Enter your current password to make update</p>
+    <section className="bg-white w-full  p-3 md:p-8">
+      <div className="">
+        <h1 className="font-normal text-2xl ">Update Password</h1>
+        <p className="text-bills-lightgrey text-sm">
+          Enter your current password to make update
+        </p>
       </div>
-      <main className=" mt-7">
+
+      <ChangePassword />
+      {/* <main className=" mt-7">
         <div className='relative'>
           <label htmlFor="current" className='text-sm font-normal'>Current Password</label>
           <Lock1 className='absolute top-11 left-3 ' size={18} />
@@ -28,7 +33,7 @@ export const Security = () => {
           <button className='btn-fill '>Update Password</button>
         </div>
 
-      </main>
+      </main> */}
     </section>
-  )
-}
+  );
+};

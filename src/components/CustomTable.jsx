@@ -10,14 +10,14 @@ const components = {
     ),
     cell: (props) => (
       <th
-        className="!bg-white text-center p-4 whitespace-nowrap border-0"
+        className="!bg-white text-center whitespace-nowrap border-0"
         {...props}
       />
     ),
     body: {
       //   wrapper: (props) => <tbody {...props} />,
       cell: (props) => (
-        <td {...props} className="text-center p-4 whitespace-nowrap" />
+        <td {...props} className="text-center whitespace-nowrap" />
       ),
     },
   },
@@ -44,7 +44,7 @@ const CustomTable = () => {
 
   const navigate = useNavigate();
 
-  const location = useLocation()
+  const location = useLocation();
 
   if (!columns) {
     return (
@@ -58,18 +58,22 @@ const CustomTable = () => {
       dataSource={data}
       loading={loading}
       className="!bg-transparent"
-      pagination={{...pagination, showTitle: true, }}
+      pagination={{ ...pagination, showTitle: true }}
       components={components}
       rowSelection={{
         type: selectionType,
         ...rowSelection,
       }}
-      onRow={row => ({onClick: () => navigate(`${location.pathname}/${row?.id}`), className: "cursor-pointer"})}
-      rowClassName={(_, index) =>
-        index % 2 == 0
-          ? "bg-bills-lightgrey2 border-t-2 border-lightgrey2"
-          : "bg-white"
-      }
+      onRow={(row) => ({
+        onClick: () => navigate(`${location.pathname}/${row?.id}`),
+        className: "cursor-pointer",
+      })}
+      rowClassName={(_, index) => `
+       ${
+         index % 2 == 0
+           ? "bg-bills-lightgrey2 border-t-2 border-lightgrey2"
+           : "bg-white"
+       }`}
     />
   );
 };

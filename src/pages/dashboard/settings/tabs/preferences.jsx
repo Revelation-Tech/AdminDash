@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Preferences = () => {
+const Preferences = () => {
   return (
     <section className='mt-8 bg-white w-full p-6'>
         <div className="border-b border-bills-lightgrey py-4">
@@ -53,3 +53,5 @@ export const Preferences = () => {
     
   )
 }
+
+export default Preferences

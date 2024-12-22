@@ -7,7 +7,7 @@ const CustomTableCard = () => {
   return (
     // <div className="space-y-4">
      
-      <div className="bg-white p-4">
+      <div className="bg-white">
         <CustomTable />
       </div>
     // </div>
