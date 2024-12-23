@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { horizontalNav } from "../../../../data/SettingsNavData";
-
 import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
-import CustomTableCard from "../../../../components/CustomTableCard";
+
+import useModalStore from "@store/useModalStore";
 import TeamTable from "../components/table/TeamTable";
-import { useEffect } from "react";
-import useModalStore from "../../../../store/useModalStore";
 import InviteUser from "../components/modal/InviteUser";
+import { horizontalNav } from "../../../../data/SettingsNavData";
 
 const Team = () => {
   const { onOpen, type, show } = useModalStore();
 
-  console.log(type, show)
+//   console.log(type, show)
 
   return (
     <>

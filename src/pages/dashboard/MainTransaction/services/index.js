@@ -11,7 +11,16 @@ export const fetchTransactions = async () => {
 
 export const getTransaction = async ({ transactionId }) => {
   try {
-    const response = await axios.get(`/transaction/${transactionId}`);
+    const response = await axios.get(`admin/transaction-details/${transactionId}`);
+    return response.data?.data[0];
+  } catch (error) {
+    throw new Error(error?.response?.data?.message ?? error.messages);
+  }
+};
+
+export const getTransactionAnalysis = async () => {
+  try {
+    const response = await axios.get(`admin/analyze-transactions`);
     return response.data?.data;
   } catch (error) {
     throw new Error(error?.response?.data?.message ?? error.messages);

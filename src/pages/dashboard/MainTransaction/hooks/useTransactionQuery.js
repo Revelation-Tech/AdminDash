@@ -1,12 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { fetchTransactions, getTransaction } from "../services";
+import { fetchTransactions, getTransaction, getTransactionAnalysis } from "../services";
+import useTableStore from "../../../../store/useTableStore";
+
+import { columns } from "../data";
 
 const useTransactionQuery = () => {
+
   const transactions = useQuery({
     queryKey: ["transactions"],
-    queryFn: fetchTransactions,
+    queryFn: async () =>{
+      const res = await fetchTransactions();
+      useTableStore.setState({data: res, columns})
+      return res;
+    },
   });
+
+  const analysis = useQuery({
+    queryKey: ['transactions-analysis'],
+    queryFn: getTransactionAnalysis
+  })
 
   const showTransaction = (transactionId) =>
     useQuery({
@@ -14,7 +27,7 @@ const useTransactionQuery = () => {
       queryFn: async () => await getTransaction({ transactionId }),
       enabled: transactionId !== undefined,
     });
-  return { transactions, showTransaction };
+  return { transactions, showTransaction, analysis };
 };
 
 export default useTransactionQuery;
