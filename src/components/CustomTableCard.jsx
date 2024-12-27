@@ -2,15 +2,13 @@ import React from "react";
 import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
 
 import CustomTable from "./CustomTable";
+import TableProvider from "../context/TableProvider";
 
 const CustomTableCard = () => {
   return (
-    // <div className="space-y-4">
-     
-      <div className="bg-white">
-        <CustomTable />
-      </div>
-    // </div>
+    <div className="bg-white">
+      <CustomTable />
+    </div>
   );
 };
 

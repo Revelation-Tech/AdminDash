@@ -11,6 +11,9 @@ export default {
         inter: ["Inter", "sans-serif"],
         karia: ["Panchang", "sans-serif"],
       },
+      boxShadow:{
+        'light':"0px 4px 24px -1px #D1CDC740"
+      },
       colors: {
         bills: {
           lightblue: "#EEF5FC",

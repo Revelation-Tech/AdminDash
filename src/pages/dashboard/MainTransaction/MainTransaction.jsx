@@ -9,6 +9,7 @@ import CustomTableCard from "@components/CustomTableCard";
 import SmallLineGraphCard from "../../../components/card/SmallLineGraph.jsx";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import PageLoader from "../../../components/PageLoader.jsx";
 
 const MainTransaction = () => {
   const { transactions, analysis } = useTransactionQuery();
@@ -16,11 +17,7 @@ const MainTransaction = () => {
   const { isLoading } = transactions;
 
   if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center h-[25rem] bg-white my-8 rounded-xl">
-        <Spin indicator={<LoadingOutlined />} spinning/>
-      </div>
-    );
+    return <PageLoader/>;
   }
 
   return (

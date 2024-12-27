@@ -1,34 +1,41 @@
 @import url("https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&f[]=panchang@300,400,500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-*{
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
 }
 
-body{
-    font: 0.875rem normal  "Inter", sans-serif;
+body {
+  font: 0.875rem normal "Inter", sans-serif;
 }
 
-@layer utilities{
-    .btn-outline{
-        @apply ring-[1.3px] ring-bills-darkblue px-6 py-[0.5rem] hover:py-[0.6rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white
-    }
-    .btn-outline2{
-        @apply ring-[1.3px] ring-bills-darkblue px-3 py-[0.3rem] hover:py-[0.3rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white
-    }
+@layer components {
+  .transaction-wallet {
+    @apply relative after:[content:""] after:absolute after:-top-6 after:rounded-full after:w-[10rem] after:h-[10rem] after:-right-20 after:bg-[#1F6CAB14];
+    
+    @apply relative before:[content:""] before:absolute before:-top-20 before:rounded-full before:w-[10rem] before:h-[10rem] before:-right-10 before:bg-[#1F6CAB0A];
+  }
+}
+@layer utilities {
+  .btn-outline {
+    @apply ring-[1.3px] ring-bills-darkblue px-6 py-[0.5rem] hover:py-[0.6rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white;
+  }
+  .btn-outline2 {
+    @apply ring-[1.3px] ring-bills-darkblue px-3 py-[0.3rem] hover:py-[0.3rem] rounded-md text-bills-darkblue hover:bg-bills-darkblue hover:text-white;
+  }
 
-    .btn-fill{
-        @apply bg-bills-darkblue text-white px-6 py-[0.6rem] hover:py-[0.6rem] hover:text-white hover:bg-bills-darkblue/80  
-         ring-bills-darkblue rounded-md
-    }
-    .btn-fill2{
-        @apply bg-bills-darkblue text-white px-3 lg:px-6 py-[0.4rem] hover:py-[0.3rem] hover:text-white hover:bg-bills-darkblue/80  
-         ring-bills-darkblue rounded-md
-    }
+  .btn-fill {
+    @apply bg-bills-darkblue text-white px-6 py-[0.6rem] hover:py-[0.6rem] hover:text-white hover:bg-bills-darkblue/80  
+         ring-bills-darkblue rounded-md;
+  }
+  .btn-fill2 {
+    @apply bg-bills-darkblue text-white px-3 lg:px-6 py-[0.4rem] hover:py-[0.3rem] hover:text-white hover:bg-bills-darkblue/80  
+         ring-bills-darkblue rounded-md;
+  }
 }

@@ -12,7 +12,7 @@ const useAdminStore = create(
       gender: null,
       dob: null,
       email: null,
-      setData: (data) => set({ ...data }),
+      setData: (data) => set({ data }),
     }),
     {
       name: "admins",

@@ -6,29 +6,9 @@ export const getPrefixedValue = (value) => {
   return `#${value.toString().padStart(length, "0")}`;
 };
 
-export const filterUserByStatus = (users) => {
-  const activeUsers = users?.filter((user) => user?.status?.toLowerCase() == "active");
-  const deactivedUsers = users?.filter((user) => user?.status?.toLowerCase() == "deactive");
-  const froozenUsers = users?.filter((user) => user?.status?.toLowerCase() == "froozen");
+export const filterByStatus = (data, status) => {
 
-  return {
-    all: {
-      total: users?.length ?? 0,
-      users: users,
-    },
-    active: {
-      total: activeUsers?.length ?? 0,
-      users: activeUsers,
-    },
-    froozen: {
-      total: froozenUsers?.length ?? 0,
-      users: froozenUsers,
-    },
-    deactived: {
-      total: deactivedUsers?.length ?? 0,
-      users: deactivedUsers,
-    },
-  };
+  return status == "all" ? data : data.filter((item) => item?.status?.toLowerCase() == status);
 };
 
 export const formatDate = (date) => moment(date).format("MMM DD, YYYY");

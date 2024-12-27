@@ -3,7 +3,7 @@ import ImageWithInformation from "./profile/ImageWithInformation";
 import OtherInformation from "./profile/OtherInformation";
 import ActionButton from "./profile/ActionButton";
 
-const UserDetails = ({ record }) => {
+const UserDetails = ({ record, onFreeze, onDeactivate }) => {
   return (
     <div className="flex flex-col gap-5">
       <ImageWithInformation record={record} />
@@ -15,8 +15,8 @@ const UserDetails = ({ record }) => {
       </div>
 
       <div className="mb-3">
-        <ActionButton title="Deactivate this user" />
-        <ActionButton title="Freeze User" />
+        <ActionButton title="Deactivate this user" action={onDeactivate} />
+        <ActionButton title="Freeze User" action={onFreeze} />
       </div>
     </div>
   );

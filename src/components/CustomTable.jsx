@@ -10,7 +10,7 @@ const components = {
     ),
     cell: (props) => (
       <th
-        className="!bg-white text-center whitespace-nowrap border-0"
+        className="!bg-white text-center text-sm whitespace-nowrap border-0"
         {...props}
       />
     ),

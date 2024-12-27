@@ -10,11 +10,13 @@ import useLogin from "./hooks/useLogin";
 
 import { ToastContainer, toast } from "react-toastify";
 import { Spin } from "antd";
+import { Eye, EyeSlash } from "iconsax-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   const { renderLoading, data, error, isError, token } = useValidate();
 
@@ -68,21 +70,31 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                className=" mt-2 mb-5 w-full ring-1 focus:ring-1 ring-bills-lightgrey/80 focus:ring-bills-lightgrey focus:outline-none p-2 rounded"
+                className=" mt-2 mb-5 w-full ring-1 focus:ring-1 ring-bills-borderLight focus:ring-offset-bills-borderLight focus:outline-none p-2 rounded"
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
 
-              <label htmlFor="password" className="text-sm ">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                className=" mt-2 mb-2 w-full ring-1 focus:ring-1 ring-bills-lightgrey/80 focus:ring-bills-lightgrey focus:outline-none p-2 rounded"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="flex flex-col">
+                <label htmlFor="password" className="text-sm ">
+                  Password
+                </label>
+
+                <div className="inline-flex items-center">
+                  <input
+                    type={`${!showPassword ? "password" : 'text'}`}
+                    name="password"
+                    className=" mt-2 mb-2 w-full ring-1 focus:ring-1 ring-bills-borderLight focus:ring-offset-bills-borderLight focus:outline-none p-2 rounded"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <div className="-ml-8">
+                    <button type="button" className="text-gray-400" onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
 
               <input
                 type="checkbox"

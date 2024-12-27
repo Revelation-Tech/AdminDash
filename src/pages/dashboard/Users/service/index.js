@@ -19,7 +19,7 @@ export const user = async (id) => {
     const response = await axios.get(`/admin/user-details/${id}`);
 
 
-    console.log(response.data?.data);
+    // console.log(response.data?.data);
 
     return response.data?.data;
   } catch (error) {
@@ -37,10 +37,11 @@ export const storeUser = async (payload) => {
   }
 };
 
-export const updateUser = async (id, payload) => {
+export const updateUser = async ({id, payload}) => {
   try {
-    const response = await axios.put(`user/${id}`);
+    const response = await axios.put(`/admin/update-user/${id}`, payload);
 
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error(error.message);

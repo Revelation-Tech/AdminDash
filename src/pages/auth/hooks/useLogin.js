@@ -22,14 +22,9 @@ const useLogin = ({ callback }) => {
       if (data.token) {
         setToken(data.token); // Or use localStorage if needed
       }
-
+      
       // Update admin store data
       setData(data);
-
-      // Navigate after 1 second delay
-      // setTimeout(() => {
-      //   navigate('/dashboard');
-      // }, 1000);
 
       // Call callback if provided
       if (callback) {
