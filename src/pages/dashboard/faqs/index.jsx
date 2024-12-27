@@ -1,10 +1,11 @@
+
 import { Add, ArrowDown2, More, SearchNormal, SearchNormal1 } from "iconsax-react";
 
-import Categories from "../molecules/faqCategories";
-import { movieData } from "../../data/moviesData";
-import { PostModal } from "../molecules/postModal";
+import Categories from "../../molecules/faqCategories";
+import { movieData } from "../../../data/moviesData";
+import { PostModal } from "../../molecules/postModal";
 import { useState } from "react";
-import SideNav from "./SideNav";
+import FaqDrawer from "./components/drawer";
 
 const Faqs = () => {
     const [currentPost, setCurrentpost] = useState(null)
@@ -16,38 +17,36 @@ const Faqs = () => {
 
         setIsModal(true)
         console.log('working');
-        
     }
+
+
+
     return (
         <>
-            <div className=''>
-            <SideNav/>
+            {/* <div className=''> */}
+            {/* <SideNav/> */}
                 
 
                
-                {/* title and Search bar */}
-                <div className={isModal ?' lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue overflow-y-hidden':'lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue'}>
-
-
-                    <div className=" p-3 md:p-8">
-                        <h1 className="font-semibold text-3xl">FAQs</h1>
-                        <div className=" w-full  mt-4">
+                    {/* <div className=" p-3 md:p-8"> */}
+                        {/* <h1 className="font-semibold text-3xl">FAQs</h1> */}
+                        <div className=" w-full  mt-4 mb-8">
                             <div className=" flex items-center gap-3">
-                                <div className="w-3/4 lg:w-5/6 relative ">
-                                    <SearchNormal1 size={20} className="absolute  text-black/60 left-3 top-2 " />
-                                    <input type="text" name="" id="" className=" w-full p-2 pl-10 rounded-md shadow outline-none focus:ring-2 ring-bills-darkblue placeholder-black/60" placeholder="Search" />
+                                <div className="lg:w-5/6 relative bg-white inline-flex items-center py-3 px-4 w-full rounded-md shadow-light">
+                                    <SearchNormal1 size={20} className="text-black/60" />
+                                    <input type="text" name="" id="" className=" w-full px-4 outline-none placeholder-black/60" placeholder="Search" />
                                 </div>
 
 
 
-                                <input type="button" value={window.innerWidth < 640 ? 'Add' : 'Add New Question'} className="p-[0.6rem] bg-bills-darkblue w-1/4 lg:w-1/6 text-white text-center text-sm rounded-md inline-flex items-center px-4  cursor-pointer" />
+                                <button type="button" value={window.innerWidth < 640 ? 'Add' : 'Add New Question'} className="p-[0.6rem] bg-bills-darkblue w-1/4 lg:w-1/6 py-3 text-white text-center text-base rounded-md inline-flex items-center px-4 cursor-pointer font-medium font-clashGrotesk justify-center">Add New Question +</button>
                             </div>
 
                         </div>
-                    </div>
+                    {/* </div> */}
 
-                    {/* Categories */}
-                    <div className="px-3 md:px-8 pb-12">
+                    {/* Products */}
+                    <div className="pb-12">
                         <Categories title={'Payment'} />
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
@@ -74,6 +73,8 @@ const Faqs = () => {
                             }
                         </div>
                     </div>
+                    
+                    {/* Integration */}
                     <div className="px-3 md:px-8 pb-12">
                         <Categories title={'Integration'} />
 
@@ -94,12 +95,13 @@ const Faqs = () => {
                             })}
                         </div>
                     </div>
+                {/* title and Search bar */}
+                {/* <div className={isModal ?' lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue overflow-y-hidden':'lg:w-[calc(100%-220px)] lg:ml-[220px] h-full bg-bills-lightblue'}>
 
+                </div> */}
+            {/* </div> */}
 
-                </div>
-
-
-            </div>
+            <FaqDrawer/>
         </>
     );
 }

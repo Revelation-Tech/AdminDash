@@ -6,7 +6,7 @@ import TableProvider from "../context/TableProvider";
 
 const CustomTableCard = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white pb-5">
       <CustomTable />
     </div>
   );

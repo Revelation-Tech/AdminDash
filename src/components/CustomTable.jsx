@@ -2,6 +2,8 @@ import { Table } from "antd";
 import React, { useState } from "react";
 import useTableStore from "../store/useTableStore";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { ArrowCircleLeft, ArrowLeft2 } from "iconsax-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 const components = {
   header: {
@@ -58,7 +60,29 @@ const CustomTable = () => {
       dataSource={data}
       loading={loading}
       className="!bg-transparent"
-      pagination={{ ...pagination, showTitle: true }}
+      pagination={{
+        ...pagination,
+        showTitle: true,
+        itemRender: (page, type, originalElement) => {
+          if (type == "prev") {
+            return (
+              <button className="cursor-pointer text-xl p-1.5 rounded-full border border-bills-skyblue">
+                <ChevronLeftIcon className="w-4 h-4 text-bills-skyblue" />
+              </button>
+            );
+          }
+
+          if (type == "next") {
+            return (
+              <button className="cursor-pointer text-xl p-1.5 rounded-full border border-bills-skyblue">
+                <ChevronRightIcon className="w-4 h-4 text-bills-skyblue" />
+              </button>
+            );
+          }
+
+          return originalElement;
+        },
+      }}
       components={components}
       rowSelection={{
         type: selectionType,

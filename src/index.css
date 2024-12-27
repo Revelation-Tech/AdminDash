@@ -18,7 +18,7 @@ body {
 @layer components {
   .transaction-wallet {
     @apply relative after:[content:""] after:absolute after:-top-6 after:rounded-full after:w-[10rem] after:h-[10rem] after:-right-20 after:bg-[#1F6CAB14];
-    
+
     @apply relative before:[content:""] before:absolute before:-top-20 before:rounded-full before:w-[10rem] before:h-[10rem] before:-right-10 before:bg-[#1F6CAB0A];
   }
 }
@@ -38,4 +38,27 @@ body {
     @apply bg-bills-darkblue text-white px-3 lg:px-6 py-[0.4rem] hover:py-[0.3rem] hover:text-white hover:bg-bills-darkblue/80  
          ring-bills-darkblue rounded-md;
   }
+}
+
+:where(.css-dev-only-do-not-override-142vneq).ant-pagination
+  .ant-pagination-item {
+  border-radius: 50%;
+}
+
+:where(.css-dev-only-do-not-override-142vneq).ant-pagination
+  .ant-pagination-item
+  a {
+  color: #98a2b3;
+}
+
+:where(.css-dev-only-do-not-override-142vneq).ant-pagination
+  .ant-pagination-item-active
+  a {
+  color: #000000;
+}
+
+:where(.css-dev-only-do-not-override-142vneq).ant-pagination
+  .ant-pagination-item-active {
+  background-color: #f5faff;
+  border-color: #2390fa;
 }
