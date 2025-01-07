@@ -101,7 +101,7 @@ const SideNav = () => {
 
 
     {/* Laptop Nav */}
-     <div className="hidden lg:block bg-bills-darkblue  p-4 h-screen overflow-auto z-10 w-[220px] fixed " >
+     <div className="hidden lg:block w-60 bg-bills-darkblue  p-4 h-screen overflow-auto z-10 fixed " >
                 <div className="mb-8">
                       <Logo/>
                 </div>

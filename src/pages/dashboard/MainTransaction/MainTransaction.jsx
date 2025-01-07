@@ -10,31 +10,40 @@ import SmallLineGraphCard from "../../../components/card/SmallLineGraph.jsx";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import PageLoader from "../../../components/PageLoader.jsx";
+import { columns } from "./data";
 
 const MainTransaction = () => {
   const { transactions, analysis } = useTransactionQuery();
 
-  const { isLoading } = transactions;
+  const { isLoading, data } = transactions;
 
-  if (isLoading) {
-    return <PageLoader/>;
-  }
+  // if (isLoading) {
+  //   return <PageLoader/>;
+  // }
+
+  useEffect(() => {
+    useTableStore.setState({
+      data: data,
+      columns,
+      url: "transaction",
+      loading: isLoading,
+    });
+  }, [data, isLoading]);
 
   return (
     <div className="space-y-10">
       <div className=" mt-8 md:grid grid-cols-3 gap-4  grid-flow-col">
-        {analysis.data &&
-          analysis.data
-            .sort((a, b) =>
-              a?.status?.toLowerCase()?.localeCompare(b.status.toLowerCase())
-            )
-            .map((item, index) => (
-              <SmallLineGraphCard
-                key={index}
-                label={item?.status}
-                report={item}
-              />
-            ))}
+        {analysis.data
+          ?.sort((a, b) =>
+            a?.status?.toLowerCase()?.localeCompare(b.status.toLowerCase())
+          )
+          .map((item, index) => (
+            <SmallLineGraphCard
+              key={index}
+              label={item?.status}
+              report={item}
+            />
+          ))}
         {/* <div className="mt-2 md:mt-0 grid grid-cols-4 gap-8 grid-flow-row shadow rounded-md bg-white p-4">
           <div className="col-span-2">
             <h1 className="text-sm">All</h1>

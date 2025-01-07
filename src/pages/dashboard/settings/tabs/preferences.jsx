@@ -45,7 +45,7 @@ const options = {
 const Preferences = () => {
   const { preferences } = useAdminStore();
 
-  console.log(preferences[0])
+  // console.log(preferences[0])
 
   const { mutate } = useMutation({
     mutationFn: async ({ label, value }) => {

@@ -11,7 +11,7 @@ const useTransactionQuery = () => {
     queryKey: ["transactions"],
     queryFn: async () =>{
       const res = await fetchTransactions();
-      useTableStore.setState({data: res, columns, url: "transaction"})
+      // useTableStore.setState({data: res, columns, url: "transaction"})
       return res;
     },
   });

@@ -25,10 +25,10 @@ const useUserQuery = () => {
 
         const transactions = res?.wallet?.transactions;
 
-        useTableStore.setState({
-          data: transactions,
-          columns: transactionPreviewColumns,
-        });
+        // useTableStore.setState({
+        //   data: transactions,
+        //   columns: transactionPreviewColumns,
+        // });
 
         return res;
       },
