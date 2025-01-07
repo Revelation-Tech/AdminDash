@@ -11,6 +11,7 @@ const Home = () => {
             <div className="bg-white  text-sm text-black md:h-[70%]">
               {sidebarLinks.map((link) => (
                 <NavLink
+                key={link}
                   to={link !== 'profile info' ? link : ''}
                   className={({ isActive }) =>
                     ` ${

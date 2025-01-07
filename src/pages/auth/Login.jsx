@@ -18,15 +18,15 @@ const Login = () => {
   const [isRemember, setIsRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false)
 
-  const { renderLoading, data, error, isError, token } = useValidate();
+  const { renderLoading, data, error, isLoading} = useValidate();
 
   const navigate = useNavigate();
 
-  if (renderLoading()) {
+  if (isLoading) {
     return renderLoading();
   }
 
-  if (token && data && !isError) return <Navigate to="/dashboard" replace />;
+  if (data) return <Navigate to="/dashboard" replace />;
 
   const payload = {
     email,

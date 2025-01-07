@@ -3,6 +3,8 @@ import ActiveTab from "../components/ActiveTab";
 import DeactiveTab from "../components/DeactiveTab";
 import FroozenTab from "../components/FroozenTab";
 
+import TableUserCard from "@components/card/TableUserCard.jsx";
+
 import moment from "moment";
 import { NavLink } from "react-router-dom";
 
@@ -149,24 +151,21 @@ export const transactionPreviewColumns = [
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        Transaction ID
+        S/N
       </span>
     ),
-    dataIndex: "bioDataId",
+    dataIndex: "serial_number",
     className: "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm",
     key: "user_id",
     render: (bioDataId, record, index) => getPrefixedValue(index + 1),
   },
   {
-    title: (
-      <span className="text-bills-text text-xs font-inter font-normal">
-        Account Name
-      </span>
-    ),
-    dataIndex: "bioDataId",
-    className: "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm",
-    key: "user_id",
-    render: (bioDataId, record, index) => getPrefixedValue(index + 1),
+    title: "User",
+    dataIndex: ["sourceWallet", "user"],
+    className:
+      "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",
+    key: "user",
+    render: (record) => <TableUserCard showEmail={false} record={record} />,
   },
   {
     title: (
@@ -205,12 +204,22 @@ export const transactionPreviewColumns = [
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        Bill Type
+        Transaction Type
       </span>
     ),
-    dataIndex: "type",
+    dataIndex: "vasType",
     className: "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm",
-    key: "bill_type",
-    render: (type) => type,
+    key: "vasType",
+    render: (vasType) => vasType,
+  },{
+    title: (
+      <span className="text-bills-text text-xs font-inter font-normal">
+        Status
+      </span>
+    ),
+    dataIndex: "status",
+    className: "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm",
+    key: "status",
+    render: (status) => <div className={`${status.toLowerCase() == 'success' ? "bg-green-100 text-green-500" : "bg-red-100 text-red-500"} text-xs font-medium rounded-md py-2 px-2.5 inline-flex items-center justify-center`}>{status}</div>,
   },
 ];

@@ -8,7 +8,7 @@ import useAdminStore from "@store/useAdminStore";
 import { useNavigate } from "react-router-dom";
 
 const useLogin = ({ callback }) => {
-  const { setData} = useAdminStore(); // Ensure setToken exists
+  const { setData, setPreferences} = useAdminStore(); // Ensure setToken exists
   const navigate = useNavigate();
 
   return useMutation({
@@ -22,13 +22,25 @@ const useLogin = ({ callback }) => {
       if (data.token) {
         setToken(data.token); // Or use localStorage if needed
       }
+
+      console.log(data)
+      const userData = {
+        createdAt: data?.createdAt,
+        id: data?.id,
+        email: data?.email,
+        name: `${data?.firstName} ${data?.lastName}`,
+        role: data?.role,
+        phone: data?.phone,
+      };
+      const preference = data?.Preference
       
       // Update admin store data
-      setData(data);
+      setData(userData);
+      setPreferences(preference);
 
-      // Call callback if provided
+      // // Call callback if provided
       if (callback) {
-        callback(data);
+        return callback(data);
       }
     },
     onError: (error) => {

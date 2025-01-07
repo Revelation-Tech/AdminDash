@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import React, { useState } from "react";
 import useTableStore from "../store/useTableStore";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { replace, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowCircleLeft, ArrowLeft2 } from "iconsax-react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
@@ -42,7 +42,7 @@ const rowSelection = {
 const CustomTable = () => {
   const [selectionType, setSelectionType] = useState("checkbox");
 
-  const { columns, data, loading, pagination } = useTableStore();
+  const { columns, data, loading, pagination, url } = useTableStore();
 
   const navigate = useNavigate();
 
@@ -89,7 +89,7 @@ const CustomTable = () => {
         ...rowSelection,
       }}
       onRow={(row) => ({
-        onClick: () => navigate(`${location.pathname}/${row?.id}`),
+        onClick: () => navigate(`${url ? url : location.pathname}/${row?.id}`, replace),
         className: "cursor-pointer",
       })}
       rowClassName={(_, index) => `

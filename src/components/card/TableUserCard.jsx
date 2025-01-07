@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableUserCard = ({ record }) => {
+const TableUserCard = ({ record, showEmail = true }) => {
 
   // console.log(record);
 
@@ -13,7 +13,7 @@ const TableUserCard = ({ record }) => {
         <h5 className="font-medium text-sm">
           {record?.firstName} {record?.lastName}
         </h5>
-        <span className="lowercase text-gray-500">{record?.email}</span>
+        {showEmail && <span className="lowercase text-gray-500">{record?.email}</span>}
       </div>
     </div>
   );

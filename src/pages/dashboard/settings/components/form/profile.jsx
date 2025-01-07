@@ -1,13 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profile from "@assets/images/profile2.jpg";
 import { Camera, User } from "iconsax-react";
-import { Avatar, Form, Upload } from "antd";
+import { Avatar, Form, message, Spin, Upload } from "antd";
 import InputField from "@components/form/input";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { useMutation } from "@tanstack/react-query";
+
+import { LoadingOutlined } from "@ant-design/icons";
+
+import axios from "@config/axios";
+import useAdminStore from "../../../../../store/useAdminStore";
 
 const ProfileForm = () => {
+  const { id: userId, email, name, phone } = useAdminStore();
+
+
+  const [form] = Form.useForm();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async ({ id, payload }) => {
+      try {
+        const resp = axios.put(`admin/update/${id}`, payload);
+        return resp.data;
+      } catch (error) {
+        console.error(error?.message);
+        throw new Error(error?.response?.data?.message);
+      }
+    },
+    onSuccess: (data) => {
+      message.success("User profile updated");
+      // update user profile state
+      useAdminStore.setState({ ...data });
+    },
+    onError: (error) => message.error(error.message),
+  });
+
+  useEffect(() => {
+    form.setFieldsValue({
+      name,
+      email,
+      phone,
+    });
+  }, [email, name, phone]);
+
   return (
-    <Form layout="vertical">
+    <Form
+      layout="vertical"
+      form={form}
+      onFinish={(data) => mutate({ id: userId, payload: data })}
+    >
       <div className="w-[6.25rem] mt-8  relative cursor-pointer">
         <Upload maxCount={1} showUploadList={false}>
           <Avatar
@@ -23,25 +64,41 @@ const ProfileForm = () => {
       </div>
 
       <div className="mt-8">
-        <InputField name="name" label="Full Name" Icon={User} />
+        <InputField name="name" label="Full Name" Icon={User} value={name} />
 
         <InputField
           name="email"
           label="Email Address"
           Icon={EnvelopeIcon}
           type="email"
+          value={email}
         />
 
-        <InputField name="phone" label="Phone Number" Icon={PhoneIcon} />
+        <InputField
+          name="phone"
+          label="Phone Number"
+          Icon={PhoneIcon}
+          value={phone}
+        />
 
-        <InputField name="role" label="Role" />
+        {/* <InputField name="role" label="Role" /> */}
 
         <div className="w-full grid md:grid-cols-3 gap-4 mt-4">
           <div className="col-span-1">
             <button className="w-full btn-outline">Cancel</button>
           </div>
           <div className="col-span-2">
-            <button className="w-full btn-fill">Save changes</button>
+            <button disabled={isPending} className="w-full btn-fill">
+              {isPending && (
+                <Spin
+                  spinning
+                  size="medium"
+                  indicator={<LoadingOutlined spin />}
+                  className="mr-2"
+                />
+              )}
+              Save changes
+            </button>
           </div>
         </div>
       </div>

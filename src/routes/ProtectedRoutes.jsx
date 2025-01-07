@@ -11,7 +11,7 @@ const ProtectedRoutes = () => {
   const { data, token, error } = useValidate();
 
 
-  if (!token && !data || error?.status == 401) return <Navigate to="/" />;
+  if (!data && !token) return <Navigate to="/" />;
 
   return (
     <AppLayout>

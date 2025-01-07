@@ -8,6 +8,7 @@ const InputField = ({
   type,
   isRequired = false,
   Icon,
+  value
 }) => {
   return (
     <Form.Item
@@ -17,6 +18,7 @@ const InputField = ({
           {label}
         </span>
       }
+      initialValue={value}
       rules={[{ message: `${label} is required`, required: isRequired }]}
     >
       <div className="inline-flex items-center border border-bills-borderLight p-2.5 rounded-md w-full">

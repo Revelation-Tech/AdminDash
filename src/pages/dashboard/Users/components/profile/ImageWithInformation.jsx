@@ -19,7 +19,7 @@ const ImageWithInformation = ({record}) => {
       </div>
 
       <div className={`rounded-full px-4 py-1.5 inline-flex items-center justify-center text-xs ${record?.status?.toLowerCase() == 'active' ? "text-green-600 bg-green-50" : "bg-red-50 text-red-500"} capitalize font-inter font-semibold`}>
-        {record?.status || "active"}
+        {record?.status || "-"}
       </div>
     </div>
   )

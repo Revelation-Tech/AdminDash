@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 const useTableStore = create((set, get) => ({
+  url: undefined,
   loading: false,
   pagination: { position: ["bottomCenter"], showTitle: true },
   data: [],

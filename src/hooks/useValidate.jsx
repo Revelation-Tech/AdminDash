@@ -7,7 +7,9 @@ import axios from "@config/axios";
 import { getToken } from "../utils/auth";
 
 const useValidate = () => {
-  const [token] = useState(getToken);
+  const [token] = useState(localStorage.getItem("token"));
+
+  // console.log(token)
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["dashboard"],
@@ -15,18 +17,15 @@ const useValidate = () => {
       const res = await axios.get("admin/dashboard");
       return res?.data;
     },
-    enabled: !!token
+    enabled: !!token,
   });
 
   const renderLoading = () => {
-    if (isLoading) {
-      return (
-        <div className="h-screen flex flex-1 flex-col justify-center items-center">
-          <Spin spinning={isLoading} indicator={<LoadingOutlined />} />
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className="h-screen flex flex-1 flex-col justify-center items-center">
+        <Spin spinning={isLoading} indicator={<LoadingOutlined />} />
+      </div>
+    );
   };
 
   return { data, isLoading, token, renderLoading, isError, error };

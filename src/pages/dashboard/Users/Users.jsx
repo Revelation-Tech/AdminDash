@@ -31,7 +31,8 @@ const Users = () => {
       useTableStore.setState({
         data: searchValue ? filteredData : filterUsers,
         loading: isFetching,
-        columns: columns
+        columns: columns,
+        url: "/users"
       });
     }
   }, [data, isFetching, activeTab, filteredData]);
