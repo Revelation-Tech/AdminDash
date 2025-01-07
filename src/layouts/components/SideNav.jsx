@@ -18,7 +18,7 @@ const SideNav = () => {
 
     const state = useAdminStore(state => state);
 
-    console.log(state)
+    // console.log(state)
 
     useGSAP(()=>{
         sidebarAnim.current=gsap.to('.mobile-nav',{
@@ -73,7 +73,7 @@ const SideNav = () => {
                             <Link className="mr-2"><ProfileCircle /></Link>
 
                             <div className="flex flex-col text-sm">
-                                <p>John Doe</p>
+                                <p>{state?.name || "John Doe"}</p>
                                 <p>{state?.email}</p>
                             </div>
                         </div>
@@ -130,7 +130,7 @@ const SideNav = () => {
                             <Link className="mr-2"><ProfileCircle /></Link>
 
                             <div className="flex flex-col text-sm">
-                                <p>John Doe</p>
+                                <p>{state?.name || "John Doe"}</p>
                                 <p className='text-[10px]'>{state?.email}</p>
                             </div>
                         </div>

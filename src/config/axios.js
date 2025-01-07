@@ -4,14 +4,13 @@ const axios = instance.create({
   baseURL: "https://paybillsbackend.onrender.com/",
 });
 
-const token = localStorage.getItem("token");
-
-console.log(token);
 
 axios.interceptors.request.use(
   function (config) {
 
-    console.log(token)
+    const token = localStorage.getItem("token");
+    
+    // console.log(token)
     // check token existence and set authorization
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
