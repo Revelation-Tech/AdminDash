@@ -45,10 +45,10 @@ export default [
         Wallet Balance
       </span>
     ),
-    dataIndex: "phone",
+    dataIndex: ["wallet", 'balance'],
     className: "!bg-transparent !font-normal !text-sm",
-    key: "phone",
-    render: (phoneNumber) => <span>{formatCurrency(totalSpend, "NG")}</span>,
+    key: "walletBalance",
+    render: (walletBalance) => <span>{formatCurrency(walletBalance ?? 0, "NG")}</span>,
   },
   {
     title: (

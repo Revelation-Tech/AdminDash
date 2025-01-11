@@ -20,7 +20,7 @@ export const getTransaction = async ({ transactionId }) => {
 
 export const getTransactionAnalysis = async () => {
   try {
-    const response = await axios.get(`admin/analyze-transactions`);
+    const response = await axios.get(`admin/analyze-transaction`);
     return response.data?.data;
   } catch (error) {
     throw new Error(error?.response?.data?.message ?? error.messages);

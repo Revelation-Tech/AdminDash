@@ -22,9 +22,12 @@ const UserProfile = () => {
 
   const { data, isLoading, isFetching } = getUser(userID);
 
+  // console.log(data)
+
   // if(isFetching){
   //   return <Skeleton/>
   // }
+
 
   const onUpdate = (payload) =>{
     editUser.mutate({id:userID, payload})
@@ -34,7 +37,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (data) {
       const transactions = data?.wallet?.transactions;
-      useTableStore.setState({ data: transactions, loading: isLoading, url: '/transaction' });
+      useTableStore.setState({ data: transactions, columns: transactionPreviewColumns, loading: isLoading, url: '/transaction' });
     }
   }, [data, isFetching]);
 

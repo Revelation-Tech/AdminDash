@@ -14,5 +14,7 @@ export const filterByStatus = (data, status) => {
 export const formatDate = (date) => moment(date).format("MMM DD, YYYY");
 export const formatDateTime = (date) => moment(date).format("MMM DD, YYYY, HH:mm A");
 
-export const formatCurrency = (amount, country = "NG", currency = "NGN") =>
-  amount?.toLocaleString(`en-${country}`, { style: "currency", currency: currency });
+export const formatCurrency = (amount, country = "NG", currency = "NGN") =>{
+  // console.log(amount)
+  return amount?.toLocaleString(`en-${country}`, { style: "currency", currency: currency })
+};

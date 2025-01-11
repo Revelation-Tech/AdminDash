@@ -1,6 +1,7 @@
-import { Progress } from "antd";
+import { Progress, Spin } from "antd";
 import { useEffect } from "react";
 import { ArrowDown2, ImportCurve, SearchNormal1 } from "iconsax-react";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import useDashboardQuery from "./hooks/useDashboardQuery";
 import DashboardReportCard from "./components/ReportCard";
@@ -10,19 +11,33 @@ import columns from "./data/columns";
 import useTableStore from "../../../store/useTableStore";
 import useUserQuery from "../Users/hooks/useUserQuery";
 import { formatCurrency } from "../../../utils/functions";
+import { BillChart } from "../../../data/chartData/BillsData/BillChart";
 
 const Overview = () => {
   const { dashboard, comparativeTransactions } = useDashboardQuery();
   const { fetchUsers } = useUserQuery();
 
-  const { data, isLoading } = dashboard;
+  const { data, isFetching: dashboardLoading } = dashboard;
   const { data: userData, isFetching } = fetchUsers;
 
-  // console.log(data)
+  // console.log(data);
 
   useEffect(() => {
     useTableStore.setState({ columns, data: userData, loading: isFetching });
   }, []);
+
+  const pageLoading = (loading) => {
+    return (
+      <div className="flex flex-col justify-center items-center h-60">
+        <Spin
+          spinning={loading}
+          size="small"
+          indicator={<LoadingOutlined spin />}
+        />
+      </div>
+    );
+  };
+
   return (
     <div className="">
       <div className="">
@@ -35,18 +50,14 @@ const Overview = () => {
             />
             <DashboardReportCard
               title="Total Transaction Volume"
-              value={formatCurrency({
-                amount: data?.totalTransactionVolume ||0,
-                country: "NG",
-                currency: "NGN",
-              })}
+              value={formatCurrency(data?.transactionVolume)}
             />
-            <DashboardReportCard title="Churn Rate" value="60%"/>
+            <DashboardReportCard title="Churn Rate" value="60%" />
           </div>
 
           <div className="flex gap-5">
             <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
-              <div className="inline-flex items-center w-full justify-between">
+              <div className="inline-flex items-center w-full justify-between mb-5">
                 <div className="">
                   <h6 className="font-inter text-xs text-[#A3AED0]">
                     USERS ACQUISITION
@@ -61,11 +72,34 @@ const Overview = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
-                  <span className="text-[0.625rem] font-inter font-medium">Yearly</span>
+                {/* <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
+                  <span className="text-[0.625rem] font-inter font-medium">
+                    Yearly
+                  </span>
                   <ArrowDown2 className="size-4" variant="Bold" />
-                </div>
+                </div> */}
               </div>
+              {data?.monthlyTotals && (
+                <BillChart
+                  label={[
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "July",
+                    "Aug",
+                    "Sept",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                  ]}
+                  value={data?.monthlyTotals}
+                />
+              )}
+
+              {dashboardLoading && pageLoading(dashboardLoading)}
             </div>
             <div className="inline-flex flex-col w-full max-w-xs bg-white border border-gray-100 rounded-lg p-5">
               <h6 className="font-inter text-xs text-[#A3AED0]">
@@ -74,21 +108,17 @@ const Overview = () => {
               <div className="py-4">
                 <p className="inline-flex items-center text-sm font-inter gap-1">
                   <span className="p-0.5 size-2 rounded-full bg-bills-skyblue"></span>{" "}
-                  Successful Transactions
+                  Successful Transactions {data?.successVolume || 0}
                 </p>
                 <p className="inline-flex items-center text-sm font-inter gap-1">
                   <span className="p-0.5 size-2 rounded-full bg-red-500"></span>{" "}
-                  Failed Transactions
+                  Failed Transactions {data?.failedVolume || 0}
                 </p>
               </div>
               <div className="inline-flex items-center justify-center relative py-4">
                 <Progress
                   type="circle"
-                  percent={
-                    data?.successfulTransaction?.length
-                      ? data?.successfulTransaction?.length / 100
-                      : 0
-                  }
+                  percent={data?.successPercentage ?? 0}
                   size={240}
                   showInfo={false}
                   strokeColor="#008000"
@@ -97,11 +127,7 @@ const Overview = () => {
                   <div className="relative">
                     <Progress
                       type="circle"
-                      percent={
-                        data?.failedTransaction?.length
-                          ? data?.failedTransaction?.length / 100
-                          : 0
-                      }
+                      percent={data?.failedPercentage ?? 0}
                       size={180}
                       showInfo={false}
                       strokeColor="#E71D36"
@@ -122,7 +148,7 @@ const Overview = () => {
 
           <div className="grid grid-cols-2 gap-5">
             <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
-              <div className="inline-flex items-center w-full justify-between">
+              <div className="inline-flex items-center w-full justify-between mb-5">
                 <div className="">
                   <h6 className="font-inter text-xs text-[#A3AED0]">
                     TRANSACTION COMPARATIVE AMOUNT
@@ -130,10 +156,21 @@ const Overview = () => {
                 </div>
 
                 <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
-                  <span className="text-[0.625rem] font-inter font-medium">This Week</span>
+                  <span className="text-[0.625rem] font-inter font-medium">
+                    This Week
+                  </span>
                   <ArrowDown2 className="size-4" variant="Bold" />
                 </div>
               </div>
+
+              {comparativeTransactions?.isLoading ? (
+                pageLoading(comparativeTransactions?.isLoading)
+              ) : (
+                <BillChart
+                  label={Object.keys(comparativeTransactions?.data)}
+                  value={Object.values(comparativeTransactions?.data)}
+                />
+              )}
             </div>
 
             <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
@@ -144,10 +181,12 @@ const Overview = () => {
                   </h6>
                 </div>
 
-                <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
-                  <span className="text-[0.625rem] font-inter font-medium">This Week</span>
+                {/* <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
+                  <span className="text-[0.625rem] font-inter font-medium">
+                    This Week
+                  </span>
                   <ArrowDown2 className="size-4" variant="Bold" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

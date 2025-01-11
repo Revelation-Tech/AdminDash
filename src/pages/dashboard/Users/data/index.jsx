@@ -160,7 +160,7 @@ export const transactionPreviewColumns = [
     render: (bioDataId, record, index) => getPrefixedValue(index + 1),
   },
   {
-    title: "User",
+    title: "Account Name",
     dataIndex: ["sourceWallet", "user"],
     className:
       "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",

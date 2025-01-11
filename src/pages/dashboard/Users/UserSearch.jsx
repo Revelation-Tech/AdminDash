@@ -2,7 +2,7 @@ import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
 import React from "react";
 import useTableStore from "../../../store/useTableStore";
 
-const UserSearch = () => {
+const UserSearch = ({showFilter}) => {
   const { searchTable } = useTableStore();
 
   return (

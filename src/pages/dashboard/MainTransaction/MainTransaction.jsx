@@ -32,7 +32,7 @@ const MainTransaction = () => {
 
   return (
     <div className="space-y-10">
-      <div className=" mt-8 md:grid grid-cols-3 gap-4  grid-flow-col">
+      <div className=" mt-8 md:grid grid-cols-4 gap-4">
         {analysis.data
           ?.sort((a, b) =>
             a?.status?.toLowerCase()?.localeCompare(b.status.toLowerCase())
