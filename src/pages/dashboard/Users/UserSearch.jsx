@@ -19,9 +19,11 @@ const UserSearch = () => {
         </div>
 
         <div className="md:inline-flex justify-between items-center gap-4">
-          <button className="btn-outline2 !py-2.5 text-sm !px-6">
-            <Filter size={16} className="inline" variant="Outline" /> Filter
-          </button>
+          {showFilter && (
+            <button className="btn-outline2 !py-2.5 text-sm !px-6">
+              <Filter size={16} className="inline" variant="Outline" /> Filter
+            </button>
+          )}
           <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
             <ImportCurve size={16} className="inline" variant="Outline" />
             Export Csv

@@ -103,7 +103,7 @@ const Users = () => {
       </div>
 
       <div className="space-y-2.5">
-        <UserSearch />
+        <UserSearch showFilter/>
 
         <Tabs
           defaultActiveKey="all"

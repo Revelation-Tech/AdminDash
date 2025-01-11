@@ -41,7 +41,7 @@ export const columns = [
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        User ID
+        S/N
       </span>
     ),
     dataIndex: "bioDataId",
