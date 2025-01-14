@@ -10,7 +10,7 @@ import PageLoader from "../../../components/PageLoader";
 import { Select } from "antd";
 
 export const All = () => {
-  const [period, selectPeriod] = useState("all");
+  const [period, setPeriod] = useState("all");
 
   // const { pathname } = useLocation();
 
@@ -34,7 +34,7 @@ export const All = () => {
 
   let volumeValue = monthlyRateData?.monthlyVolume?.map(
     (item) => item?.totalVolume
-  )
+  );
 
   return (
     <section>
@@ -47,10 +47,15 @@ export const All = () => {
       <div className="grid grid-cols-1 md:grid-cols-8 gap-8 py-8">
         <div className=" p-2 md:p-8 col-span-5 bg-white rounded  shadow-light">
           <div className="flex justify-between items-center text-bills-skyblue mb-3">
-            <h1 className="text-md text-bills-darkblue font-semibold">
-              Best Selling Service
-            </h1>
-            <select className="inline-flex  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-light ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:ring-1 focus:ring-inset focus:ring-bills-skyblue">
+            <div className="">
+              <h1 className="text-md text-bills-darkblue font-semibold">
+                Best Selling Service By Value
+              </h1>
+              <span className="text-[0.625rem] text-[#909090] font-sans">Based on total number of transactions</span>
+            </div>
+            <select 
+            onSelect={(e) => setPeriod(e.target.value)}
+            className="inline-flex  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-light ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:ring-1 focus:ring-inset focus:ring-bills-skyblue">
               <option className=" text-sm text-bills-skyblue:outline-none">
                 Daily{" "}
               </option>
@@ -60,10 +65,10 @@ export const All = () => {
             </select>
           </div>
 
-          <p className="text-sm text-bills-lightgrey">
+          {/* <p className="text-sm text-bills-lightgrey">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat,
             consequuntur.
-          </p>
+          </p> */}
 
           {!isLoading ? (
             <BillChart
@@ -189,7 +194,7 @@ export const All = () => {
             </h1>
 
             <Select
-              onChange={(value) => selectPeriod(value)}
+              onChange={(value) => setPeriod(value)}
               options={[
                 { label: "daily", value: "daily", className: "capilize" },
                 { label: "weekly", value: "weekly", className: "capilize" },
