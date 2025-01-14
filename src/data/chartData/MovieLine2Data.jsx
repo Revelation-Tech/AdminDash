@@ -27,7 +27,7 @@ import { Chart as ChartJS,
 
 
   
-export const MovieLine2Data = () => {
+export const MovieLine2Data = ({value}) => {
 
     
 const labels = ['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sept','Oct','Nov','Dec'];
@@ -35,7 +35,7 @@ const data = {
   labels: labels,
   datasets: [{
     label: '',
-    data: [65, 59, 80, 81, 56, 55, 40,80, 81, 36, 15, 40],
+    data: value??[65, 59, 80, 81, 56, 55, 40,80, 81, 36, 15, 40],
     fill:true,
     borderColor: '#1f6cab',
     tension: 0.1,

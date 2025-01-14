@@ -12,10 +12,10 @@ import ProfileInfo from "@pages/dashboard/settings/tabs/ProfileInfo.jsx";
 import { Password } from "@pages/dashboard/settings/tabs/Password.jsx";
 import { Security } from "@pages/dashboard/settings/tabs/Security.jsx";
 import { Movies } from "@pages/dashboard/Movies.jsx";
-import { All } from "@pages/dashboard/Transaction/All.jsx";
-import { Transaction } from "@pages/dashboard/Transaction/Transaction.jsx";
-import { Airtime } from "@pages/dashboard/Transaction/Airtime.jsx";
-import Cable from "@pages/dashboard/Transaction/Cable.jsx";
+import { All } from "@pages/dashboard/bills/All.jsx";
+import { Transaction } from "@pages/dashboard/bills/Transaction.jsx";
+import { Airtime } from "@pages/dashboard/bills/Airtime.jsx";
+import Cable from "@pages/dashboard/bills/Cable.jsx";
 import MainTransaction from "@pages/dashboard/MainTransaction/MainTransaction";
 import Users from "@pages/dashboard/Users/Users.jsx";
 import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
@@ -125,15 +125,15 @@ const router = createBrowserRouter([
             element: <Cable />,
           },
 
-          {
-            path: "religious",
-            element: <All />,
-          },
+          // {
+          //   path: "religious",
+          //   element: <All />,
+          // },
 
-          {
-            path: "fuel",
-            element: <All />,
-          },
+          // {
+          //   path: "fuel",
+          //   element: <All />,
+          // },
         ],
       },
     ],
