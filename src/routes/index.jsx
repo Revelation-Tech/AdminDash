@@ -120,10 +120,10 @@ const router = createBrowserRouter([
             path: "electricity",
             element: <Cable />,
           },
-          {
-            path: "betting",
-            element: <Cable />,
-          },
+          // {
+          //   path: "betting",
+          //   element: <Cable />,
+          // },
 
           // {
           //   path: "religious",

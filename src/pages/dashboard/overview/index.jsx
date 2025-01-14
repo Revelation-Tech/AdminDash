@@ -25,7 +25,7 @@ const Overview = () => {
   // console.log(data);
 
   useEffect(() => {
-    useTableStore.setState({ columns, data: userData, loading: isLoading });
+    useTableStore.setState({ columns, data: userData, loading: isLoading, link: "/users" });
   }, []);
 
   

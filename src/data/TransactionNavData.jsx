@@ -30,24 +30,24 @@ export const transactionNavData =   [{
     link:'electricity',
     icon:<Mobile/>
    },
-   {
-    id:6,
-    name:'Betting',
-    link:'betting',
-    icon:<Mobile/>
-   },
-   {
-    id:7,
-    name:'Religious',
-    link:'religious',
-    icon:<Mobile/>
-   },
-   {
-    id:8,
-    name:'Fuel',
-    link:'fuel',
-    icon:<Mobile/>
-   },
+//    {
+//     id:6,
+//     name:'Betting',
+//     link:'betting',
+//     icon:<Mobile/>
+//    },
+//    {
+//     id:7,
+//     name:'Religious',
+//     link:'religious',
+//     icon:<Mobile/>
+//    },
+//    {
+//     id:8,
+//     name:'Fuel',
+//     link:'fuel',
+//     icon:<Mobile/>
+//    },
 
 
 ]
