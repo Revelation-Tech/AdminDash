@@ -20,15 +20,18 @@ const Overview = () => {
   const { data, isFetching: dashboardLoading } = dashboard;
   const { data: userData, isLoading } = fetchUsers;
 
-  const {searchTable} = useTableStore();
+  const { searchTable } = useTableStore();
 
-  console.log(data);
+  // console.log(comparativeTransactions?.data);
 
   useEffect(() => {
-    useTableStore.setState({ columns, data: userData, loading: isLoading, link: "/users" });
+    useTableStore.setState({
+      columns,
+      data: userData,
+      loading: isLoading,
+      url: "/users",
+    });
   }, []);
-
-  
 
   const pageLoading = (loading) => {
     return (
@@ -53,10 +56,13 @@ const Overview = () => {
               value={data?.revenue || 0}
             />
             <DashboardReportCard
+              title="Total Transaction Volume"
+              value={formatCurrency(data?.transactionVolume)}
+            />
+            <DashboardReportCard
               title="Total Transaction Value"
               value={data?.totalTransaction}
             />
-            <DashboardReportCard title="Total Transaction Volume" value={formatCurrency(data?.transactionVolume)} />
           </div>
 
           <div className="flex gap-5">
@@ -155,32 +161,6 @@ const Overview = () => {
               <div className="inline-flex items-center w-full justify-between mb-5">
                 <div className="">
                   <h6 className="font-inter text-xs text-[#A3AED0]">
-                    TRANSACTION COMPARATIVE AMOUNT
-                  </h6>
-                </div>
-
-                <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
-                  <span className="text-[0.625rem] font-inter font-medium">
-                    This Week
-                  </span>
-                  <ArrowDown2 className="size-4" variant="Bold" />
-                </div>
-              </div>
-
-              {comparativeTransactions?.isLoading ? (
-                pageLoading(comparativeTransactions?.isLoading)
-              ) : (
-                <BillChart
-                  label={Object.keys(comparativeTransactions?.data)}
-                  value={Object.values(comparativeTransactions?.data)}
-                />
-              )}
-            </div>
-
-            <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
-              <div className="inline-flex items-center w-full justify-between">
-                <div className="">
-                  <h6 className="font-inter text-xs text-[#A3AED0] capitalize">
                     TRANSACTION COMPARATIVE COUNT
                   </h6>
                 </div>
@@ -192,15 +172,50 @@ const Overview = () => {
                   <ArrowDown2 className="size-4" variant="Bold" />
                 </div> */}
               </div>
+
+              {comparativeTransactions?.isLoading ? (
+                pageLoading(comparativeTransactions?.isLoading)
+              ) : (
+                <BillChart
+                  label={Object.keys(comparativeTransactions?.data?.count)}
+                  value={Object.values(comparativeTransactions?.data?.count)}
+                />
+              )}
+            </div>
+
+            <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
+              <div className="inline-flex items-center w-full justify-between">
+                <div className="">
+                  <h6 className="font-inter text-xs text-[#A3AED0] capitalize">
+                    TRANSACTION COMPARATIVE AMOUNT
+                  </h6>
+                </div>
+
+                {/* <div className="bg-gray-200/40 rounded-md p-2.5 inline-flex items-center gap-2">
+                  <span className="text-[0.625rem] font-inter font-medium">
+                    This Week
+                  </span>
+                  <ArrowDown2 className="size-4" variant="Bold" />
+                </div> */}
+              </div>
+              {comparativeTransactions?.isLoading ? (
+                pageLoading(comparativeTransactions?.isLoading)
+              ) : (
+                <BillChart
+                  // label={Object.keys(comparativeTransactions?.data?.amount)}
+                  label={['Data', "Airtime", "TV", "Electricity"]}
+                  value={Object.values(comparativeTransactions?.data?.amount)}
+                />
+              )}
             </div>
           </div>
 
           <div className="flex flex-col py-3 space-y-5 w-full mb-5">
-            <h3 className="text-lg font-semibold">Best Performing</h3>
+            {/* <h3 className="text-lg font-semibold">Best Performing</h3> */}
             <div className="rounded-lg bg-white p-5 inline-flex items-center w-full">
               <div className="w-full max-w-[150px] border-b border-bills-skyblue text-center">
                 <h4 className="text-bills-skyblue text-sm font-inter  pb-2">
-                  Total Transactions
+                  Users
                 </h4>
               </div>
               {/* search */}
