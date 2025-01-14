@@ -22,7 +22,7 @@ const Overview = () => {
 
   const {searchTable} = useTableStore();
 
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     useTableStore.setState({ columns, data: userData, loading: isLoading, link: "/users" });
@@ -53,10 +53,10 @@ const Overview = () => {
               value={data?.revenue || 0}
             />
             <DashboardReportCard
-              title="Total Transaction Volume"
-              value={formatCurrency(data?.transactionVolume)}
+              title="Total Transaction Value"
+              value={data?.totalTransaction}
             />
-            <DashboardReportCard title="Churn Rate" value="60%" />
+            <DashboardReportCard title="Total Transaction Volume" value={formatCurrency(data?.transactionVolume)} />
           </div>
 
           <div className="flex gap-5">
