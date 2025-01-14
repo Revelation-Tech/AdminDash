@@ -161,7 +161,7 @@ const Overview = () => {
               <div className="inline-flex items-center w-full justify-between mb-5">
                 <div className="">
                   <h6 className="font-inter text-xs text-[#A3AED0]">
-                    TRANSACTION COMPARATIVE COUNT
+                    TOTAL TRANSACTION COMPARATIVE COUNT
                   </h6>
                 </div>
 
@@ -187,7 +187,7 @@ const Overview = () => {
               <div className="inline-flex items-center w-full justify-between">
                 <div className="">
                   <h6 className="font-inter text-xs text-[#A3AED0] capitalize">
-                    TRANSACTION COMPARATIVE AMOUNT
+                    TOTAL TRANSACTION COMPARATIVE AMOUNT
                   </h6>
                 </div>
 
@@ -202,8 +202,7 @@ const Overview = () => {
                 pageLoading(comparativeTransactions?.isLoading)
               ) : (
                 <BillChart
-                  // label={Object.keys(comparativeTransactions?.data?.amount)}
-                  label={['Data', "Airtime", "TV", "Electricity"]}
+                  label={Object.keys(comparativeTransactions?.data?.amount)}
                   value={Object.values(comparativeTransactions?.data?.amount)}
                 />
               )}

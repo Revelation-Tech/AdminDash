@@ -69,6 +69,13 @@ export const BillChart = ({ label, value }) => {
         grid: {
           display: false,
         },
+        ticks: {
+          callback: function (value) {
+            // Get the original label and capitalize the first character
+            const label = this.getLabelForValue(value);
+            return label.charAt(0).toUpperCase() + label.slice(1);
+          },
+        },
       },
     },
   };
