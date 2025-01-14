@@ -1,8 +1,12 @@
 import axios from "@config/axios";
 
-export const fetchTransactions = async () => {
+export const fetchTransactions = async (params) => {
+
+  console.log(params)
   try {
-    const response = await axios.get("admin/sort-transactions");
+    const response = await axios.get("admin/sort-transactions", {
+      params: params,
+    });
     return response.data?.data;
   } catch (error) {
     throw new Error(error?.response?.data?.message ?? error.messages);
@@ -11,7 +15,9 @@ export const fetchTransactions = async () => {
 
 export const getTransaction = async ({ transactionId }) => {
   try {
-    const response = await axios.get(`admin/transaction-details/${transactionId}`);
+    const response = await axios.get(
+      `admin/transaction-details/${transactionId}`
+    );
     return response.data?.data[0];
   } catch (error) {
     throw new Error(error?.response?.data?.message ?? error.messages);
@@ -26,4 +32,3 @@ export const getTransactionAnalysis = async () => {
     throw new Error(error?.response?.data?.message ?? error.messages);
   }
 };
-

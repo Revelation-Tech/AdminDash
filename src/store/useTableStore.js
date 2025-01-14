@@ -8,6 +8,7 @@ const useTableStore = create((set, get) => ({
   columns: [],
   filteredData: [],
   searchValue: "",
+  params: {},
   filterByColumn: (column, value) => {
     // console.log(column, value);
     const { data } = get();

@@ -18,13 +18,17 @@ const Overview = () => {
   const { fetchUsers } = useUserQuery();
 
   const { data, isFetching: dashboardLoading } = dashboard;
-  const { data: userData, isFetching } = fetchUsers;
+  const { data: userData, isLoading } = fetchUsers;
+
+  const {searchTable} = useTableStore();
 
   // console.log(data);
 
   useEffect(() => {
-    useTableStore.setState({ columns, data: userData, loading: isFetching });
+    useTableStore.setState({ columns, data: userData, loading: isLoading });
   }, []);
+
+  
 
   const pageLoading = (loading) => {
     return (

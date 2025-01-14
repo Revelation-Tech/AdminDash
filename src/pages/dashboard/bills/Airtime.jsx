@@ -21,6 +21,10 @@ export const Airtime = () => {
     { vasType: pathname.split("/")[2]?.toUpperCase() }
   );
 
+  let volumeValue = monthlyRateData?.monthlyVolume?.map(
+    (item) => item?.totalVolume
+  )
+
   return (
     <section>
       <Index
@@ -56,7 +60,7 @@ export const Airtime = () => {
         </div>
       </div>
       <div>
-        <MovieLine2 average={monthlyRateData?.averageVolume} value={[]} />
+        <MovieLine2 average={monthlyRateData?.averageVolume} value={volumeValue} />
       </div>
     </section>
   );

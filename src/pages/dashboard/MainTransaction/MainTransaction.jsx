@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideNav from "../SideNav";
 import { MoviesLine } from "@data/chartData/moviesLine";
 import { TransactionFailData } from "@data/chartData/TransactionFailData.jsx";
@@ -7,7 +7,7 @@ import useTransactionQuery from "./hooks/useTransactionQuery.js";
 import useTableStore from "@store/useTableStore";
 import CustomTableCard from "@components/CustomTableCard";
 import SmallLineGraphCard from "../../../components/card/SmallLineGraph.jsx";
-import { Spin } from "antd";
+import { Select, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import PageLoader from "../../../components/PageLoader.jsx";
 import { columns } from "./data";
@@ -20,6 +20,23 @@ const MainTransaction = () => {
   // if (isLoading) {
   //   return <PageLoader/>;
   // }
+  const { params } = useTableStore();
+
+  const updateParams = (key, value) => {
+    // Get the current state of params from useTableStore
+    const currentParams = useTableStore.getState().params || {};
+
+    // Update the key if it exists or add it if it doesn't
+    const updatedParams = {
+      ...currentParams, // Keep existing params
+      [key]: value, // Update or add the specified key
+    };
+
+    // Set the updated params in useTableStore
+    useTableStore.setState({
+      params: updatedParams,
+    });
+  };
 
   useEffect(() => {
     useTableStore.setState({
@@ -80,6 +97,49 @@ const MainTransaction = () => {
             </div>
           </div>
         </div> */}
+      </div>
+
+      <div className="py-5 px-6 bg-white rounded-lg">
+        <div className="inline-flex items-center gap-4 w-full">
+          <Select
+            options={[
+              { label: "Success", value: "SUCCESS" },
+              { label: "Failed", value: "FAILED" },
+              { label: "Pending", value: "PENDING" },
+            ]}
+            placeholder="Status: All"
+            className="border border-gray-500 rounded-md placeholder:text-gray-500 text-gray-500 h-10"
+            onChange={(value) => updateParams("status", value)}
+          />
+
+          <Select
+            options={[
+              { label: "Credit", value: "CREDIT" },
+              { label: "Debit", value: "DEBIT" },
+            ]}
+            placeholder="Transaction Type: All"
+            className="border border-gray-500 rounded-md placeholder:text-gray-500 text-gray-500 h-10 w-2/12"
+            onChange={(value) => updateParams("type", value)}
+          />
+
+          <Select
+            onChange={(value) => updateParams("date", value)}
+            options={[
+              { label: "daily", value: "daily", className: "capitalize" },
+              { label: "weekly", value: "weekly", className: "capitalize" },
+              {
+                label: "quarterly",
+                value: "quarterly",
+                className: "capitalize",
+              },
+              { label: "yearly", value: "yearly", className: "capitalize" },
+              { label: "monthly", value: "monthly", className: "capitalize" },
+              { label: "all", value: "all", className: "capitalize" },
+            ]}
+            placeholder="Date: All"
+            className="border border-gray-500 rounded-md placeholder:text-gray-500 text-gray-500 h-10 w-2/12"
+          />
+        </div>
       </div>
 
       <CustomTableCard />
