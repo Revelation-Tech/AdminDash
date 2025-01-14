@@ -4,13 +4,17 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "@config/axios";
 
 const useBillsQuery = () => {
-  const allBills = ({ interval, type }) =>
-    useQuery({
+  const allBills = ({ interval, type }) => {
+    const params = {
+      ...(type || interval ? { type, interval } : {}),
+    };
+
+    return useQuery({
       queryKey: ["bills"],
       queryFn: async () => {
         try {
           const response = await axios.get("admin/billing-transactions", {
-            params: { interval: interval, type: type },
+            params,
           });
 
           const { data } = response.data;
@@ -21,8 +25,9 @@ const useBillsQuery = () => {
         }
         // Make API request to fetch bills data
       },
+      enabled: !!params,
     });
-
+  };
   const bestSelling = useQuery({
     queryKey: ["best-selling"],
     queryFn: async () => {
@@ -60,7 +65,7 @@ const useBillsQuery = () => {
       ...(vasType ? { vasType } : {}),
     };
 
-    console.log(params);
+    // console.log(params);
 
     return useQuery({
       queryKey: ["monthlyRate"],
@@ -75,11 +80,17 @@ const useBillsQuery = () => {
           throw new Error(error?.response?.data?.message || error?.message); // Handle errors gracefully
         }
       },
+      enabled: !!params,
     });
   };
 
-  const successRate = ({ vasType, period }) =>
-    useQuery({
+  const successRate = ({ vasType, period }) => {
+
+    const params = {
+      ...(vasType || period ? { vasType, period } : {}),
+    };
+
+    return useQuery({
       queryKey: ["successRate", vasType],
       queryFn: async () => {
         try {
@@ -96,7 +107,9 @@ const useBillsQuery = () => {
         }
         // Make API request to fetch bills data
       },
+      enabled: !!params,
     });
+  };
 
   return { allBills, bestSelling, customerRate, monthlyRate, successRate };
 };
