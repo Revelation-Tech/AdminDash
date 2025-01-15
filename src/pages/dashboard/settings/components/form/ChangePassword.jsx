@@ -29,6 +29,8 @@ const ChangePassword = () => {
     onError: (error) => message.error(error.message),
   });
 
+  console.log(isPending)
+
   return (
     <Form
       layout="vertical"
@@ -65,10 +67,10 @@ const ChangePassword = () => {
         <button disabled={isPending} className="btn-fill ">
           {isPending && (
             <Spin
-              spinning
+              spinning={isPending}
               size="medium"
               indicator={<LoadingOutlined spin />}
-              className="mr-2"
+              className="mr-2 text-white"
             />
           )}
           Update Password

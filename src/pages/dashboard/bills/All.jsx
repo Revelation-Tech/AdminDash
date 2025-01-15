@@ -7,10 +7,11 @@ import { BillDoughnutData } from "../../../data/chartData/BillsData/BillDoughnut
 import Index from "./molecules";
 import useBillsQuery from "./hooks/useBillsQuery";
 import PageLoader from "../../../components/PageLoader";
-import { Select } from "antd";
+import { Progress, Select } from "antd";
 
 export const All = () => {
   const [period, setPeriod] = useState("all");
+  const [successPeriod, setSuccessPeriod] = useState("all");
 
   // const { pathname } = useLocation();
 
@@ -20,7 +21,7 @@ export const All = () => {
     useBillsQuery();
 
   const { data } = allBills({ interval: "all", type: "ALL" });
-  const { data: bestSellingData, isLoading } = bestSelling;
+  const { data: bestSellingData, isLoading } = bestSelling({ period: period });
   const { data: customerRateData, isFFetching: customerRateLoading } =
     customerRate;
 
@@ -29,12 +30,26 @@ export const All = () => {
   );
 
   const { data: successRateData, isFetching: successRateLoading } = successRate(
-    { vasType: "", period: period }
+    { vasType: "", period: successPeriod }
   );
+
+  const { data: airtimeSuccessRateData, isFetching: airtelSuccessRateLoading } =
+    successRate({ vasType: "AIRTIME", period: "all" });
+
+  const { data: dataSuccessRateData, isFetching: dataSuccessRateLoading } =
+    successRate({ vasType: "DATA", period: "all" });
+
+  const { data: cableSuccessRateData, isFetching: cableSuccessRateLoading } =
+    successRate({ vasType: "TV", period: "all" });
+
+  const { data: powerSuccessRateData, isFetching: powerSuccessRateLoading } =
+    successRate({ vasType: "ELECTRICITY", period: "all" });
 
   let volumeValue = monthlyRateData?.monthlyVolume?.map(
     (item) => item?.totalVolume
   );
+
+  console.log(powerSuccessRateData);
 
   return (
     <section>
@@ -51,11 +66,17 @@ export const All = () => {
               <h1 className="text-md text-bills-darkblue font-semibold">
                 Best Selling Service By Value
               </h1>
-              <span className="text-[0.625rem] text-[#909090] font-sans">Based on total number of transactions</span>
+              <span className="text-[0.625rem] text-[#909090] font-sans">
+                Based on total number of transactions
+              </span>
             </div>
-            <select 
-            onSelect={(e) => setPeriod(e.target.value)}
-            className="inline-flex  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-light ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:ring-1 focus:ring-inset focus:ring-bills-skyblue">
+            <select
+              onChange={(e) => {
+                e.preventDefault();
+                setPeriod(e.target.value);
+              }}
+              className="inline-flex  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-light ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:ring-1 focus:ring-inset focus:ring-bills-skyblue"
+            >
               <option className=" text-sm text-bills-skyblue:outline-none">
                 Daily{" "}
               </option>
@@ -127,62 +148,168 @@ export const All = () => {
       <div className="inline-flex items-start gap-6 w-full">
         <div className="grid grid-cols-2 gap-4 w-full max-w-4xl">
           <div className="bg-white rounded shadow-light py-6 px-4">
-            <div className="grid grid-flow-row gap-10 text-sm font-medium">
+            <div className="grid grid-flow-row gap-5 text-sm font-medium">
               <div className="text-nowrap overflow-auto flex justify-between">
-                Refund Rate &nbsp;&nbsp;{" "}
-                <span className="text-[10px]"> 3hrs ago</span>
-              </div>
-              <div className="inline-flex justify-between align-bottom w-full items-end">
-                <span className="text-nowrap text-2xl md:text-3xl ">
-                  84% &nbsp;&nbsp;
-                </span>
+                Airtime &nbsp;&nbsp;{" "}
 
-                <span className="text-green-500 text-[10px]"> 3hrs ago</span>
+                <Progress
+                  type="line"
+                  status="normal"
+                  percent={
+                    airtimeSuccessRateData?.successRate
+                      ? airtimeSuccessRateData?.successRate?.replace("%", "")
+                      : 0
+                  }
+                />
+                {/* <span className="text-[10px]"> 3hrs ago</span> */}
+
+              </div>
+              <div className="inline-flex justify-center align-bottom w-full items-center gap-5">
+                <Progress
+                  type="circle"
+                  status="normal"
+                  size={70}
+                  percent={
+                    airtimeSuccessRateData?.successRate
+                      ? airtimeSuccessRateData?.successRate?.replace("%", "")
+                      : 0
+                  }
+                />
+
+                <h2 className="font-sans font-bold text-4xl">
+                  {airtimeSuccessRateData?.successfulTransactions}
+                  <span className="text-xl">
+                    /{airtimeSuccessRateData?.totalTransactions}
+                  </span>
+                </h2>
+                {/* <span className="text-nowrap text-2xl md:text-3xl ">
+                  84% &nbsp;&nbsp;
+                </span> */}
+
+                {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
               </div>
             </div>
           </div>
           <div className="bg-white rounded shadow-light py-6 px-4">
-            <div className="grid grid-flow-row gap-10 text-sm font-medium">
+            <div className="grid grid-flow-row gap-5 text-sm font-medium">
               <div className="text-nowrap overflow-auto flex justify-between">
-                Refund Rate &nbsp;&nbsp;{" "}
-                <span className="text-[10px]"> 3hrs ago</span>
+                TV &nbsp;&nbsp;{" "}
+                {/* <span className="text-[10px]"> 3hrs ago</span> */}
               </div>
               <div className="inline-flex justify-between align-bottom w-full items-end">
-                <span className="text-nowrap text-2xl md:text-3xl ">
-                  84% &nbsp;&nbsp;
-                </span>
+                <div className="inline-flex justify-center align-bottom w-full items-center gap-5">
+                  <Progress
+                    type="circle"
+                    status="normal"
+                    size={70}
+                    percent={
+                      cableSuccessRateData?.successRate
+                        ? cableSuccessRateData?.successRate?.replace("%", "")
+                        : 0
+                    }
+                  />
 
-                <span className="text-green-500 text-[10px]"> 3hrs ago</span>
+                  <h2 className="font-sans font-bold text-4xl">
+                    {cableSuccessRateData?.successfulTransactions}
+                    <span className="text-xl">
+                      /{cableSuccessRateData?.totalTransactions}
+                    </span>
+                  </h2>
+                  {/* <span className="text-nowrap text-2xl md:text-3xl ">
+                  84% &nbsp;&nbsp;
+                </span> */}
+
+                  {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
+                </div>
+                {/* <span className="text-nowrap text-2xl md:text-3xl ">
+                  84% &nbsp;&nbsp;
+                </span> */}
+
+                {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
               </div>
             </div>
           </div>
           <div className="bg-white rounded shadow-light py-6 px-4">
-            <div className="grid grid-flow-row gap-10 text-sm font-medium">
+            <div className="grid grid-flow-row gap-5 text-sm font-medium">
               <div className="text-nowrap overflow-auto flex justify-between">
-                Refund Rate &nbsp;&nbsp;{" "}
-                <span className="text-[10px]"> 3hrs ago</span>
+                Data &nbsp;&nbsp;{" "}
+                {/* <span className="text-[10px]"> 3hrs ago</span> */}
               </div>
               <div className="inline-flex justify-between align-bottom w-full items-end">
-                <span className="text-nowrap text-2xl md:text-3xl ">
+                {/* <span className="text-nowrap text-2xl md:text-3xl ">
                   84% &nbsp;&nbsp;
-                </span>
+                </span> */}
 
-                <span className="text-green-500 text-[10px]"> 3hrs ago</span>
+                <div className="inline-flex justify-center align-bottom w-full items-center gap-5  flex-row-reverse">
+                  <Progress
+                    type="circle"
+                    status="normal"
+                    size={70}
+                    percent={
+                      dataSuccessRateData?.successRate
+                        ? dataSuccessRateData?.successRate?.replace("%", "")
+                        : 0
+                    }
+                  />
+
+                  <h2 className="font-sans font-bold text-4xl">
+                    {dataSuccessRateData?.successfulTransactions}
+                    <span className="text-xl">
+                      /{dataSuccessRateData?.totalTransactions}
+                    </span>
+                  </h2>
+                  {/* <span className="text-nowrap text-2xl md:text-3xl ">
+                  84% &nbsp;&nbsp;
+                </span> */}
+
+                  {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
+                </div>
+
+                {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
               </div>
             </div>
           </div>
           <div className="bg-white rounded shadow-light py-6 px-4">
-            <div className="grid grid-flow-row gap-10 text-sm font-medium">
+            <div className="grid grid-flow-row gap-5 text-sm font-medium">
               <div className="text-nowrap overflow-auto flex justify-between">
-                Refund Rate &nbsp;&nbsp;{" "}
-                <span className="text-[10px]"> 3hrs ago</span>
+                Electricity &nbsp;&nbsp;{" "}
+                {/* <span className="text-[10px]"> 3hrs ago</span> */}
               </div>
               <div className="inline-flex justify-between align-bottom w-full items-end">
-                <span className="text-nowrap text-2xl md:text-3xl ">
+                <div className="inline-flex justify-center align-bottom w-full items-center gap-5">
+                  <Progress
+                    type="circle"
+                    status="normal"
+                    size={70}
+                    percent={
+                      powerSuccessRateData?.successRate
+                        ? powerSuccessRateData?.successRate?.replace("%", "")
+                        : 0
+                    }
+                  />
+
+                  <div className="px-2 inline-flex justify-center flex-col items-center">
+                    <h4 className="font-normal text-sm">
+                      Success Transactions
+                    </h4>
+                    <h2 className="font-sans font-bold text-4xl">
+                      {powerSuccessRateData?.successfulTransactions}
+                      <span className="text-xl">
+                        /{powerSuccessRateData?.totalTransactions}
+                      </span>
+                    </h2>
+                  </div>
+                  {/* <span className="text-nowrap text-2xl md:text-3xl ">
+                  84% &nbsp;&nbsp;
+                </span> */}
+
+                  {/* <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
+                </div>
+                {/* <span className="text-nowrap text-2xl md:text-3xl ">
                   84% &nbsp;&nbsp;
                 </span>
 
-                <span className="text-green-500 text-[10px]"> 3hrs ago</span>
+                <span className="text-green-500 text-[10px]"> 3hrs ago</span> */}
               </div>
             </div>
           </div>
@@ -194,7 +321,7 @@ export const All = () => {
             </h1>
 
             <Select
-              onChange={(value) => setPeriod(value)}
+              onChange={(value) => setSuccessPeriod(value)}
               options={[
                 { label: "daily", value: "daily", className: "capilize" },
                 { label: "weekly", value: "weekly", className: "capilize" },

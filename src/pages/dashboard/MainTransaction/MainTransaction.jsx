@@ -17,6 +17,8 @@ const MainTransaction = () => {
 
   const { isLoading, data } = transactions;
 
+  console.log(data)
+
   // if (isLoading) {
   //   return <PageLoader/>;
   // }

@@ -6,7 +6,7 @@ import {
 
 export const columns = [
   {
-    title: "Transaction ID",
+    title: "S/N",
     dataIndex: "reference",
     className:
       "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",
@@ -14,7 +14,7 @@ export const columns = [
     render: (reference, record, index) => getPrefixedValue(index + 1),
   },
   {
-    title: "User",
+    title: "Name",
     dataIndex: ["sourceWallet", "user"],
     className:
       "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",
@@ -30,7 +30,7 @@ export const columns = [
     render: (description) => description,
   },
   {
-    title: "Payment Type",
+    title: "Transaction Type",
     dataIndex: "type",
     className:
       "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",

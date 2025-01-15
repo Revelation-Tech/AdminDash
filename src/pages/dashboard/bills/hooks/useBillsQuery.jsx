@@ -10,7 +10,7 @@ const useBillsQuery = () => {
     };
 
     return useQuery({
-      queryKey: ["bills"],
+      queryKey: ["bills", type, interval],
       queryFn: async () => {
         try {
           const response = await axios.get("admin/billing-transactions", {
@@ -28,21 +28,29 @@ const useBillsQuery = () => {
       enabled: !!params,
     });
   };
-  const bestSelling = useQuery({
-    queryKey: ["best-selling"],
-    queryFn: async () => {
-      try {
-        const response = await axios.get("admin/billing-bestselling");
 
-        const { data } = response.data;
+  const bestSelling = ({ period }) => {
+    console.log(period);
 
-        return data;
-      } catch (error) {
-        throw new Error(error?.response?.data?.message || error?.message);
-      }
-      // Make API request to fetch bills data
-    },
-  });
+    return useQuery({
+      queryKey: ["best-selling", period],
+      queryFn: async () => {
+        try {
+          const response = await axios.get("admin/billing-bestselling", {
+            params: { period: "all" },
+          });
+
+          const { data } = response.data;
+
+          return data;
+        } catch (error) {
+          throw new Error(error?.response?.data?.message || error?.message);
+        }
+        // Make API request to fetch bills data
+      },
+      enabled: !!period,
+    });
+  };
 
   const customerRate = useQuery({
     queryKey: ["customer-rate"],
@@ -68,7 +76,7 @@ const useBillsQuery = () => {
     // console.log(params);
 
     return useQuery({
-      queryKey: ["monthlyRate"],
+      queryKey: ["monthlyRate", vasType],
       queryFn: async () => {
         try {
           // Make API request to fetch bills data
@@ -85,13 +93,12 @@ const useBillsQuery = () => {
   };
 
   const successRate = ({ vasType, period }) => {
-
     const params = {
       ...(vasType || period ? { vasType, period } : {}),
     };
 
     return useQuery({
-      queryKey: ["successRate", vasType],
+      queryKey: ["successRate", vasType, period],
       queryFn: async () => {
         try {
           const response = await axios.get(

@@ -77,6 +77,9 @@ export const BillChart = ({ label, value }) => {
           },
         },
       },
+      y: {
+        min: 1,
+      },
     },
   };
 
