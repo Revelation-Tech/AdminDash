@@ -64,7 +64,7 @@ const ProfileForm = () => {
       </div>
 
       <div className="mt-8">
-        <InputField name="name" label="Full Name" Icon={User} value={name} />
+        <InputField name="name" label="Full Name" Icon={User} value={name} disabled/>
 
         <InputField
           name="email"
@@ -72,6 +72,7 @@ const ProfileForm = () => {
           Icon={EnvelopeIcon}
           type="email"
           value={email}
+          disabled
         />
 
         <InputField
@@ -79,6 +80,7 @@ const ProfileForm = () => {
           label="Phone Number"
           Icon={PhoneIcon}
           value={phone}
+          disabled
         />
 
         {/* <InputField name="role" label="Role" /> */}

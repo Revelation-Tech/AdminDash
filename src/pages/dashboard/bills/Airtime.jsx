@@ -9,31 +9,44 @@ export const Airtime = () => {
   const { pathname } = useLocation();
   const { allBills, monthlyRate } = useBillsQuery();
 
-
   const { data } = allBills({
-    interval: 'all',
+    interval: "all",
     type: pathname.split("/")[2]?.toUpperCase(),
   });
 
-  console.log(pathname.split("/"))
+  // console.log(pathname.split("/"))
 
   const { data: monthlyRateData, isFetching: monthlyRateLoading } = monthlyRate(
     { vasType: pathname.split("/")[2]?.toUpperCase() }
   );
 
+  console.log
+
   let volumeValue = monthlyRateData?.monthlyVolume?.map(
     (item) => item?.totalVolume
-  )
+  );
 
   return (
     <section>
-      <Index
-        total={data?.queryDate?.totalValue}
-        today={data?.today?.totalValue}
-        yesterday={data?.yesterday?.totalValue}
-      />
+      <div className="space-y-5">
+        <Index
+          totalTitle="Total Transaction"
+          total={data?.queryDate?.totalValue}
+          today={data?.today?.totalValue}
+          yesterday={data?.yesterday?.totalValue}
+        />
 
-      <div className="grid mt-4 gap-8 md:grid-flow-col grid-col-1 md:grid-cols-2 w-full">
+        {/* <Index
+          totalTitle="Total Transaction Volume"
+          todayyitle
+          yesterdayTitle
+          total={data?.queryDate?.totalValue}
+          today={data?.today?.totalValue}
+          yesterday={data?.yesterday?.totalValue}
+        /> */}
+      </div>
+
+      {/* <div className="grid mt-4 gap-8 md:grid-flow-col grid-col-1 md:grid-cols-2 w-full">
         <div className="bg-white p-4 col-span-1 shadow rounded w-full">
           <div className="border-b border-bills-lightgrey/20 mb-4">
             <h1 className="text-xl font-semibold ">Best Seller By Quanlity</h1>
@@ -58,10 +71,13 @@ export const Airtime = () => {
             <AirtimeHorizontalData />
           </div>
         </div>
-      </div>
-      <div>
-        <MovieLine2 average={monthlyRateData?.averageVolume} value={volumeValue} />
-      </div>
+      </div> */}
+      {/* <div>
+        <MovieLine2
+          average={monthlyRateData?.averageVolume}
+          value={volumeValue}
+        />
+      </div> */}
     </section>
   );
 };

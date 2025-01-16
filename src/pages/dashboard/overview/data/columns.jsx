@@ -59,19 +59,19 @@ export default [
     dataIndex: "totalSpend",
     className: "!bg-transparent !font-normal !text-sm",
     key: "totalSpend",
-    render: (totalSpend) => <span>{formatCurrency(totalSpend, "US")}</span>,
+    render: (totalSpend) => <span>{formatCurrency(totalSpend)}</span>,
   },
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        Total Transaction
+        Transaction Count
       </span>
     ),
-    dataIndex: "totalTransaction",
+    dataIndex: "totalTransactions",
     className: "!bg-transparent !font-normal !text-sm",
     key: "totalTransaction",
     render: (totalTransactions) => (
-      <span>{formatCurrency(totalTransactions, "US")}</span>
+      <span>{totalTransactions}</span>
     ),
   },
   {

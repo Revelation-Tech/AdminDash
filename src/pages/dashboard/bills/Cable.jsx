@@ -41,7 +41,7 @@ const Cable = () => {
           yesterday={data?.yesterday?.totalValue}
         />
       </div>
-      <div className="">
+      {/* <div className="">
         <div className="grid md:grid-cols-2 gap-6 mt-6">
           <div className="bg-white p-4 rounded shadow">
             <div className="movies-heading flex pb-4  border-b border-black/40 justify-between">
@@ -81,10 +81,10 @@ const Cable = () => {
             />
           </div>
         </div>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <MovieLine2 average={monthlyRateData?.averageVolume} value={volumeValue} />
-      </div>
+      </div> */}
     </section>
   );
 };

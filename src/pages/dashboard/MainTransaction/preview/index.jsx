@@ -168,24 +168,24 @@ const PreviewTransaction = () => {
                   {data?.sourceWallet?.user?.ipAddress}
                 </span>
               </div>
-              <div className="inline-flex flex-wrap justify-between w-full py-2">
+              {/* <div className="inline-flex flex-wrap justify-between w-full py-2">
                 <span className="text-sm text-bills-text uppercase">
                   Timeline:
                 </span>
                 <span className="text-sm font-medium font-inter col-span-2 text-bills-skyblue">
                   View Trial
                 </span>
-              </div>
+              </div> */}
               <div className="flex flex-col flex-wrap items-center gap-5 w-full py-2 flex-1 ">
-                <div className="border border-bills-borderLight p-4 inline-flex justify-center items-center flex-col rounded-xl">
+                {/* <div className="border border-bills-borderLight p-4 inline-flex justify-center items-center flex-col rounded-xl">
                   <h3 className="text-bills-skyblue text-[2rem] font-bold">
                     {data?.timer.split(" ")[0]}
                   </h3>
                   <span className="text-[2rem] font-bold">
                     {data?.timer.split(" ")[1]}
                   </span>
-                </div>
-                <div className="inline-flex w-full gap-4 justify-between">
+                </div> */}
+                <div className="inline-flex w-full gap-4 justify-between py-5">
                   <StepIcon label="Device Type" value="Phone" icon={ComputerDesktopIcon}/> 
                   <StepIcon label="attempt" value={`${data?.attempts} attempt`} icon={Refresh2}/>
                   <StepIcon label="error" value="0 error" icon={ExclamationCircleIcon}/>

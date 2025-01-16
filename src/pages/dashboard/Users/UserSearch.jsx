@@ -1,9 +1,10 @@
 import { Filter, ImportCurve, SearchNormal1, User } from "iconsax-react";
 import React from "react";
 import useTableStore from "../../../store/useTableStore";
+import ExportOptionButton from "../../../components/ExportOptionButton";
 
-const UserSearch = ({showFilter}) => {
-  const { searchTable } = useTableStore();
+const UserSearch = ({ showFilter }) => {
+  const { searchTable, data } = useTableStore();
 
   return (
     <div className="bg-white p-4 px-5 rounded-md">
@@ -24,10 +25,12 @@ const UserSearch = ({showFilter}) => {
               <Filter size={16} className="inline" variant="Outline" /> Filter
             </button>
           )}
-          <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
+
+          <ExportOptionButton />
+          {/* <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
             <ImportCurve size={16} className="inline" variant="Outline" />
             Export Csv
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

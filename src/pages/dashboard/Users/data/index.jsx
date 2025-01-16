@@ -24,17 +24,17 @@ export const tabItems = [
     key: "active",
   },
   {
-    label: "deactive users",
+    label: "deactivated users",
     // component: DeactiveTab,
     className: "capitalize",
-    key: "deactived",
+    key: "Deactivated",
   },
-  {
-    label: "froozen users",
-    // component: FroozenTab,
-    className: "capitalize",
-    key: "froozen",
-  },
+  // {
+  //   label: "froozen users",
+  //   // component: FroozenTab,
+  //   className: "capitalize",
+  //   key: "froozen",
+  // },
 ];
 
 export const columns = [
@@ -53,7 +53,7 @@ export const columns = [
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        User Details
+       Full name
       </span>
     ),
     dataIndex: "firstName",
@@ -93,19 +93,19 @@ export const columns = [
     dataIndex: "totalSpend",
     className: "!bg-transparent !font-normal !text-sm",
     key: "totalSpend",
-    render: (totalSpend) => <span>{formatCurrency(totalSpend, "US")}</span>,
+    render: (totalSpend) => <span>{formatCurrency(totalSpend)}</span>,
   },
   {
     title: (
       <span className="text-bills-text text-xs font-inter font-normal">
-        Total Transaction
+       Transaction Count
       </span>
     ),
     dataIndex: "totalTransactions",
     className: "!bg-transparent !font-normal !text-sm",
     key: "totalTransactions",
     render: (totalTransactions) => (
-      <span>{formatCurrency(totalTransactions, "US")}</span>
+      <span>{totalTransactions}</span>
     ),
   },
   {
@@ -160,7 +160,11 @@ export const transactionPreviewColumns = [
     render: (bioDataId, record, index) => getPrefixedValue(index + 1),
   },
   {
-    title: "Account Name",
+    title:(
+      <span className="text-bills-text text-xs font-inter font-normal">
+       Account Name
+      </span>
+    ),
     dataIndex: ["sourceWallet", "user"],
     className:
       "!bg-transparent !before:w-0 !before:h-0 !font-normal !text-sm !text-textColor",

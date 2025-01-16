@@ -15,8 +15,8 @@ const UserDetails = ({ record, onFreeze, onDeactivate }) => {
       </div>
 
       <div className="mb-3">
-        <ActionButton title="Deactivate this user" action={onDeactivate} />
-        <ActionButton title="Freeze User" action={onFreeze} />
+        <ActionButton title="Deactivate this user" value={record?.deactivate} action={onDeactivate} />
+        {/* <ActionButton title="Freeze User" action={onFreeze} value={record?.freeze} /> */}
       </div>
     </div>
   );

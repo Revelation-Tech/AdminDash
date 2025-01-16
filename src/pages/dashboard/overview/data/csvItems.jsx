@@ -9,7 +9,7 @@ export default (data) => ({
         email: item?.email, // Corrected to email
         walletBalance: formatCurrency(item?.wallet?.balance),
         totalSpend: formatCurrency(item?.totalSpend),
-        totalTransaction: formatCurrency(item?.totalTransactions),
+        totalTransaction: item?.totalTransactions,
         createdAt: moment(item?.createdAt).format("MMM DD, YYYY"), // Date formatting
         status: item?.status,
       }))
@@ -20,7 +20,7 @@ export default (data) => ({
     { label: "Email Address", key: "email" },
     { label: "Wallet Balance", key: "walletBalance" },
     { label: "Total Spend", key: "totalSpend" },
-    { label: "Total Transaction", key: "totalTransaction" },
+    { label: "Transaction Count", key: "totalTransaction" },
     { label: "Date Joined", key: "createdAt" },
     { label: "Status", key: "status" },
   ],

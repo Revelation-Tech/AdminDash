@@ -40,8 +40,8 @@ export const BillDoughnutData = ({
             {title ?? "Details of the Chart"}
           </h4>
           <h2 className="font-sans font-bold text-5xl">
-            {score ?? 400}
-            <span className="text-2xl">/{total ?? 500}</span>
+            {score ?? 0}
+            <span className="text-2xl">/{total ?? 0}</span>
           </h2>
         </div>
 

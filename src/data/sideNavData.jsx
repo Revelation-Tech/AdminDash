@@ -8,12 +8,12 @@ export const sideNavData  = [
         link:'/'
     },
     {
-        name:'Bills',
+        name:'Bill Management',
         icon:<ArchiveTick size={20}/>,
          link:'/bills'
     },
     {
-        name:'Transaction',
+        name:'Transaction Management',
         icon:<Receipt size={20}/>,
         link:'/transaction'
     },

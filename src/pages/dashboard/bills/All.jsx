@@ -34,16 +34,16 @@ export const All = () => {
   );
 
   const { data: airtimeSuccessRateData, isFetching: airtelSuccessRateLoading } =
-    successRate({ vasType: "AIRTIME", period: "all" });
+    successRate({ vasType: "AIRTIME", period: successPeriod ?? "all" });
 
   const { data: dataSuccessRateData, isFetching: dataSuccessRateLoading } =
-    successRate({ vasType: "DATA", period: "all" });
+    successRate({ vasType: "DATA", period: successPeriod ?? "all" });
 
   const { data: cableSuccessRateData, isFetching: cableSuccessRateLoading } =
-    successRate({ vasType: "TV", period: "all" });
+    successRate({ vasType: "TV", period: successPeriod ?? "all" });
 
   const { data: powerSuccessRateData, isFetching: powerSuccessRateLoading } =
-    successRate({ vasType: "ELECTRICITY", period: "all" });
+    successRate({ vasType: "ELECTRICITY", period: successPeriod ?? "all" });
 
   let volumeValue = monthlyRateData?.monthlyVolume?.map(
     (item) => item?.totalVolume
@@ -329,10 +329,10 @@ export const All = () => {
             <Select
               onChange={(value) => setSuccessPeriod(value)}
               options={[
-                { label: "daily", value: "daily", className: "capilize" },
-                { label: "weekly", value: "weekly", className: "capilize" },
-                { label: "monthly", value: "monthly", className: "capilize" },
-                { label: "yearly", value: "yearly", className: "capilize" },
+                { label: "Daily", value: "daily", className: "capilize" },
+                { label: "Weekly", value: "weekly", className: "capilize" },
+                { label: "Monthly", value: "monthly", className: "capilize" },
+                { label: "Yearly", value: "yearly", className: "capilize" },
               ]}
               defaultValue="daily"
               className="text-sm font-sans font-medium capitalize w-1/6 text-gray-900 shadow-sm ring-1 rounded-md ring-bills-skyblue hover:bg-gray-50 focus:ring-1 focus:ring-bills-skyblue"
@@ -353,12 +353,12 @@ export const All = () => {
         </div>
       </div>
 
-      <div className="">
+      {/* <div className="">
         <MovieLine2
           average={monthlyRateData?.averageVolume}
           value={volumeValue}
         />
-      </div>
+      </div> */}
     </section>
   );
 };

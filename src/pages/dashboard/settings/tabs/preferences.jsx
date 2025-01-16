@@ -69,17 +69,21 @@ const Preferences = () => {
         </p>
       </div>
 
-      <div>
-        {Object.keys(options)?.map((label) => (
-          <PreferenceCard
-            // value={label}
-            data={options[label]}
-            value={preferences[0][label] || ""}
-            onSelected={(item) => mutate({ label, value: item })}
-            key={label}
-          />
-        ))}
-      </div>
+      {preferences ? (
+        <div>
+          {Object.keys(options)?.map((label) => (
+            <PreferenceCard
+              // value={label}
+              data={options[label]}
+              value={ preferences[0] ? preferences[0][label] : ""}
+              onSelected={(item) => mutate({ label, value: item })}
+              key={label}
+            />
+          ))}
+        </div>
+      ) : (
+        ""
+      )}
     </section>
   );
 };

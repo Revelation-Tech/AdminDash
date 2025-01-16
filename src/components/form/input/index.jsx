@@ -8,7 +8,8 @@ const InputField = ({
   type,
   isRequired = false,
   Icon,
-  value
+  value,
+  disabled,
 }) => {
   return (
     <Form.Item
@@ -20,16 +21,17 @@ const InputField = ({
       }
       initialValue={value}
       rules={[{ message: `${label} is required`, required: isRequired }]}
+     
     >
-      <div className="inline-flex items-center border border-bills-borderLight p-2.5 rounded-md w-full">
+      <div className={`${disabled && 'bg-gray-100'} inline-flex items-center border border-bills-borderLight p-2.5 rounded-md w-full`}>
         {Icon && <Icon size={18} className="text-bills-textColor w-5 h-5" />}
         <Input
+          disabled={disabled}
           placeholder={placeholder}
           type={type}
-          className="border-none focus:ring-0 placeholder:text-bills-text placeholder:capitalize"
+          className={`border-none focus:ring-0 placeholder:text-bills-text placeholder:capitalize disabled:bg-gray-100`}
         />
       </div>
-      
     </Form.Item>
   );
 };

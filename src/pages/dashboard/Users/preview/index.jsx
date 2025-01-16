@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   const { data, isLoading, isFetching } = getUser(userID);
 
-  // console.log(data)
+  console.log(data)
 
   // if(isFetching){
   //   return <Skeleton/>
@@ -41,7 +41,7 @@ const UserProfile = () => {
     }
   }, [data, isFetching]);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="pt-8">

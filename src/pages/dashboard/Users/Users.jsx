@@ -43,11 +43,11 @@ const Users = () => {
 
   return (
     <>
-      <div className="my-8 md:grid md:grid-cols-2 lg:grid-cols-4 gap-4  ">
-        {Object.keys(userSummaryData).map((label, index) => (
+      <div className="my-8 md:grid md:grid-cols-2 lg:grid-cols-3 gap-4  ">
+        {Object.keys(userSummaryData).map((label, index) => ( label !== 'froozen' &&
           <SmallLineGraphCard
             key={index}
-            label={label}
+            label={label == 'deactived' ? "deactivated" : label}
             report={userSummaryData[label]}
           />
         ))}

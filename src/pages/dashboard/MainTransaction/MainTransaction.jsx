@@ -44,7 +44,7 @@ const MainTransaction = () => {
     useTableStore.setState({
       data: data,
       columns,
-      url: "transaction",
+      url: "/transaction",
       loading: isLoading,
     });
   }, [data, isLoading]);
