@@ -33,9 +33,9 @@ export const BillDoughnutData = ({
     maintainAspectRatio: false,
   };
   return (
-    <div className="inline-flex justify-center w-full">
-      <div className="grid md:grid-cols-5 mx-auto gap-10">
-        <div className="col-span-2 inline-flex flex-col items-center justify-center w-full">
+    <div className="inline-flex flex-1 items-center flex-col justify-center w-full h-full">
+      <div className="grid md:grid-cols-5 mx-auto gap-10 h-full">
+        <div className="col-span-2 inline-flex flex-col items-center justify-center w-full h-full">
           <h4 className="font-normal text-base">
             {title ?? "Details of the Chart"}
           </h4>
@@ -45,8 +45,8 @@ export const BillDoughnutData = ({
           </h2>
         </div>
 
-        <div className="col-span-3">
-          <Progress  status="normal" percent={Number(percent)} size={200} type="circle" trailColor="#E0E0E0" strokeColor="#1f6cab" />
+        <div className="col-span-3 inline-flex flex-col items-center justify-center">
+          <Progress  status="normal" percent={Number(percent)} size={190} type="circle" trailColor="#E0E0E0" strokeColor="#1f6cab" />
         </div>
         {/* <div style={{ width: "100%", height: "200px" }}> */}
         {/* <Doughnut data={data} options={options} /> */}
