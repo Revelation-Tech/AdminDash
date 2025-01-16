@@ -9,7 +9,7 @@ export default (data) => ({
         email: item?.email, // Corrected to email
         walletBalance: formatCurrency(item?.wallet?.balance),
         totalSpend: formatCurrency(item?.totalSpend),
-        totalTransaction: item?.totalTransactions,
+        totalTransaction: item?.totalTransaction,
         createdAt: moment(item?.createdAt).format("MMM DD, YYYY"), // Date formatting
         status: item?.status,
       }))
