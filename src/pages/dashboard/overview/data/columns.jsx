@@ -67,9 +67,9 @@ export default [
         Total Transaction
       </span>
     ),
-    dataIndex: "totalTransactions",
+    dataIndex: "totalTransaction",
     className: "!bg-transparent !font-normal !text-sm",
-    key: "totalTransactions",
+    key: "totalTransaction",
     render: (totalTransactions) => (
       <span>{formatCurrency(totalTransactions, "US")}</span>
     ),

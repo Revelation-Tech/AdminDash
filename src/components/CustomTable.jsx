@@ -60,6 +60,7 @@ const CustomTable = () => {
       dataSource={data}
       loading={loading}
       className="!bg-transparent"
+      defaultExpandAllRows={true}
       pagination={{
         ...pagination,
         showTitle: true,

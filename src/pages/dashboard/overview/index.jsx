@@ -1,17 +1,19 @@
-import { Progress, Spin } from "antd";
-import { useEffect } from "react";
+import { Progress, Spin, Dropdown } from "antd";
+import { useEffect, useState } from "react";
 import { ArrowDown2, ImportCurve, SearchNormal1 } from "iconsax-react";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, DownOutlined } from "@ant-design/icons";
 
 import useDashboardQuery from "./hooks/useDashboardQuery";
 import DashboardReportCard from "./components/ReportCard";
 import CustomTableCard from "@components/CustomTableCard";
 
 import columns from "./data/columns";
+import csvItems from "./data/csvItems";
 import useTableStore from "../../../store/useTableStore";
 import useUserQuery from "../Users/hooks/useUserQuery";
 import { formatCurrency } from "../../../utils/functions";
 import { BillChart } from "../../../data/chartData/BillsData/BillChart";
+import ExportOptionButton from "../../../components/ExportOptionButton";
 
 const Overview = () => {
   const { dashboard, comparativeTransactions } = useDashboardQuery();
@@ -22,7 +24,9 @@ const Overview = () => {
 
   const { searchTable } = useTableStore();
 
-  // console.log(comparativeTransactions?.data);
+  const [items, setItems] = useState();
+
+  console.log(data);
 
   useEffect(() => {
     useTableStore.setState({
@@ -31,7 +35,10 @@ const Overview = () => {
       loading: isLoading,
       url: "/users",
     });
-  }, []);
+
+    const xItems = csvItems(userData || []);
+    setItems(xItems);
+  }, [data, dashboardLoading]);
 
   const pageLoading = (loading) => {
     return (
@@ -55,13 +62,15 @@ const Overview = () => {
               title="Revenue Generated"
               value={data?.revenue || 0}
             />
+
             <DashboardReportCard
               title="Total Transaction Volume"
-              value={formatCurrency(data?.transactionVolume)}
+              value={data?.totalTransaction}
             />
+
             <DashboardReportCard
               title="Total Transaction Value"
-              value={data?.totalTransaction}
+              value={formatCurrency(data?.transactionVolume)}
             />
           </div>
 
@@ -228,10 +237,37 @@ const Overview = () => {
                     onKeyUp={(e) => searchTable(e.target.value)}
                   />
                 </div>
-                <button className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white">
+
+                {/* <Dropdown
+                  menu={{
+                    items: [
+                      { label: <button>PDF</button>, key: "pdf" },
+                      { label: <button>CSV</button>, key: "csv" },
+                    ],
+                  }}
+                >
+                  <a
+                    onClick={(e) => e.preventDefault()}
+                    className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white"
+                  >
+                    <ImportCurve
+                      size={16}
+                      className="inline"
+                      variant="Outline"
+                    />
+                    Export
+                  </a>
+                </Dropdown> */}
+
+                <ExportOptionButton
+                  csvHeader={items?.headers}
+                  csvData={items?.body}
+                />
+
+                {/* <button className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white">
                   <ImportCurve size={16} className="inline" variant="Outline" />
-                  Export CSV
-                </button>
+                  Export
+                </button> */}
               </div>
             </div>
           </div>
