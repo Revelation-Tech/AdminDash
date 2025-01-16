@@ -1,166 +1,180 @@
-import React from 'react'
+import React from "react";
 
-import { HambergerMenu, LoginCurve, Notification, ProfileCircle } from "iconsax-react";
+import {
+  HambergerMenu,
+  LoginCurve,
+  Notification,
+  ProfileCircle,
+} from "iconsax-react";
 import Logo from "../../assets/logo";
 import { sideNavData } from "../../data/sideNavData";
 import { Link, NavLink } from "react-router-dom";
 import Logo2 from "../../assets/Logo2";
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import useAdminStore from "@store/useAdminStore"
+import useAdminStore from "@store/useAdminStore";
+import { UserIcon } from "@heroicons/react/24/solid";
 
 const SideNav = () => {
-    const [mobileNav, setMobileNav] = useState(true);
-    const [isActive,setIsActive] = useState('Overview')
-    const sidebarAnim = useRef(null)
+  const [mobileNav, setMobileNav] = useState(true);
+  const [isActive, setIsActive] = useState("Overview");
+  const sidebarAnim = useRef(null);
 
-    const state = useAdminStore(state => state);
+  const state = useAdminStore((state) => state);
 
-    // console.log(state)
+  // console.log(state)
 
-    useGSAP(()=>{
-        sidebarAnim.current=gsap.to('.mobile-nav',{
-            x:240,
-            boxShadow:'0px 1px 5px 2px black',
-            paused:true,
-            duration:0.5,
-            ease:"power2.inOut"
-        })
+  useGSAP(() => {
+    sidebarAnim.current = gsap.to(".mobile-nav", {
+      x: 240,
+      boxShadow: "0px 1px 5px 2px black",
+      paused: true,
+      duration: 0.5,
+      ease: "power2.inOut",
+    });
+  });
+
+  const handleMobileNav = () => {
+    setMobileNav(!mobileNav);
+    if (mobileNav) {
+      sidebarAnim.current.reverse();
+    } else {
+      sidebarAnim.current.play();
     }
-        )
-
-    const handleMobileNav = ()=>{
-        setMobileNav(!mobileNav)
-      if (mobileNav) {
-        sidebarAnim.current.reverse()
-      }
-      else{
-        sidebarAnim.current.play()
-      }
-        
-    }
+  };
 
   return (
     <>
-                <div className="lg:hidden bg-bills-darkblue  p-4 h-screen overflow-auto z-10 w-[240px] fixed -ml-[240px]  mobile-nav" >
-                <div className="mb-8">
-                      <Logo/>
-                </div>
-              
+      <div className="lg:hidden bg-bills-darkblue  p-4 h-screen overflow-auto z-10 w-[240px] fixed -ml-[240px]  mobile-nav">
+        <div className="mb-8">
+          <Logo />
+        </div>
 
+        {/* Mobile Nav items */}
+        {sideNavData.map((link) => {
+          return (
+            <NavLink
+              style={({ isActive }) => {
+                return {
+                  backgroundColor: isActive ? "white" : "transparent",
+                  color: isActive ? "#1F6CAB" : "white",
+                };
+              }}
+              className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "
+              to={link.link}
+              key={link.name}
+              state={{ pageTitle: link.name }}
+            >
+              {link.icon} &nbsp; {link.name}
+            </NavLink>
+          );
+        })}
 
-                {/* Mobile Nav items */}
-                {sideNavData.map((link) => {
-                    return (
-                        <NavLink  style={({ isActive}) => {
-                            return {
-                              backgroundColor: isActive ? "white" : "transparent",
-                              color:isActive?'#1F6CAB':'white'
-                              
-                            };
-                          }} className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "  to={link.link} key={link.name} state={{pageTitle: link.name}}>
-                             {link.icon}  &nbsp; {link.name}</NavLink>
-                            
-                        
-                    )
-                })}
+        <div className=" w-full mt-4 border-t-2 border-white/50 ">
+          <div className="flex items-center justify-between text-white py-4">
+            <div className=" inline-flex ">
+              <Link className="mr-2">
+                <ProfileCircle />
+              </Link>
 
-<div className=" w-full mt-4 border-t-2 border-white/50 ">
-                    <div className="flex items-center justify-between text-white py-4">
-                        <div className=" inline-flex " >
-                            <Link className="mr-2"><ProfileCircle /></Link>
-
-                            <div className="flex flex-col text-sm">
-                                <p>{state?.name || "John Doe"}</p>
-                                <p>{state?.email}</p>
-                            </div>
-                        </div>
-                        <div className=""><LoginCurve size={20} color="white" /></div>
-                    </div>
-                </div>
-
+              <div className="flex flex-col text-sm">
+                <p>{state?.name || "John Doe"}</p>
+                <p>{state?.email}</p>
+              </div>
             </div>
-            
-
-
-
-            <div className="lg:hidden flex justify-between items-center p-4 bg-white">
-                <div> <Logo2 height='33' width='100'/></div>
-
-
-                <div className="flex items-center" >
-                    <Notification size={20} color="#1F6CAB" className="mr-2" variant="Bold"/>
-                    <ProfileCircle color="#1F6CAB" size={20} className="mr-2"/>
-                    <HambergerMenu onClick={handleMobileNav} color="#1F6CAB" />
-                </div>
-
+            <div className="">
+              <LoginCurve size={20} color="white" />
             </div>
+          </div>
+        </div>
+      </div>
 
+      <div className="lg:hidden flex justify-between items-center p-4 bg-white">
+        <div>
+          {" "}
+          <Logo2 height="33" width="100" />
+        </div>
 
+        <div className="flex items-center">
+          <Notification
+            size={20}
+            color="#1F6CAB"
+            className="mr-2"
+            variant="Bold"
+          />
+          <ProfileCircle color="#1F6CAB" size={20} className="mr-2" />
+          <HambergerMenu onClick={handleMobileNav} color="#1F6CAB" />
+        </div>
+      </div>
 
-    {/* Laptop Nav */}
-     <div className="hidden lg:block w-60 bg-bills-darkblue  p-4 h-screen overflow-auto z-10 fixed " >
-                <div className="mb-8">
-                      <Logo/>
-                </div>
-              
+      {/* Laptop Nav */}
+      <div className="hidden lg:block w-60 bg-bills-darkblue  py-4 h-screen overflow-auto z-10 fixed ">
+        <div className="mb-12 px-4">
+          <Logo />
+        </div>
 
+        <div className="md:h-[70%] lg:h-[80%] px-4">
+          {sideNavData.map((link) => {
+            return (
+              <NavLink
+                style={({ isActive }) => {
+                  return {
+                    backgroundColor: isActive ? "white" : "transparent",
+                    color: isActive ? "#1F6CAB" : "white",
+                    paddingBlock: '0.625rem'
+                  };
+                }}
+                className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "
+                to={link.link}
+                key={link.name}
+                state={{ pageTitle: link.name }}
+              >
+                {link.icon} &nbsp; {link.name}
+              </NavLink>
+            );
+          })}
+        </div>
+        {/* Mobile Nav items */}
 
-                {/* Mobile Nav items */}
-                {sideNavData.map((link) => {
-                    return (
-                        <NavLink  style={({ isActive}) => {
-                            return {
-                              backgroundColor: isActive ? "white" : "transparent",
-                              color:isActive?'#1F6CAB':'white'
-                              
-                            };
-                          }} className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "  to={link.link} key={link.name} state={{pageTitle: link.name}}>
-                             {link.icon}  &nbsp; {link.name}</NavLink>
-                            
-                        
-                    )
-                })}
+        <div className=" w-full border-t border-white/50 px-4">
+          <div className="flex items-center justify-between text-white py-2">
+            <div className=" inline-flex ">
+              {/* <Link className="mr-2"><ProfileCircle /></Link> */}
 
-<div className=" w-full mt-4 border-t-2 border-white/50 ">
-                    <div className="flex items-center justify-between text-white py-4">
-                        <div className=" inline-flex " >
-                            <Link className="mr-2"><ProfileCircle /></Link>
-
-                            <div className="flex flex-col text-sm">
-                                <p>{state?.name || "John Doe"}</p>
-                                <p className='text-[10px]'>{state?.email}</p>
-                            </div>
-                        </div>
-                        <div className=""><LoginCurve size={20} color="white" /></div>
-                    </div>
-                </div>
-
+              <div className="flex flex-col text-sm">
+                <p>{state?.name || "John Doe"}</p>
+                <p className="text-[10px]">{state?.email}</p>
+              </div>
             </div>
-            
-
-
-
-            <div className="hidden lg:flex justify-between items-center p-4 bg-white">
-                <div> <Logo2 height='33' width='100'/></div>
-
-
-                <div className="flex items-center" >
-                    <Notification size={20} color="#1F6CAB" className="mr-2" variant="Bold"/>
-                    <ProfileCircle color="#1F6CAB" size={20} className="mr-2"/>
-                   
-                </div>
-
+            <div className="">
+              <LoginCurve size={20} color="white" />
             </div>
+          </div>
+        </div>
+      </div>
 
+      <div className="hidden lg:flex justify-between items-center p-4 bg-white py-5">
+        <div>
+          {" "}
+          <Logo2 height="33" width="100" />
+        </div>
 
+        <div className="flex items-center">
+          {/* <Notification size={20} color="#1F6CAB" className="mr-2" variant="Bold"/> */}
 
-
-
+          <NavLink
+            to="/settings"
+            className="w-9 h-9 rounded-full bg-bills-lightblue inline-flex justify-center items-center"
+          >
+            <UserIcon className="size-6 text-bills-skyblue" />
+          </NavLink>
+          {/* <ProfileCircle color="#1F6CAB" size={20} className="mr-2"/> */}
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default SideNav;

@@ -5,12 +5,12 @@ export const sideNavData  = [
     {
         name:'Overview',
         icon:<Element3 size={20}  />,
-        link:'/'
+        link:'/dashboard'
     },
     {
         name:'Bill Management',
         icon:<ArchiveTick size={20}/>,
-         link:'/bills'
+        link:'/bills'
     },
     {
         name:'Transaction Management',
@@ -32,11 +32,11 @@ export const sideNavData  = [
     //     icon:<VideoVertical size={20}/>,
     //     link:'/movies'
     // },
-    {
-        name:'Support',
-        icon:<I24Support size={20}/>,
-        link:'/lslpo'
-    },
+    // {
+    //     name:'Support',
+    //     icon:<I24Support size={20}/>,
+    //     link:'/lslpo'
+    // },
     {
         name:'FAQ',
         icon:<Notepad size={20}/>,
