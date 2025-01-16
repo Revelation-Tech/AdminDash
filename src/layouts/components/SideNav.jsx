@@ -110,12 +110,12 @@ const SideNav = () => {
       </div>
 
       {/* Laptop Nav */}
-      <div className="hidden lg:block w-60 bg-bills-darkblue  py-4 h-screen overflow-auto z-10 fixed ">
-        <div className="mb-12 px-4">
+      <div className="hidden lg:block w-60 bg-bills-darkblue  py-4 h-screen z-10 fixed overflow-hidden">
+        <div className="mb-10 px-4">
           <Logo />
         </div>
 
-        <div className="md:h-[70%] lg:h-[80%] px-4">
+        <div className="md:h-[65%] lg:h-[80%] px-4">
           {sideNavData.map((link) => {
             return (
               <NavLink

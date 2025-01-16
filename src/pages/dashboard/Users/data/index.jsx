@@ -101,7 +101,7 @@ export const columns = [
        Transaction Count
       </span>
     ),
-    dataIndex: "totalTransactions",
+    dataIndex: "totalTransaction",
     className: "!bg-transparent !font-normal !text-sm",
     key: "totalTransactions",
     render: (totalTransactions) => (

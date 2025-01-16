@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   const { data, isLoading, isFetching } = getUser(userID);
 
-  console.log(data)
+  // console.log(data)
 
   // if(isFetching){
   //   return <Skeleton/>
@@ -50,7 +50,7 @@ const UserProfile = () => {
       <div className="bg-white px-6 py-5 rounded-xl mt-8 border border-bills-lightblue">
         <div className="grid grid-cols-2 gap-8 pt-4">
           <div className="bg-white border-bills-light-blue p-4 shadow-light border-white rounded-lg">
-            <UserDetails record={data?.user} onFreeze={() => onUpdate({freeze: true})} onDeactivate={() => onUpdate({deactivate: true})} />
+            <UserDetails record={data?.user} onDeactivate={(value) => onUpdate({deactivate: value})} />
           </div>
 
           <div className="">
