@@ -22,12 +22,6 @@ const UserProfile = () => {
 
   const { data, isLoading, isFetching } = getUser(userID);
 
-  // console.log(data)
-
-  // if(isFetching){
-  //   return <Skeleton/>
-  // }
-
 
   const onUpdate = (payload) =>{
     editUser.mutate({id:userID, payload})

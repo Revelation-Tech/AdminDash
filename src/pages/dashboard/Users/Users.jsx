@@ -21,7 +21,7 @@ const Users = () => {
   const { data, isLoading, isFetching } = fetchUsers;
   const { filterByColumn, filteredData, searchValue } = useTableStore();
 
-  console.log(searchValue, filteredData)
+  // console.log(searchValue, filteredData)
 
   useEffect(() => {
     if (data) {
@@ -103,7 +103,7 @@ const Users = () => {
       </div>
 
       <div className="space-y-2.5">
-        <UserSearch showFilter/>
+        <UserSearch data={data} loading={isFetching} showFilter/>
 
         <Tabs
           defaultActiveKey="all"
