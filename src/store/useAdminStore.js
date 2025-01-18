@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 const useAdminStore = create(
   persist(
     (set, get) => ({
-      name: null,
+      fullname: null,
       type: null,
       phone: null,
       email: null,
@@ -13,6 +13,16 @@ const useAdminStore = create(
       preferences: [],
       setData: (data) => set({ ...data }),
       setPreferences: (data) => set({ preferences: data }),
+      reset: () =>
+        set({
+          fullname: null,
+          type: null,
+          phone: null,
+          email: null,
+          createdAt: null,
+          role: null,
+          preferences: [],
+        }),
     }),
     {
       name: "admins",

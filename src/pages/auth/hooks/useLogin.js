@@ -28,7 +28,7 @@ const useLogin = ({ callback }) => {
         createdAt: data?.createdAt,
         id: data?.id,
         email: data?.email,
-        name: `${data?.firstName} ${data?.lastName}`,
+        fullname: data.fullname,
         role: data?.role,
         phone: data?.phone,
       };

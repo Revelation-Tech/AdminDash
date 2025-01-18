@@ -14,10 +14,15 @@ import useUserQuery from "../Users/hooks/useUserQuery";
 import { formatCurrency } from "../../../utils/functions";
 import { BillChart } from "../../../data/chartData/BillsData/BillChart";
 import ExportOptionButton from "../../../components/ExportOptionButton";
+import useValidate from "../../../hooks/useValidate";
 
 const Overview = () => {
+
+  // const {data:validateData} =  useValidate()
+
   const { dashboard, comparativeTransactions } = useDashboardQuery();
   const { fetchUsers } = useUserQuery();
+
 
   const { data, isFetching: dashboardLoading } = dashboard;
   const { data: userData, isLoading } = fetchUsers;

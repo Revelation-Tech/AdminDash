@@ -5,17 +5,24 @@ import { useQuery } from "@tanstack/react-query";
 
 import axios from "@config/axios";
 import { getToken } from "../utils/auth";
+import useAdminStore from "../store/useAdminStore";
 
 const useValidate = () => {
   const [token] = useState(localStorage.getItem("token"));
+  const {setData}= useAdminStore()
 
   // console.log(token)
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["dashboard"],
+    queryKey: ["adminProfile"],
     queryFn: async () => {
-      const res = await axios.get("admin/dashboard");
-      return res?.data;
+      const res = await axios.get("admin/me");
+
+      const {data} = res.data
+
+      setData(data)
+
+      return data
     },
     enabled: !!token,
   });

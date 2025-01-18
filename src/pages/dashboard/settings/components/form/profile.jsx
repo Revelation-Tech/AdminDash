@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import profile from "@assets/images/profile2.jpg";
 import { Camera, User } from "iconsax-react";
-import { Avatar, Form, message, Spin, Upload } from "antd";
+import { Avatar, Form, Input, message, Spin, Upload } from "antd";
 import InputField from "@components/form/input";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { useMutation } from "@tanstack/react-query";
@@ -12,8 +12,9 @@ import axios from "@config/axios";
 import useAdminStore from "../../../../../store/useAdminStore";
 
 const ProfileForm = () => {
-  const { id: userId, email, name, phone } = useAdminStore();
+  const { id: userId, email, fullname, phone } = useAdminStore();
 
+  // console.log(fullname, email, phone)
 
   const [form] = Form.useForm();
 
@@ -35,13 +36,12 @@ const ProfileForm = () => {
     onError: (error) => message.error(error.message),
   });
 
-  useEffect(() => {
-    form.setFieldsValue({
-      name,
-      email,
-      phone,
-    });
-  }, [email, name, phone]);
+ 
+  form.setFieldsValue({
+    fullname,
+    email,
+    phone,
+  })
 
   return (
     <Form
@@ -64,7 +64,7 @@ const ProfileForm = () => {
       </div>
 
       <div className="mt-8">
-        <InputField name="name" label="Full Name" Icon={User} value={name} disabled/>
+        <InputField name="fullname" label="Full Name" Icon={User} disabled value={fullname} />
 
         <InputField
           name="email"
@@ -85,7 +85,7 @@ const ProfileForm = () => {
 
         {/* <InputField name="role" label="Role" /> */}
 
-        <div className="w-full grid md:grid-cols-3 gap-4 mt-4">
+        {/* <div className="w-full grid md:grid-cols-3 gap-4 mt-4">
           <div className="col-span-1">
             <button className="w-full btn-outline">Cancel</button>
           </div>
@@ -102,7 +102,7 @@ const ProfileForm = () => {
               Save changes
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </Form>
   );

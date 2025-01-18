@@ -1,5 +1,5 @@
 import React from "react";
-import { Form,Spin } from "antd";
+import { Form, message, Spin } from "antd";
 import { Lock1 } from "iconsax-react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
@@ -14,8 +14,9 @@ const ChangePassword = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (payload) => {
       try {
-        const resp = axios.post(`admin/update-password`, payload);
-        return resp.data;
+        const resp = await axios.post(`admin/update-password`, payload);
+
+        return resp.data?.data;
       } catch (error) {
         console.error(error?.message);
         throw new Error(error?.response?.data?.message);
@@ -23,17 +24,15 @@ const ChangePassword = () => {
     },
     onSuccess: (data) => {
       message.success("User password changed");
-
       form.resetFields();
     },
     onError: (error) => message.error(error.message),
   });
 
-  console.log(isPending)
-
   return (
     <Form
       layout="vertical"
+      form={form}
       onFinish={(data) => {
         mutate(data);
       }}

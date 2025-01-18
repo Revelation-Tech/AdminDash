@@ -1,7 +1,7 @@
 import React from "react";
 import PreferenceCard from "../components/PreferenceCard";
 import useAdminStore from "../../../../store/useAdminStore";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { message } from "antd";
 import axios from "@config/axios";
 
@@ -47,16 +47,30 @@ const Preferences = () => {
 
   // console.log(preferences[0])
 
+  const queryClient = useQueryClient()
+
   const { mutate } = useMutation({
     mutationFn: async ({ label, value }) => {
+
+      message.loading("Updating prefences...", 1500)
+
       let payload = {};
 
       payload[label] = value.toUpperCase();
 
       const res = await axios.post("admin/update-preference", payload);
+
+      console.log(res.data);
+
+      return res.data
+
     },
-    onSuccess: () => message.success("Preference updated"),
-    onError: () => message.error("Failed to update preference"),
+    onSuccess: (data ) => {
+      message.success("Preference updated")
+      queryClient.invalidateQueries("adminProfile")
+    },
+    onError: (error) => message.error(error?.response?.data?.message ?? "Failed to update preference" ?? error?.message ),
+    onSettled: () => message.destroy()  
   });
 
   return (

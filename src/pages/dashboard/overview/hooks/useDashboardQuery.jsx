@@ -13,7 +13,7 @@ const useDashboardQuery = () => {
 
         return response.data.data || [];
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         throw new Error(error?.response?.data?.message ?? error?.message);
       }
     },
@@ -27,7 +27,7 @@ const useDashboardQuery = () => {
           params: { period: "all" },
         });
 
-        console.log(response.data?.data);
+        // console.log(response.data?.data);
 
         return response.data.data || [];
       } catch (error) {

@@ -8,7 +8,7 @@ import {
 } from "iconsax-react";
 import Logo from "../../assets/logo";
 import { sideNavData } from "../../data/sideNavData";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo2 from "../../assets/Logo2";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -16,15 +16,38 @@ import gsap from "gsap";
 
 import useAdminStore from "@store/useAdminStore";
 import { UserIcon } from "@heroicons/react/24/solid";
+import axios from "@config/axios";
+import { message } from "antd";
 
 const SideNav = () => {
   const [mobileNav, setMobileNav] = useState(true);
   const [isActive, setIsActive] = useState("Overview");
   const sidebarAnim = useRef(null);
 
-  const state = useAdminStore((state) => state);
+  const navigate = useNavigate();
 
-  // console.log(state)
+  const state = useAdminStore((state) => state);
+  const { reset } = useAdminStore();
+
+  const logout = async () => {
+    message.loading("Logging out from admin");
+
+    await axios
+      .post("admin/logout")
+      .then((response) => response.data)
+      .then((response) => {
+        message.success(response.message);
+        localStorage.clear();
+        reset();
+
+        setTimeout(() => navigate("/"), 1000)
+      })
+      .catch((error) =>
+        message.error(error?.response?.data?.message || error.message)
+      );
+ 
+      message.destroy();
+  };
 
   useGSAP(() => {
     sidebarAnim.current = gsap.to(".mobile-nav", {
@@ -123,7 +146,7 @@ const SideNav = () => {
                   return {
                     backgroundColor: isActive ? "white" : "transparent",
                     color: isActive ? "#1F6CAB" : "white",
-                    paddingBlock: '0.625rem'
+                    paddingBlock: "0.625rem",
                   };
                 }}
                 className=" hover:bg-white w-full rounded p-2 text-white hover:text-bills-darkblue mt-4 text-sm flex "
@@ -144,11 +167,11 @@ const SideNav = () => {
               {/* <Link className="mr-2"><ProfileCircle /></Link> */}
 
               <div className="flex flex-col text-sm">
-                <p>{state?.name || "John Doe"}</p>
+                <p>{state?.fullname}</p>
                 <p className="text-[10px]">{state?.email}</p>
               </div>
             </div>
-            <div className="">
+            <div className="" onClick={logout}>
               <LoginCurve size={20} color="white" />
             </div>
           </div>

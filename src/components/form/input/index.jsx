@@ -11,6 +11,8 @@ const InputField = ({
   value,
   disabled,
 }) => {
+
+  // console.log(value)
   return (
     <Form.Item
       name={name}
@@ -19,7 +21,7 @@ const InputField = ({
           {label}
         </span>
       }
-      initialValue={value}
+      // initialValue={value}
       rules={[{ message: `${label} is required`, required: isRequired }]}
      
     >
@@ -28,8 +30,9 @@ const InputField = ({
         <Input
           disabled={disabled}
           placeholder={placeholder}
+          value={value}
           type={type}
-          className={`border-none focus:ring-0 placeholder:text-bills-text placeholder:capitalize disabled:bg-gray-100`}
+          className={`border-none text-black focus:ring-0 placeholder:text-bills-text placeholder:capitalize disabled:bg-gray-100`}
         />
       </div>
     </Form.Item>
