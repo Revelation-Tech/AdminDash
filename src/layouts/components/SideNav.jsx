@@ -18,6 +18,7 @@ import useAdminStore from "@store/useAdminStore";
 import { UserIcon } from "@heroicons/react/24/solid";
 import axios from "@config/axios";
 import { message } from "antd";
+import { useMutation } from "@tanstack/react-query";
 
 const SideNav = () => {
   const [mobileNav, setMobileNav] = useState(true);
@@ -29,25 +30,34 @@ const SideNav = () => {
   const state = useAdminStore((state) => state);
   const { reset } = useAdminStore();
 
-  const logout = async () => {
-    message.loading("Logging out from admin");
+  const logout = useMutation({
+    mutationFn: async () => {
+      await message.loading("Logging out from admin");
 
-    await axios
-      .post("admin/logout")
-      .then((response) => response.data)
-      .then((response) => {
-        message.success(response.message);
-        localStorage.clear();
-        reset();
+      try {
+        const response = await axios.post("admin/logout");
 
-        setTimeout(() => navigate("/"), 1000)
-      })
-      .catch((error) =>
-        message.error(error?.response?.data?.message || error.message)
-      );
- 
-      message.destroy();
-  };
+        return response.data;
+      } catch (error) {
+        throw new Error(error?.response?.data?.message || error.message);
+      }
+    },
+    onSuccess: (data) => {
+      message.success("Log out successfully", 3);
+      localStorage.clear();
+
+      reset();
+      
+      navigate("/", { replace: true }); // Use `navigate` from `useNavigate`
+    },
+    onError: (error) => {
+      console.error(error.message);
+      message.error(error.message, 3); // Timeout for error message
+    },
+    onSettled: () => message.destroy(),
+  });
+
+  // const logout =
 
   useGSAP(() => {
     sidebarAnim.current = gsap.to(".mobile-nav", {
@@ -171,7 +181,12 @@ const SideNav = () => {
                 <p className="text-[10px]">{state?.email}</p>
               </div>
             </div>
-            <div className="" onClick={logout}>
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                logout.mutate();
+              }}
+            >
               <LoginCurve size={20} color="white" />
             </div>
           </div>

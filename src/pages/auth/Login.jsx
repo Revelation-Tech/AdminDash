@@ -16,17 +16,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { renderLoading, data, error, isLoading} = useValidate();
+  const { renderLoading, token, error, isLoading } = useValidate();
 
   const navigate = useNavigate();
 
-  if (isLoading) {
-    return renderLoading();
-  }
 
-  if (data) return <Navigate to="/dashboard" replace />;
+  if (token) <Navigate to="/dashboard" replace />;
 
   const payload = {
     email,
@@ -82,15 +79,23 @@ const Login = () => {
 
                 <div className="inline-flex items-center">
                   <input
-                    type={`${!showPassword ? "password" : 'text'}`}
+                    type={`${!showPassword ? "password" : "text"}`}
                     name="password"
                     className=" mt-2 mb-2 w-full ring-1 focus:ring-1 ring-bills-borderLight focus:ring-offset-bills-borderLight focus:outline-none p-2 rounded"
                     required
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <div className="-ml-8">
-                    <button type="button" className="text-gray-400" onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
+                    <button
+                      type="button"
+                      className="text-gray-400"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeSlash size={18} />
+                      ) : (
+                        <Eye size={18} />
+                      )}
                     </button>
                   </div>
                 </div>

@@ -24,7 +24,7 @@ const useValidate = () => {
 
       return data
     },
-    enabled: !!token,
+    // enabled: !!token,
   });
 
   const renderLoading = () => {
