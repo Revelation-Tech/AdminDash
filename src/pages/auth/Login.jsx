@@ -22,7 +22,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-
   if (token) <Navigate to="/dashboard" replace />;
 
   const payload = {
@@ -45,22 +44,26 @@ const Login = () => {
 
   return (
     <>
-      <section className=" bg-gray-300 w-full h-screen flex items-center ">
-        <div className="max-md:w-full w-3/4 m-auto flex flex-col lg:flex-row">
-          <div className="bg-white p-8 w-full ">
-            <Logo2 height="68" width="203" />
-
-            <div className="my-6">
-              <h1 className="text-bills-darkblue font-semibold text-5xl">
-                Login
-              </h1>
-              <p className="text-bills-lightgrey/80 mt-4 text-sm">
-                Welcome Back! Please enter your credentials to access your
-                account and continue managing your business effortlessly.
-              </p>
+      <section className=" bg-gray-100 w-full h-screen flex items-center ">
+        <div className="w-full max-w-xl m-auto flex flex-col">
+          <div className="bg-white p-8 w-full shadow-card rounded-lg">
+            <div className="inline-flex flex-col justify-center items-center w-full mb-8">
+              {/* <Logo2 height="50" width="203" /> */}
+              <h2 className="font-sans text-2xl font-bold uppercase text-bills-darkblue">
+                Pay Bills Admin Console
+              </h2>
+              <div className="">
+                <h1 className="text-black font-clashGrotesk font-medium text-xl">
+                  Log in
+                </h1>
+                {/* <p className="text-bills-lightgrey/80 mt-4 text-sm">
+                  Welcome Back! Please enter your credentials to access your
+                  account and continue managing your business effortlessly.
+                </p> */}
+              </div>
             </div>
             {/* Form Container */}
-            <div className=" max-lg:w-full w-3/4">
+            <div className="w-full">
               <label htmlFor="email" className="text-sm mt-4">
                 Your Email
               </label>
@@ -101,22 +104,24 @@ const Login = () => {
                 </div>
               </div>
 
-              <input
-                type="checkbox"
-                name="rememberPassword"
-                onChange={(e) => setIsRemember(e.target.checked)}
-                checked={isRemember}
-              />
-              <label
-                htmlFor="rememberPassword"
-                className="text-sm text-gray-400"
-              >
-                {" "}
-                Remember Password{" "}
-              </label>
+              <div className="inline-flex gap-0.5 my-2">
+                <input
+                  type="checkbox"
+                  name="rememberPassword"
+                  onChange={(e) => setIsRemember(e.target.checked)}
+                  checked={isRemember}
+                />
+                <label
+                  htmlFor="rememberPassword"
+                  className="text-sm text-gray-400"
+                >
+                  {" "}
+                  Remember Password{" "}
+                </label>
+              </div>
 
               <button
-                className="bg-bills-darkblue/85 hover:bg-bills-darkblue text-white p-2 w-full mt-4 rounded "
+                className="bg-bills-darkblue/85 hover:bg-bills-darkblue text-white p-2 w-full mt-4 rounded py-4"
                 onClick={handleSubmit}
                 disabled={isPending}
               >
@@ -131,19 +136,19 @@ const Login = () => {
                   "Login"
                 )}
               </button>
-              <div className="mt-3  ">
-                <span className="text-sm text-black mx-auto">
+              <div className="mt-3 inline-flex justify-center w-full">
+                {/* <span className="text-sm text-black mx-auto">
                   Forgot Password &nbsp;
-                </span>
+                </span> */}
                 <Link to={"/"}>
-                  <span className="text-sm text-bills-darkblue underline">
-                    Reach out to Admin
+                  <span className="text-sm text-bills-darkblue ">
+                    Forgot Password
                   </span>
                 </Link>
               </div>
             </div>
           </div>
-          <div className="hidden lg:inline-flex bg-bills-lightblue  w-full"></div>
+          <div className="hidden bg-bills-lightblue  w-full"></div>
         </div>
       </section>
       <ToastContainer />

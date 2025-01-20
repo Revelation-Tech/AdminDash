@@ -11,8 +11,9 @@ export default {
         inter: ["Inter", "sans-serif"],
         karia: ["Panchang", "sans-serif"],
       },
-      boxShadow:{
-        'light':"0px 4px 24px -1px #D1CDC740"
+      boxShadow: {
+        light: "0px 4px 24px -1px #D1CDC740",
+        card: "0px 0px 15px 0px rgba(0, 0, 0, .03), 0px 2px 30px 0px rgba(0, 0, 0, .08), 0px 0px 1px 0px rgba(0, 0, 0, .3)",
       },
       colors: {
         bills: {
@@ -24,7 +25,7 @@ export default {
           lightgrey2: "#F9F9F9",
           text: "hsl(228, 17%, 67%)",
           borderLight: "hsl(0, 0%, 91%)",
-          textColor: "hsl(220, 13%, 46%)"
+          textColor: "hsl(220, 13%, 46%)",
         },
       },
     },
