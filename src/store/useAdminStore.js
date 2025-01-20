@@ -10,6 +10,7 @@ const useAdminStore = create(
       email: null,
       createdAt: null,
       role: null,
+      image: null,
       preferences: [],
       setData: (data) => set({ ...data }),
       setPreferences: (data) => set({ preferences: data }),

@@ -29,9 +29,9 @@ const beforeUpload = (file) => {
 };
 
 const ProfileForm = () => {
-  const { id: userId, email, fullname, phone } = useAdminStore();
+  const { id: userId, email, fullname, phone, image } = useAdminStore();
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(profile);
+  const [imageUrl, setImageUrl] = useState(image || profile);
 
   // console.log(fullname, email, phone)
 
@@ -105,7 +105,7 @@ const ProfileForm = () => {
           maxCount={1}
           showUploadList={false}
           method="put"
-          action={`https://paybillsbackend.onrender.com/admin/update-user/${userId}`}
+          action={`https://paybillsbackend.onrender.com/admin/upload-image/${userId}`}
           beforeUpload={beforeUpload}
           onChange={handleChange}
           name="avatar"
