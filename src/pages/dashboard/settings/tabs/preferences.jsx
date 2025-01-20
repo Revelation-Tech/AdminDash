@@ -10,36 +10,40 @@ const options = {
     title: "Login Attempts",
     desc: "These are notifications to notify you when your account is being accessed",
     option: [
+      { label: "Do not notifiy me", value: "do_not_notify" },
       { label: "email", value: "email" },
-      { label: "Push Notification", value: "push" },
       { label: "SMS", value: "sms" },
     ],
   },
   pushNotification: {
-    title: "Push Notifications",
-    desc: "These are notifications generated when the app is not open, notifying you of new update, news and messages",
+    title: "Change Password",
+    desc: "These are notifications generated when your login password has been changed.",
     option: [
       { label: "Do not notifiy me", value: "do_not_notify" },
-      {
-        label: "All reminders",
-        value: "all",
-        desc: "Notify me for all other activity.",
-      },
+      { label: "email", value: "email" },
+      { label: "SMS", value: "sms" },
+      // {
+      //   label: "All reminders",
+      //   value: "all",
+      //   desc: "Notify me for all other activity.",
+      // },
     ],
   },
-  reminder: {
-    title: "Reminders",
-    desc: "These are notifications to remind you of updates you might have missed.",
-    option: [
-      { label: "Do not notifiy me", value: "do_not_notify" },
-      { label: "Important reminders only", value: "important_only" },
-      {
-        label: "All reminders",
-        value: "all",
-        desc: "Notify me for all other activity.",
-      },
-    ],
-  },
+  // reminder: {
+  //   title: "Reminders",
+  //   desc: "These are notifications to remind you of updates you might have missed.",
+  //   option: [
+  //     { label: "Do not notifiy me", value: "do_not_notify" },
+  //     { label: "Important reminders only", value: "important_only" },
+  //     { label: "email", value: "email" },
+  //     { label: "SMS", value: "sms" },
+  //     {
+  //       label: "All reminders",
+  //       value: "all",
+  //       desc: "Notify me for all other activity.",
+  //     },
+  //   ],
+  // },
 };
 
 const Preferences = () => {
@@ -51,7 +55,7 @@ const Preferences = () => {
 
   const { mutate } = useMutation({
     mutationFn: async ({ label, value }) => {
-
+      
       message.loading("Updating prefences...", 1500)
 
       let payload = {};

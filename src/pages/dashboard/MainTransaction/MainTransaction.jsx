@@ -8,21 +8,21 @@ import useTableStore from "@store/useTableStore";
 import CustomTableCard from "@components/CustomTableCard";
 import SmallLineGraphCard from "../../../components/card/SmallLineGraph.jsx";
 import { Select, Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import PageLoader from "../../../components/PageLoader.jsx";
 import { columns } from "./data";
+import exportCVSData from "./data/exportCVSData.jsx";
+import UserSearch from "../Users/UserSearch.jsx";
+import { SearchNormal1 } from "iconsax-react";
+import ExportOptionButton from "../../../components/ExportOptionButton.jsx";
+import moment from "moment";
 
 const MainTransaction = () => {
   const { transactions, analysis } = useTransactionQuery();
 
   const { isLoading, data } = transactions;
 
-  console.log(data)
-
-  // if (isLoading) {
-  //   return <PageLoader/>;
-  // }
-  const { params } = useTableStore();
+ 
+  const { params, searchTable } = useTableStore();
 
   const updateParams = (key, value) => {
     // Get the current state of params from useTableStore
@@ -99,6 +99,33 @@ const MainTransaction = () => {
             </div>
           </div>
         </div> */}
+      </div>
+
+      <div className="bg-white p-4 px-5 rounded-md">
+        <div className="md:flex items-center justify-between flex-wrap ">
+          <div className="inline-flex items-center ring-1 ring-bills-borderLight outline-none focus:ring-1 focus:ring-bills-darkblue rounded-md px-3 gap-1.5 p-2.5 w-1/3">
+            <SearchNormal1 size={16} className="text-black/60" />
+            <input
+              type="text"
+              className=" w-full placeholder-black/60 border-0 focus:outline-none"
+              placeholder="Search"
+              onKeyUp={(e) => searchTable(e.target.value)}
+            />
+          </div>
+
+          <div className="md:inline-flex justify-between items-center gap-4">
+           
+            <ExportOptionButton
+              csvHeader={data && exportCVSData(data)?.headers}
+              csvData={data && exportCVSData(data)?.body}
+              title={`${moment().format('YYYY-MM-DD')}-transactions-${params ? Object.values(params)?.map(value => value): ""}`}
+            />
+            {/* <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
+            <ImportCurve size={16} className="inline" variant="Outline" />
+            Export Csv
+          </button> */}
+          </div>
+        </div>
       </div>
 
       <div className="py-5 px-6 bg-white rounded-lg">

@@ -17,12 +17,10 @@ import ExportOptionButton from "../../../components/ExportOptionButton";
 import useValidate from "../../../hooks/useValidate";
 
 const Overview = () => {
-
   // const {data:validateData} =  useValidate()
 
   const { dashboard, comparativeTransactions } = useDashboardQuery();
   const { fetchUsers } = useUserQuery();
-
 
   const { data, isFetching: dashboardLoading } = dashboard;
   const { data: userData, isLoading } = fetchUsers;
@@ -30,6 +28,8 @@ const Overview = () => {
   const { searchTable } = useTableStore();
 
   const [items, setItems] = useState();
+
+  console.log(data);
 
   // console.log(userData);
 
@@ -191,6 +191,7 @@ const Overview = () => {
                 pageLoading(comparativeTransactions?.isLoading)
               ) : (
                 <BillChart
+                  stepSize={1}
                   label={Object.keys(comparativeTransactions?.data?.count)}
                   value={Object.values(comparativeTransactions?.data?.count)}
                 />
@@ -199,7 +200,7 @@ const Overview = () => {
 
             <div className="w-full max-w-screen-xl bg-white p-5 rounded-lg border border-gray-100">
               <div className="inline-flex items-center w-full justify-between">
-                <div className="">
+                <div className="mb-4">
                   <h6 className="font-inter text-xs text-[#A3AED0] capitalize">
                     TOTAL TRANSACTION COMPARATIVE AMOUNT
                   </h6>
@@ -216,6 +217,8 @@ const Overview = () => {
                 pageLoading(comparativeTransactions?.isLoading)
               ) : (
                 <BillChart
+                  stepSize={200}
+                  minimum={50}
                   label={Object.keys(comparativeTransactions?.data?.amount)}
                   value={Object.values(comparativeTransactions?.data?.amount)}
                 />
@@ -267,6 +270,7 @@ const Overview = () => {
                 <ExportOptionButton
                   csvHeader={items?.headers}
                   csvData={items?.body}
+                  title={`${moment().format('YYYY-MM-DD')}-users`}
                 />
 
                 {/* <button className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white">

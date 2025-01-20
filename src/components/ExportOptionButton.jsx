@@ -9,37 +9,46 @@ import { formatCurrency, getPrefixedValue } from "../utils/functions";
 import moment from "moment";
 
 const ExportOptionButton = ({ csvHeader, csvData, title }) => {
-  
   return (
-    <Dropdown
-      trigger="click"
-      menu={{
-        items: [
-          {
-            label: (
-              <CSVLink
-                headers={csvHeader}
-                title={title || "users-documents"}
-                data={csvData || []}
-                className="p-2.5 font-inter text-sm font-medium"
-              >
-                CSV
-              </CSVLink>
-            ),
-            key: "csv",
-          },
-          { label: <button className="p-2.5 font-inter text-sm font-medium">PDF</button>, key: "PDF" },
-        ],
-      }}
+    // <Dropdown
+    //   trigger="click"
+    //   menu={{
+    //     items: [
+    //       {
+    //         label: (
+    //           <CSVLink
+    //             headers={csvHeader}
+    //             title={title || "users-documents"}
+    //             data={csvData || []}
+    //             className="p-2.5 font-inter text-sm font-medium"
+    //           >
+    //             CSV
+    //           </CSVLink>
+    //         ),
+    //         key: "csv",
+    //       },
+    //       { label: <button className="p-2.5 font-inter text-sm font-medium">PDF</button>, key: "PDF" },
+    //     ],
+    //   }}
+    // >
+    //   <a
+    //     onClick={(e) => e.preventDefault()}
+    //     className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white"
+    //   >
+    //     <ImportCurve size={16} className="inline" variant="Outline" />
+    //     Export
+    //   </a>
+    // </Dropdown>
+
+    <CSVLink
+      headers={csvHeader}
+      filename={title || "users-documents"}
+      data={csvData || []}
+      className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white"
     >
-      <a
-        onClick={(e) => e.preventDefault()}
-        className="inline-flex items-center justify-center gap-2 py-3 px-6 bg-bills-darkblue rounded-lg text-white"
-      >
-        <ImportCurve size={16} className="inline" variant="Outline" />
-        Export
-      </a>
-    </Dropdown>
+      <ImportCurve size={16} className="inline" variant="Outline" />
+      Export CSV
+    </CSVLink>
   );
 };
 

@@ -37,7 +37,7 @@ const UserSearch = ({ data, loading, showFilter }) => {
           <ExportOptionButton
             csvHeader={items?.headers}
             csvData={items?.body}
-            title="users-files"
+            title={`${moment().format('YYYY-MM-DD')}-users`}
           />
           {/* <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
             <ImportCurve size={16} className="inline" variant="Outline" />

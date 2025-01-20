@@ -12,7 +12,7 @@ import {
 
 ChartJs.register(BarElement, CategoryScale, LinearScale, Legend, Tooltip);
 
-export const BillChart = ({ label, value }) => {
+export const BillChart = ({ label, value, stepSize, minimum }) => {
   const data = {
     labels: label ?? [
       "Airtime",
@@ -61,7 +61,7 @@ export const BillChart = ({ label, value }) => {
         display: false,
       },
       tooltip: {
-        enabled: false, // Disables tooltips
+        enabled: true, // Disables tooltips
       },
     },
     scales: {
@@ -78,7 +78,13 @@ export const BillChart = ({ label, value }) => {
         },
       },
       y: {
-        min: 1,
+        min: minimum || 1,
+        ticks: {
+          callback: function (value) {
+            return Math.floor(value); // Ensure only whole numbers
+          },
+          stepSize: stepSize ?? 1, // Ensure increments are in whole numbers
+        },
       },
     },
   };
