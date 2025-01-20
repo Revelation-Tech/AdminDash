@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Index from "./molecules";
 import AirtimeHorizontalData from "../../../data/chartData/BillsData/AirtimeHorizontalData";
 import { MovieLine2 } from "../../../data/chartData/MovieLine2";
@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 
 export const Airtime = () => {
   const { pathname } = useLocation();
-  const { allBills, monthlyRate } = useBillsQuery();
+  const { allBills, monthlyRate, successRate } = useBillsQuery();
+  const [period, selectPeriod] = useState("all");
 
   const { data } = allBills({
     interval: "all",
@@ -20,7 +21,8 @@ export const Airtime = () => {
     { vasType: pathname.split("/")[2]?.toUpperCase() }
   );
 
-  console.log
+  const { data: airtimeSuccessRateData, isFetching: airtelSuccessRateLoading } =
+    successRate({ vasType: pathname.split("/")[2]?.toUpperCase(), period: period});
 
   let volumeValue = monthlyRateData?.monthlyVolume?.map(
     (item) => item?.totalVolume
@@ -34,6 +36,12 @@ export const Airtime = () => {
           total={data?.queryDate?.totalValue}
           today={data?.today?.totalValue}
           yesterday={data?.yesterday?.totalValue}
+          showTransactionSuccess={{
+            total: airtimeSuccessRateData?.totalTransactions,
+            success: airtimeSuccessRateData?.successfulTransactions,
+            percentage: airtimeSuccessRateData?.successRate,
+          }}
+          onChange={(value) => selectPeriod(value)}
         />
 
         {/* <Index

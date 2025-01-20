@@ -39,6 +39,12 @@ const Cable = () => {
           total={data?.queryDate?.totalValue}
           today={data?.today?.totalValue}
           yesterday={data?.yesterday?.totalValue}
+          showTransactionSuccess={{
+            total: successRateData?.totalTransactions,
+            success: successRateData?.successfulTransactions,
+            percentage: successRateData?.successRate,
+          }}
+          onChange={(value) => selectPeriod(value)}
         />
       </div>
       {/* <div className="">
