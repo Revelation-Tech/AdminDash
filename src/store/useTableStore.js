@@ -15,24 +15,30 @@ const useTableStore = create((set, get) => ({
 
     const filtered = data?.filter((item) => item[column]);
 
-    console.log(filtered)
+    console.log(filtered);
 
     set({ filteredData: filtered });
   },
   searchTable: (searchTerm) => {
-
     const { data } = get();
     const lowerCaseSearch = searchTerm.toLowerCase();
 
     set({ searchValue: lowerCaseSearch });
 
-    const filtered = data?.filter((item) =>
-      Object.values(item).some((val) =>
-        String(val).toLowerCase().includes(lowerCaseSearch)
-      )
-    );
+    // Recursive function to search deeply in nested objects or arrays
+    const deepSearch = (value) => {
+      if (typeof value === "object" && value !== null) {
+        // Handle objects or arrays by iterating through their values
+        return Object.values(value).some(deepSearch);
+      }
+      // Convert non-object values to a string and check for the search term
+      return String(value).toLowerCase().includes(lowerCaseSearch);
+    };
 
-    // console.log(filtered)
+    // Filter the data based on the deep search
+    const filtered = data?.filter((item) =>
+      Object.values(item).some(deepSearch)
+    );
 
     set({ filteredData: filtered });
   },

@@ -22,7 +22,7 @@ const MainTransaction = () => {
 
   const { isLoading, data } = transactions;
 
-  const { params, searchTable } = useTableStore();
+  const { params, searchTable, searchValue, filteredData } = useTableStore();
 
   const updateParams = (key, value) => {
     // Get the current state of params from useTableStore
@@ -41,13 +41,15 @@ const MainTransaction = () => {
   };
 
   useEffect(() => {
-    useTableStore.setState({
-      data: data,
-      columns,
-      url: "/transaction",
-      loading: isLoading,
-    });
-  }, [data, isLoading]);
+    // if (data) {
+      useTableStore.setState({
+        data: searchValue ? filteredData : data,
+        columns,
+        url: "/transaction",
+        loading: isLoading,
+      });
+    // }
+  }, [data, isLoading, searchValue]);
 
   return (
     <div className="space-y-10">
@@ -114,7 +116,7 @@ const MainTransaction = () => {
           </div>
 
           <div className="md:inline-flex justify-between items-center gap-4">
-            <VasTypeFilter onChange={updateParams}/>
+            <VasTypeFilter onChange={updateParams} />
 
             <ExportOptionButton
               csvHeader={data && exportCVSData(data)?.headers}
