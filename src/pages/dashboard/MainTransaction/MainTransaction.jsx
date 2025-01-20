@@ -7,7 +7,7 @@ import useTransactionQuery from "./hooks/useTransactionQuery.js";
 import useTableStore from "@store/useTableStore";
 import CustomTableCard from "@components/CustomTableCard";
 import SmallLineGraphCard from "../../../components/card/SmallLineGraph.jsx";
-import { Select, Spin } from "antd";
+import { Dropdown, Select, Spin } from "antd";
 import PageLoader from "../../../components/PageLoader.jsx";
 import { columns } from "./data";
 import exportCVSData from "./data/exportCVSData.jsx";
@@ -15,13 +15,13 @@ import UserSearch from "../Users/UserSearch.jsx";
 import { SearchNormal1 } from "iconsax-react";
 import ExportOptionButton from "../../../components/ExportOptionButton.jsx";
 import moment from "moment";
+import VasTypeFilter from "../../../components/VasTypeFilter.jsx";
 
 const MainTransaction = () => {
   const { transactions, analysis } = useTransactionQuery();
 
   const { isLoading, data } = transactions;
 
- 
   const { params, searchTable } = useTableStore();
 
   const updateParams = (key, value) => {
@@ -114,11 +114,14 @@ const MainTransaction = () => {
           </div>
 
           <div className="md:inline-flex justify-between items-center gap-4">
-           
+            <VasTypeFilter onChange={updateParams}/>
+
             <ExportOptionButton
               csvHeader={data && exportCVSData(data)?.headers}
               csvData={data && exportCVSData(data)?.body}
-              title={`${moment().format('YYYY-MM-DD')}-transactions-${params ? Object.values(params)?.map(value => value): ""}`}
+              title={`${moment().format("YYYY-MM-DD")}-transactions-${
+                params ? Object.values(params)?.map((value) => value) : ""
+              }`}
             />
             {/* <button className="btn-fill2 inline-flex items-center gap-2 !py-3">
             <ImportCurve size={16} className="inline" variant="Outline" />
