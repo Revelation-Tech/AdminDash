@@ -22,6 +22,7 @@ import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
 import PreviewTransaction from "@pages/dashboard/MainTransaction/preview/index.jsx";
 import UserProfile from "@pages/dashboard/Users/preview/index.jsx";
+import { RequestOTP, ResetPassword } from "@pages/auth/forget-password/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
     exact: true,
     element: <Login />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/forget-password",
+    element: <RequestOTP />,
+  },
+  {
+    path: "password/reset-password",
+    element: <ResetPassword />,
   },
   {
     element: <ProtectedRoutes />,

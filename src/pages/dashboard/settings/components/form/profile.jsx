@@ -33,6 +33,7 @@ const ProfileForm = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(image || profile);
 
+  const token = localStorage.getItem("token");
   // console.log(fullname, email, phone)
 
   const [form] = Form.useForm();
@@ -104,11 +105,15 @@ const ProfileForm = () => {
         <Upload
           maxCount={1}
           showUploadList={false}
-          method="put"
+          method="post"
           action={`https://paybillsbackend.onrender.com/admin/upload-image/${userId}`}
           beforeUpload={beforeUpload}
           onChange={handleChange}
-          name="avatar"
+          name="file"
+          headers={{
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          }}
           // listType="picture-card"
           className="avatar-uploader"
         >

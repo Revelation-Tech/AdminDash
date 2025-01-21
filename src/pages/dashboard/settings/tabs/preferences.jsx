@@ -15,7 +15,7 @@ const options = {
       { label: "SMS", value: "sms" },
     ],
   },
-  pushNotification: {
+  password: {
     title: "Change Password",
     desc: "These are notifications generated when your login password has been changed.",
     option: [

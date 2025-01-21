@@ -1,6 +1,9 @@
+import { Spin } from "antd";
 import { useState } from "react";
+import { Eye, EyeSlash } from "iconsax-react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
 
 import Logo2 from "../../assets/Logo2";
 import LoginImage from "../../assets/login/poster";
@@ -8,9 +11,6 @@ import LoginImage from "../../assets/login/poster";
 import useValidate from "@hooks/useValidate";
 import useLogin from "./hooks/useLogin";
 
-import { ToastContainer, toast } from "react-toastify";
-import { Spin } from "antd";
-import { Eye, EyeSlash } from "iconsax-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -140,7 +140,7 @@ const Login = () => {
                 {/* <span className="text-sm text-black mx-auto">
                   Forgot Password &nbsp;
                 </span> */}
-                <Link to={"/"}>
+                <Link to={"/forget-password"}>
                   <span className="text-sm text-bills-darkblue ">
                     Forgot Password
                   </span>
