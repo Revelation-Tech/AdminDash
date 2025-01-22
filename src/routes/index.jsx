@@ -22,7 +22,11 @@ import ErrorPage from "@pages/dashboard/ErrorPage.jsx";
 import ProtectedRoutes from "./ProtectedRoutes.jsx";
 import PreviewTransaction from "@pages/dashboard/MainTransaction/preview/index.jsx";
 import UserProfile from "@pages/dashboard/Users/preview/index.jsx";
-import { RequestOTP, ResetPassword } from "@pages/auth/forget-password/index.jsx";
+import {
+  RequestOTP,
+  ResetPassword,
+} from "@pages/auth/forget-password/index.jsx";
+import Fees from "../pages/dashboard/bills/Fees.jsx";
 
 const router = createBrowserRouter([
   {
@@ -129,6 +133,7 @@ const router = createBrowserRouter([
             path: "electricity",
             element: <Cable />,
           },
+          { element: <Fees />, path: "fees" }
           // {
           //   path: "betting",
           //   element: <Cable />,

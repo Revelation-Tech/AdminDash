@@ -14,7 +14,7 @@ const AppLayout = ({ children }) => {
 
       <div className="lg:w-[calc(100%-240px)] lg:ml-[240px] min-h-screen px-4">
         <div className="p-4">
-          <h1 className="font-bold text-3xl pt-2.5">{state?.pageTitle}</h1>
+          <h1 className="font-bold text-3xl pt-2.5">{state?.pageTitle !== 'Bill Management' && state?.pageTitle}</h1>
           {children}
         </div>
       </div>

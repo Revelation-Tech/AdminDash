@@ -4,13 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "@config/axios";
 
 const useBillsQuery = () => {
+
   const allBills = ({ interval, type }) => {
     const params = {
-      ...(type || interval ? { type, interval } : {}),
+       ...(type ? { type: type } : {}),
+      ...( interval ? { interval: interval } : {}),
     };
 
     return useQuery({
-      queryKey: ["bills", type, interval],
+      queryKey: ["bills", params],
       queryFn: async () => {
         try {
           const response = await axios.get("admin/billing-transactions", {
@@ -30,7 +32,7 @@ const useBillsQuery = () => {
   };
 
   const bestSelling = ({ period }) => {
-    console.log(period);
+    // console.log(period);
 
     return useQuery({
       queryKey: ["best-selling", period],
