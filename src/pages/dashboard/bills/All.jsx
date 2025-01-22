@@ -20,7 +20,7 @@ export const All = () => {
   const { allBills, bestSelling, customerRate, monthlyRate, successRate } =
     useBillsQuery();
 
-  const { data } = allBills({ interval: "ALL", type: "all" });
+  const { data } = allBills({ interval: "", type: "ALL" });
   const { data: bestSellingData, isLoading } = bestSelling({ period: period });
   const { data: customerRateData, isFFetching: customerRateLoading } =
     customerRate;

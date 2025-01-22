@@ -10,18 +10,18 @@ const options = {
     title: "Login Attempts",
     desc: "These are notifications to notify you when your account is being accessed",
     option: [
-      { label: "Do not notifiy me", value: "do_not_notify" },
-      { label: "email", value: "email" },
-      { label: "SMS", value: "sms" },
+      { label: "Do not notifiy me", value: "DO_NOT_NOTIFY" },
+      { label: "email", value: "EMAIL" },
+      { label: "SMS", value: "SMS" },
     ],
   },
   password: {
     title: "Change Password",
     desc: "These are notifications generated when your login password has been changed.",
     option: [
-      { label: "Do not notifiy me", value: "do_not_notify" },
-      { label: "email", value: "email" },
-      { label: "SMS", value: "sms" },
+      { label: "Do not notifiy me", value: "DO_NOT_NOTIFY" },
+      { label: "email", value: "EMAIL" },
+      { label: "SMS", value: "SMS" },
       // {
       //   label: "All reminders",
       //   value: "all",
@@ -35,8 +35,8 @@ const options = {
   //   option: [
   //     { label: "Do not notifiy me", value: "do_not_notify" },
   //     { label: "Important reminders only", value: "important_only" },
-  //     { label: "email", value: "email" },
-  //     { label: "SMS", value: "sms" },
+  //     { label: "email", value: "EMAIL" },
+  //     { label: "SMS", value: "SMS" },
   //     {
   //       label: "All reminders",
   //       value: "all",

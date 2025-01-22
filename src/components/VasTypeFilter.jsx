@@ -1,7 +1,10 @@
 import { Dropdown } from "antd";
 import React from "react";
+import useTableStore from "../store/useTableStore";
 
 const VasTypeFilter = ({ onChange }) => {
+  const currentParams = useTableStore.getState().params
+
   return (
     <Dropdown
       trigger="click"
@@ -9,7 +12,7 @@ const VasTypeFilter = ({ onChange }) => {
         items: [
           {
             label: (
-              <button  onClick={() =>onChange('vasType', 'all')} className="p-2.5 font-inter text-sm font-medium">
+              <button  onClick={() =>onChange('vasType', '')} className="p-2.5 font-inter text-sm font-medium">
                 All
               </button>
             ),

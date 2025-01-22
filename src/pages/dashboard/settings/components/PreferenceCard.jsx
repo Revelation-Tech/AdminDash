@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import useAdminStore from "@store/useAdminStore";
 
 const PreferenceCard = ({ data, onSelected, value }) => {
-  const [selectedItem, setSelectedItem] = useState(value?.toLowerCase());
+  const [selectedItem, setSelectedItem] = useState(value);
+
+  // console.log(value)
 
 
   const onChange = (e) => {

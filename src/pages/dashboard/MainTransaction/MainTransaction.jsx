@@ -34,6 +34,10 @@ const MainTransaction = () => {
       [key]: value, // Update or add the specified key
     };
 
+    if (key && !value) {
+      delete updatedParams[key];
+    }
+
     // Set the updated params in useTableStore
     useTableStore.setState({
       params: updatedParams,
@@ -42,12 +46,12 @@ const MainTransaction = () => {
 
   useEffect(() => {
     // if (data) {
-      useTableStore.setState({
-        data: searchValue ? filteredData : data,
-        columns,
-        url: "/transaction",
-        loading: isLoading,
-      });
+    useTableStore.setState({
+      data: searchValue ? filteredData : data,
+      columns,
+      url: "/transaction",
+      loading: isLoading,
+    });
     // }
   }, [data, isLoading, searchValue]);
 
@@ -137,6 +141,7 @@ const MainTransaction = () => {
         <div className="inline-flex items-center gap-4 w-full">
           <Select
             options={[
+              { label: "All", value: "" },
               { label: "Success", value: "SUCCESS" },
               { label: "Failed", value: "FAILED" },
               { label: "Pending", value: "PENDING" },
@@ -148,6 +153,7 @@ const MainTransaction = () => {
 
           <Select
             options={[
+              { label: "All", value: "" },
               { label: "Credit", value: "CREDIT" },
               { label: "Debit", value: "DEBIT" },
             ]}
