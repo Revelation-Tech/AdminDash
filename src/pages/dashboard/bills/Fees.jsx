@@ -64,13 +64,12 @@ const Fees = () => {
         </div>
         <p>
           Transaction fees have been successfully{" "}
-          {switchOn ? "activated" : "deactivated"}. All users will{" "}
-          {switchOn ? "now" : "not "}
-          be charged transaction processed on the platform. This adjustment
-          ensures seamless operations and supports the continued growth and
-          sustainability of our services. Please review the fee structure to
-          ensure it aligns with the business goals
+          {switchOn ? "activated" : "deactivated"}. Users will{" "}
+          {switchOn ? "now " : "not "}
+          be charged based on the field inputed below.
         </p>
+        <p>Please confirm each
+        applicable fee before saving.</p>
       </div>
 
       <Form

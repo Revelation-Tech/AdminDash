@@ -20,13 +20,13 @@ export const transactionNavData =   [{
    },
    {
     id:4,
-    name:'Cable Tv',
+    name:'Cable & Tv',
     link:'tv',
     icon:<Mobile/>
    },
    {
     id:5,
-    name:'Electricity',
+    name:'Power',
     link:'electricity',
     icon:<Mobile/>
    },

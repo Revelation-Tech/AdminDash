@@ -45,7 +45,7 @@ export const Transaction = () => {
                   };
                 }}
                 key={link.id}
-                className="text-sm mr-2 max-md:mb-6 px-2"
+                className="text-sm mr-2 max-md:mb-6 px-2 uppercase"
                 to={link.link}
                 end
               >
