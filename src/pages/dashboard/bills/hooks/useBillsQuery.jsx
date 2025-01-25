@@ -153,7 +153,7 @@ const useBillsQuery = () => {
       }
     },
     onSuccess: (res) => {
-      message.success("Update bill transaction fee");
+      message.success("Transaction fee updated");
       queryClient.invalidateQueries(["transactionFees"]);
     },
     onError: (error) => message.error(error?.message),

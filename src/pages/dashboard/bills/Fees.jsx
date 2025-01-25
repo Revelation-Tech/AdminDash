@@ -63,11 +63,13 @@ const Fees = () => {
           </h3>
         </div>
         <p>
-          Transaction fees have been successfully activated. All users will now
-          be charged the designated fee for every transaction processed on the
-          platform. This adjustment ensures seamless operations and supports the
-          continued growth and sustainability of our services. Please review the
-          fee structure to ensure it aligns with the business goals
+          Transaction fees have been successfully{" "}
+          {switchOn ? "activated" : "deactivated"}. All users will{" "}
+          {switchOn ? "now" : "not "}
+          be charged transaction processed on the platform. This adjustment
+          ensures seamless operations and supports the continued growth and
+          sustainability of our services. Please review the fee structure to
+          ensure it aligns with the business goals
         </p>
       </div>
 
@@ -77,9 +79,7 @@ const Fees = () => {
         className="w-full max-w-lg space-y-4"
         onFinish={(data) => {
           // data['enabled'] = switchOn;
-          // const payload = {
-          //   enabled: switchOn,
-          // };
+          const payload = {};
 
           payload[vasType] = Number(fee);
 
@@ -116,7 +116,7 @@ const Fees = () => {
                       )
                       .map((title) => ({
                         label: (
-                          <span className="text-sm font-medium font-clashGrotesk capitalize">
+                          <span className="text-sm font-medium font-clashGrotesk uppercase">
                             {title}
                           </span>
                         ),
