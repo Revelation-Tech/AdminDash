@@ -10,6 +10,7 @@ const InputField = ({
   Icon,
   value,
   disabled,
+  onChange
 }) => {
 
   // console.log(value)
@@ -33,6 +34,7 @@ const InputField = ({
           value={value}
           type={type}
           className={`border-none text-black focus:ring-0 placeholder:text-bills-text placeholder:capitalize disabled:bg-gray-100`}
+          onChange={e => onChange(e.target.value)}
         />
       </div>
     </Form.Item>

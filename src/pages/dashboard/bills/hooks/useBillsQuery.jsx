@@ -1,14 +1,16 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import axios from "@config/axios";
+import { message } from "antd";
 
 const useBillsQuery = () => {
+  const queryClient = useQueryClient();
 
   const allBills = ({ interval, type }) => {
     const params = {
-       ...(type ? { type: type } : {}),
-      ...( interval ? { interval: interval } : {}),
+      ...(type ? { type: type } : {}),
+      ...(interval ? { interval: interval } : {}),
     };
 
     return useQuery({
@@ -120,7 +122,52 @@ const useBillsQuery = () => {
     });
   };
 
-  return { allBills, bestSelling, customerRate, monthlyRate, successRate };
+  const transactionFees = useQuery({
+    queryKey: ["transactionFees"],
+    queryFn: async () => {
+      try {
+        const response = await axios.get("admin/get-fees");
+
+        // console.log(response.data);
+
+        return response.data?.data;
+      } catch (err) {
+        throw new Error(err?.response?.data?.message || err?.message);
+      }
+    },
+  });
+
+  const updateTransctionFees = useMutation({
+    mutationFn: async (payload) => {
+      message.loading("Updating transaction fees", 50000);
+      try {
+        const response = await axios.post("admin/update-fees", payload);
+
+        // console.log(response?.data);
+
+        message.destroy();
+
+        return response.data;
+      } catch (error) {
+        throw new Error(error?.response?.data?.message ?? error?.message);
+      }
+    },
+    onSuccess: (res) => {
+      message.success("Update bill transaction fee");
+      queryClient.invalidateQueries(["transactionFees"]);
+    },
+    onError: (error) => message.error(error?.message),
+  });
+
+  return {
+    allBills,
+    bestSelling,
+    customerRate,
+    monthlyRate,
+    successRate,
+    transactionFees,
+    updateTransctionFees,
+  };
 };
 
 export default useBillsQuery;

@@ -1,19 +1,46 @@
+import { Form, Select, Spin, Switch } from "antd";
+import React, { useEffect, useState } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
-import { Switch } from "antd";
-import { formatNumber } from "chart.js/helpers";
-import React, { useState } from "react";
-import { formatCurrency } from "../../../utils/functions";
+import { LoadingOutlined } from "@ant-design/icons";
+
+import useBillsQuery from "./hooks/useBillsQuery";
+import InputField from "../../../components/form/input";
+import SelectionField from "../../../components/form/select";
 
 const Fees = () => {
+  const { transactionFees, updateTransctionFees } = useBillsQuery();
+
+  const { data, isLoading } = transactionFees;
+  const [form] = Form.useForm();
+
+  // console.log(data);
+
   const [switchOn, setSwitchOn] = useState(false);
   const [fee, setFee] = useState(0);
+  const [vasType, setVasType] = useState("airtime");
+
+  useEffect(() => {
+    if (data) {
+      setSwitchOn(data?.enabled);
+      setFee(data[vasType]);
+      form.setFieldsValue({ fee: fee, vasType: vasType });
+    }
+  }, [isLoading, data, vasType]);
 
   return (
     <div className="bg-white rounded-xl shadow-light p-8 space-y-5">
       <div className="inline-flex items-center ont-inter font-normal gap-5">
         <h3 className="text-2xl ">Enable Transaction Fee</h3>
         <span className="text-lg text-[#7F7F7F] inline-flex items-center gap-2.5 capitalize">
-          {switchOn ? "on" : "off"} <Switch onChange={setSwitchOn} />
+          {switchOn ? "on" : "off"}{" "}
+          <Switch
+            onChange={(value) => {
+              setSwitchOn(value);
+              console.log(value);
+              updateTransctionFees.mutate({ enabled: value });
+            }}
+            checked={switchOn}
+          />
         </span>
       </div>
 
@@ -44,21 +71,82 @@ const Fees = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-lg space-y-1">
-        <label htmlFor="fees" className="text-base font-sans">Fee</label>
-        <input
+      <Form
+        form={form}
+        layout="vertical"
+        className="w-full max-w-lg space-y-4"
+        onFinish={(data) => {
+          // data['enabled'] = switchOn;
+          // const payload = {
+          //   enabled: switchOn,
+          // };
+
+          payload[vasType] = Number(fee);
+
+          console.log(payload);
+          updateTransctionFees?.mutate(payload);
+        }}
+      >
+        <InputField
+          name="fee"
           disabled={!switchOn}
-          type="text"
-          name="fees"
-          id="fees"
-        //   value={formatCurrency(fee)}
-          placeholder="0.00"
-          className={`w-full rounded-md py-3 px-4 focus:ring-bills-darkblue focus:outline-none ${
-            switchOn ? "" : "bg-[#5555551A]"
-          } border border-[#D0D5DD]`}
-           onChange={e => setFee(e.target.value)}
+          label="fee"
+          placeholder="0"
+          value={fee}
+          onChange={setFee}
         />
-      </div>
+
+        {switchOn && (
+          <>
+            <SelectionField
+              label="Bill Type"
+              value={vasType}
+              name="vasType"
+              onChange={setVasType}
+              placeholder="Choose bill transaction type"
+              source={
+                data
+                  ? Object.keys(data)
+                      .filter(
+                        (title) =>
+                          title !== "id" &&
+                          title !== "enabled" &&
+                          title !== "updatedAt" &&
+                          title !== "createdAt"
+                      )
+                      .map((title) => ({
+                        label: (
+                          <span className="text-sm font-medium font-clashGrotesk capitalize">
+                            {title}
+                          </span>
+                        ),
+                        value: title,
+                        key: title,
+                      }))
+                  : []
+              }
+            />
+
+            <button
+              type="submit"
+              className={`font-sm bg-bills-darkblue text-white capitalize block px-6 py-2.5 rounded-md ${
+                updateTransctionFees?.isPending && "bg-opacity-50"
+              }`}
+              disabled={updateTransctionFees?.isPending}
+            >
+              Save{" "}
+              {updateTransctionFees?.isPending && (
+                <Spin
+                  spinning
+                  size="small"
+                  color="#fffff"
+                  indicator={<LoadingOutlined spin />}
+                />
+              )}
+            </button>
+          </>
+        )}
+      </Form>
     </div>
   );
 };

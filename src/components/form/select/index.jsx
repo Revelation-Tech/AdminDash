@@ -1,7 +1,7 @@
 import { Form, Select } from "antd";
 import React from "react";
 
-const SelectionField = ({ name, label, source, placeholder, isRequired }) => {
+const SelectionField = ({ name, label, source, placeholder, isRequired, value, onChange }) => {
   return (
     <Form.Item
       name={name}
@@ -15,6 +15,8 @@ const SelectionField = ({ name, label, source, placeholder, isRequired }) => {
       <Select
         options={source}
         placeholder={placeholder}
+        defaultValue={value}
+        onChange={onChange}
         className="border border-bills-borderLight rounded-md focus:ring-0 placeholder:text-bills-text placeholder:capitalize h-12"
       />
     </Form.Item>
