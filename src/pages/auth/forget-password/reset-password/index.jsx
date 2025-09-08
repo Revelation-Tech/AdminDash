@@ -55,7 +55,7 @@ const ResetPassword = () => {
           <div className="inline-flex flex-col justify-center items-center w-full mb-8">
             {/* <Logo2 height="50" width="203" /> */}
             <h2 className="font-sans text-2xl font-bold uppercase text-bills-darkblue">
-              Pay Bills Admin Console
+              PayBills Admin Console
             </h2>
             <div className="">
               <h1 className="text-black font-clashGrotesk font-medium text-xl">
