@@ -5,6 +5,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useMutation } from "@tanstack/react-query";
 import axios from "@config/axios";
 
+import Logo2 from "../../../../assets/Logo2";
+
 const RequestOTP = () => {
   const [email, setEmail] = useState("");
 
@@ -48,10 +50,10 @@ const RequestOTP = () => {
       <div className="w-full max-w-xl m-auto flex flex-col">
         <div className="bg-white p-8 w-full shadow-card rounded-lg">
           <div className="inline-flex flex-col justify-center items-center w-full mb-8">
-            {/* <Logo2 height="50" width="203" /> */}
-            <h2 className="font-sans text-2xl font-bold uppercase text-bills-darkblue">
+            <Logo2 height="auto" width="150px" />
+            {/* <h2 className="font-sans text-2xl font-bold uppercase text-bills-darkblue">
               PayBills Admin Console
-            </h2>
+            </h2> */}
             <div className="">
               <h1 className="text-black font-clashGrotesk font-medium text-xl">
                 Request OTP code
