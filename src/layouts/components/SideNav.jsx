@@ -148,7 +148,7 @@ const SideNav = () => {
           <Logo />
         </div>
 
-        <div className="md:h-[65%] lg:h-[80%] px-4">
+        <div className="md:h-[65%] lg:h-[70%] px-4">
           {sideNavData.map((link) => {
             return (
               <NavLink
