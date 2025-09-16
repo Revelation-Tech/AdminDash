@@ -195,8 +195,7 @@ const SideNav = () => {
 
       <div className="hidden lg:flex justify-between items-center p-4 bg-white py-5">
         <div>
-          {" "}
-          <Logo2 height="33" width="100" />
+          <Logo2 height="33px" width="100px" />
         </div>
 
         <div className="flex items-center">
