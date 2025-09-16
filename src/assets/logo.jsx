@@ -2,7 +2,7 @@ import logo from '@/assets/logo.png'
 
 const Logo = ()=>{
     return(
-        <div className="w-[150px] h-[80px]">
+        <div className="w-[170px] h-[150px]">
             <img src={logo} alt="" className='w-full h-full'/>
         {/* <svg width="100" height="33" viewBox="0 0 100 33" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="path-1-outside-1_2471_122572" maskUnits="userSpaceOnUse" x="-2" y="2" width="16" height="26" fill="black">
